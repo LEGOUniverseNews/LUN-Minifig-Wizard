@@ -1,0 +1,9 @@
+div {
+  width: 300px;
+  height: 425px;
+  box-shadow: -3px 1px 10px;
+  border-radius: 30px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background: linear-gradient(to right, #ff8409, #d76b00);
+}
