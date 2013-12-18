@@ -1,2 +1,24 @@
 *.blend1
 *.blend2
+
+# Python symbolic links cause git to throw an error
+js/perfect-scrollbar.js
+js/jquery.mousewheel.js
+css/perfect-scrollbar.css
+
+#############
+## Windows
+#############
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Mac junk
+.DS_Store
