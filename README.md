@@ -10,8 +10,8 @@ Thank You!
 
 The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine open-source projects:
 
-* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar)
-* [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewhee )
+* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar#readme)
+* [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewheel#readme)
 
 Contributing
 ------------
