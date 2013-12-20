@@ -1,1 +1,30 @@
-_LEGO Universe News!_ Minifig Wizard====================================![LUN Minifig Wizard Logo](Logo/LUN-Minifig-Wizard-Small.png)The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) allows you to create your very own LEGO Minifigure [sigfig](http://www.brothers-brick.com/lego-glossary/#Sigfig)!Thank You!----------The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine open-source projects:* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar#readme)* [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewheel#readme)Contributing------------If you would like to contribute to the development of the **_LEGO Universe News!_ Minifig Wizard**, please consult [`CONTRIBUTING.md`](dev/CONTRIBUTING.md).License-------[![Creative Commons License](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0)All images in the **_LEGO Universe News!_ Minifig Wizard** by LINKYrioforce are  licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/),while the underlying source code by le717LINKY is licensed under [The MIT License](http://opensource.org/licenses/MIT).<br>LEGO®, and the LEGO® Minifigure is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this site, or project. For more information, please visit the [LEGO Fair Play Policy](http://aboutus.lego.com/en-us/legal-notice/fair-play)
+_LEGO Universe News!_ Minifig Wizard
+====================================
+
+![LUN Minifig Wizard Logo](Logo/LUN-Minifig-Wizard-Small.png)
+
+The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) allows you to create your very own LEGO Minifigure [sigfig](http://www.brothers-brick.com/lego-glossary/#Sigfig)!
+
+Thank You!
+----------
+
+The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine open-source projects:
+
+* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar#readme)
+* [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewheel#readme)
+
+Contributing
+------------
+
+If you would like to contribute to the development of the **_LEGO Universe News!_ Minifig Wizard**, please consult [`CONTRIBUTING.md`](dev/CONTRIBUTING.md).
+
+License
+-------
+
+[![Creative Commons License](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0)
+
+All images in the **_LEGO Universe News!_ Minifig Wizard** by [rioforce](http://rioforce.WordPress.com) are  licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/),
+while the underlying source code by [Triangle717](http://Triangle717.WordPress.com) is licensed under [The MIT License](http://opensource.org/licenses/MIT).
+
+<br>
+LEGO®, and the LEGO® Minifigure is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this site, or project. For more information, please visit the [LEGO Fair Play Policy](http://aboutus.lego.com/en-us/legal-notice/fair-play)
