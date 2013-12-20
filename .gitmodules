@@ -1,6 +1,0 @@
-[submodule "dependencies/jquery-mousewheel"]
-	path = dependencies/jquery-mousewheel
-	url = https://github.com/brandonaaron/jquery-mousewheel.git
-[submodule "dependencies/perfect-scrollbar"]
-	path = dependencies/perfect-scrollbar
-	url = https://github.com/noraesae/perfect-scrollbar.git
