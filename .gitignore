@@ -1,4 +1,5 @@
 # Blender projects
+*.blend
 *.blend1
 *.blend2
 
