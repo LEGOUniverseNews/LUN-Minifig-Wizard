@@ -13,8 +13,6 @@ The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar)
 * [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewhee )
 
-A complete list can be found in the [`dependencies`](dependencies) folder.
-
 Contributing
 ------------
 
