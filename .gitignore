@@ -8,6 +8,7 @@ js/
 css/
 models/minifigs
 *.py
+!Developer/makexml.py
 
 #############
 ## Windows
@@ -17,6 +18,11 @@ models/minifigs
 Thumbs.db
 ehthumbs.db
 
+*.exe
+*.msi
+*.com
+*.bat
+
 # Folder config file
 Desktop.ini
 
@@ -25,3 +31,33 @@ $RECYCLE.BIN/
 
 # Mac junk
 .DS_Store
+
+#############
+## Python
+#############
+
+*.py[co]
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+# Translations
+*.mo
