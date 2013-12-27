@@ -39,11 +39,9 @@ xmlPath = os.path.join("..", "img", "images.xml")
 noImageXML = ["<thumb>img/Clear-Selection.png</thumb>",
               "<image>img/ui/figure/empty.png</image>"]
 
-# Loop through every folder
-num = 0
-while num <= (len(imageFols) - 1):
 
-    # Get a file list of img's subfolders
+for num in range(0, len(imageFols)):
+    # Go through every subfolder in `img`
     for root, dirnames, filenames in os.walk(
             os.path.join("..", "img", "{0}".format(imageFols[num]))):
 
@@ -82,8 +80,16 @@ while num <= (len(imageFols) - 1):
                 imageList.append("<{0}{1}</{0}".format(
                     subTagName, myFile[3:]))
 
-    # Construct the rest of the sections
-    num += 1
+
+# There were no images to make an XML
+if len(thumbList) == 0:
+    print('''Could not find any images! Ensure there are images at\n
+{0}'''.format(os.path.abspath(os.path.dirname(xmlPath))))
+
+    # Abort only on user input
+    print("\nAn XML file has not been generated.")
+    get_input("\nPress Enter to close.")
+    raise SystemExit(0)
 
 # Begin the file contents
 with open(xmlPath, "wt") as f:
@@ -93,7 +99,6 @@ with open(xmlPath, "wt") as f:
 # Each part is accessed by it's index
 # Since each list (should be) the same length,
 # we only need the length of one of them.
-listIndex = 0
 thumbListLen = len(thumbList)
 
 # There is not the same number of thumbnails and images
@@ -112,12 +117,12 @@ Double check all the "thumb" and "full" folders and fix this error before
 continuing.''')
 
     # Abort only on user input
-    print("\nA new XML file has not been generated.")
+    print("\nAn XML file has not been generated.")
     get_input("\nPress Enter to close.")
     raise SystemExit(0)
 
-while (listIndex < thumbListLen):
 
+for listIndex in range(0, thumbListLen):
     # Create the proper XML divider
     blah = thumbList[listIndex].split("/")
     if blah[1] == "hats":
@@ -148,9 +153,6 @@ while (listIndex < thumbListLen):
         f.write("\n\t\t{0}".format(imageList[listIndex]))
         f.write("\n\t</{0}>".format(divide))
 
-    # Ensure all the sections are written
-    listIndex += 1
-
 
 # Finish off the file
 with open(xmlPath, "at") as f:
@@ -160,9 +162,9 @@ with open(xmlPath, "at") as f:
 del blah[:]
 del bodyType[:]
 
-print('''A new XML file has been successfully generated and saved to
 
-{0}'''.format(
-    os.path.abspath(xmlPath)))
+# Success!
+print('''A new XML file has been successfully generated and saved to\n
+{0}'''.format(os.path.abspath(xmlPath)))
 get_input("\nPress Enter to close.")
 raise SystemExit(0)
