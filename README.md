@@ -4,12 +4,13 @@
 
 The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) allows you to create your very own LEGO Minifigure [sigfig](http://www.brothers-brick.com/lego-glossary/#Sigfig)!
 
-## Thank You! ##
+## Dependencies ##
 
 The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine open-source projects:
 
-* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar#readme)
+* [jQuery](https://jquery.com/)
 * [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewheel#readme)
+* [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar#readme)
 
 ## Contributing ##
 
