@@ -1,10 +1,9 @@
 # Blender projects
-*.blend1
-*.blend2
+*.blend[12]
 
 # Just for now
-*.blend
-js/
+js/*
+!js/jquery-*
 css/
 models/minifigs
 *.py
@@ -29,7 +28,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-# Mac junk
+# Mac OS X
 .DS_Store
 
 #############
