@@ -2,9 +2,6 @@
 *.blend[12]
 
 # Just for now
-js/*
-!js/jquery-*
-css/
 models/minifigs
 *.py
 !Developer/makexml.py
