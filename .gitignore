@@ -1,5 +1,7 @@
 # Blender projects
-*.blend[12]
+*.blend
+*.blend1
+*.blend2
 
 # Just for now
 models/minifigs
