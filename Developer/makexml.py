@@ -3,7 +3,7 @@
 """
     LEGO Universe News! Minifig Wizard
 
-    Created 2013 Triangle717 & rioforce
+    Created 2013-2014 Triangle717 & rioforce
     <http://Triangle717.WordPress.com/>
     <http://rioforce.WordPress.com/>
 
@@ -11,6 +11,7 @@
     <http://opensource.org/licenses/MIT>
 """
 
+from __future__ import print_function
 import sys
 import os
 
@@ -27,10 +28,10 @@ thumbList = []
 imageList = []
 
 # All folders images are stored in
-imageFols = ["hats", "heads", "legs", "torsos", "items/LHand", "items/RHand"]
+imageFols = ["hats", "heads", "legs", "torsos", "shield", "sword"]
 
 # All valid XML tag names
-tagNames = ["Hat", "Head", "Leg", "Torso", "LHandItem", "RHandItem"]
+tagNames = ["Hat", "Head", "Leg", "Torso", "Shield", "Sword"]
 
 # Location of output XML file
 xmlPath = os.path.join("..", "img", "images.xml")
@@ -59,14 +60,15 @@ for num in range(0, len(imageFols)):
                 tagName = tagNames[2]
             elif bodyType[2] == "torsos":
                 tagName = tagNames[3]
-            elif bodyType[2] == "items/LHand":
+            elif bodyType[2] == "shield":
                 tagName = tagNames[4]
-            elif bodyType[2] == "items/RHand":
+            elif bodyType[2] == "sword":
                 tagName = tagNames[5]
 
             # The Web uses forward slashes
+            # (unlike Windows but like Mac OS X and Linux...)
             if os.path.sep in myFile:
-                myFile = myFile.replace("\\", "/")
+                myFile = myFile.replace(os.path.sep, "/")
 
             # Construct entry for thumbnail
             if bodyType[3] == "thumb":
@@ -79,7 +81,6 @@ for num in range(0, len(imageFols)):
                 subTagName = "image>"
                 imageList.append("<{0}{1}</{0}".format(
                     subTagName, myFile[3:]))
-
 
 # There were no images to make an XML
 if len(thumbList) == 0:
@@ -101,25 +102,34 @@ with open(xmlPath, "wt") as f:
 # we only need the length of one of them.
 thumbListLen = len(thumbList)
 
-# There is not the same number of thumbnails and images
+# There is not the same number of thumbnails as images
 if thumbListLen != len(imageList):
 
     # There are more thumbnails than images
     if thumbListLen > len(imageList):
         print('''A thumbnail does not have a corresponding full size image.
-Double check all the "thumb" and "full" folders and fix this error before
+Double check all "thumb" and "full" folders and fix this error before
 continuing.''')
 
     # There are more images than thumbnails
     else:
         print('''A full size image does not have a corresponding thumbnail.
-Double check all the "thumb" and "full" folders and fix this error before
+Double check all "thumb" and "full" folders and fix this error before
 continuing.''')
 
     # Abort only on user input
     print("\nAn XML file has not been generated.")
     get_input("\nPress Enter to close.")
     raise SystemExit(0)
+
+
+# Write Clear Selection image for Hats and Items
+for dividingPart in (tagNames[0], tagNames[4], tagNames[5]):
+    with open(xmlPath, "at") as f:
+        f.write("\n\t<{0}>".format(dividingPart))
+        f.write("\n\t\t{0}".format(noImageXML[0]))
+        f.write("\n\t\t{0}".format(noImageXML[1]))
+        f.write("\n\t</{0}>".format(dividingPart))
 
 
 for listIndex in range(0, thumbListLen):
@@ -133,18 +143,10 @@ for listIndex in range(0, thumbListLen):
         divide = tagNames[2]
     elif blah[1] == "torsos":
         divide = tagNames[3]
-    elif (blah[1] == "items" and blah[2] == "LHand"):
+    elif (blah[1] == "shield"):
         divide = tagNames[4]
-    elif (blah[1] == "items" and blah[2] == "RHand"):
+    elif (blah[1] == "sword"):
         divide = tagNames[5]
-
-    # Write the None Image for Hats and Items
-    if divide in (tagNames[0], tagNames[4], tagNames[5]):
-        with open(xmlPath, "at") as f:
-            f.write("\n\t<{0}>".format(divide))
-            f.write("\n\t\t{0}".format(noImageXML[0]))
-            f.write("\n\t\t{0}".format(noImageXML[1]))
-            f.write("\n\t</{0}>".format(divide))
 
     # Write our XML document
     with open(xmlPath, "at") as f:
@@ -161,7 +163,6 @@ with open(xmlPath, "at") as f:
 # Delete now unneeded lists
 del blah[:]
 del bodyType[:]
-
 
 # Success!
 print('''A new XML file has been successfully generated and saved to\n
