@@ -1,6 +1,7 @@
 {
     "maxlen" : 125,
     "indent" : 4,
+    "strict" : true,
     "globals" : [
         "$",
         "document",

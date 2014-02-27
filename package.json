@@ -1,0 +1,36 @@
+{
+  "name": "LUN-Minifig-Wizard",
+  "version": "1.0.0",
+  "description": "Design your own LEGO sigfig!",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LEGOUniverseNews/LUN-Minifig-Wizard"
+  },
+  "author": "Triangle717 and rioforce",
+  "licenses": [
+    {
+      "type": "The MIT License",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "homepage": "http://LEGOUniverseNews.github.io/LUN-Minifig-Wizard",
+  "dependencies": {
+    "string-format": "^0.2.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "matchdep": "~0.3.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-cssmin": "^0.8.0",
+    "grunt-contrib-csslint": "~0.2.0",
+    "grunt-dev-update": "^0.4.6",
+    "grunt-htmlhint": "~0.4.0",
+    "grunt-contrib-copy": "^0.5.0"
+  }
+}

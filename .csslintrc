@@ -5,6 +5,5 @@
   "fallback-colors": false,
   "gradients": false,
   "ids": false,
-  "important": false,
-  "known-properties": false
+  "important": false
 }
