@@ -37,14 +37,13 @@ $RECYCLE.BIN/
 # Packages
 *.egg
 *.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
 .installed.cfg
 __pycache__
 
@@ -55,5 +54,29 @@ pip-log.txt
 .coverage
 .tox
 
-# Translations
+#Translations
 *.mo
+
+#Mr Developer
+.mr.developer.cfg
+
+###################
+## Node.js/Grunt
+###################
+
+lib-cov
+lcov.info
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+build
+.grunt
+node_modules

@@ -14,6 +14,8 @@ The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar/)
 * [String::format](https://github.com/davidchambers/string-format/)
 
+![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![devDependency Status](https://david-dm.org/LEGOUniverseNews/LUN-Minifig-Wizard/dev-status.png?theme=shields.io)](https://david-dm.org/LEGOUniverseNews/LUN-Minifig-Wizard#info=devDependencies)
+
 ## Contributing ##
 
 If you would like to contribute to the development of the **_LEGO Universe News!_ Minifig Wizard**,
