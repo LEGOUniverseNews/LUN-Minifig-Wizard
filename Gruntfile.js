@@ -23,12 +23,12 @@ module.exports = function(grunt) {
             }
         },
 
-        // Copy dependencies to the proper location
+        // Copy JavaScript dependencies to the proper location
         copy: {
             main: {
                 expand: true,
-                cwd: "node_modules/string-format/lib/",
-                src: "**",
+                cwd: "node_modules/",
+                src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
                 dest: "js/",
                 flatten: true,
                 filter: "isFile"
