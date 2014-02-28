@@ -19,7 +19,9 @@
   ],
   "homepage": "http://LEGOUniverseNews.github.io/LUN-Minifig-Wizard",
   "dependencies": {
-    "string-format": "^0.2.1"
+    "string-format": "^0.2.1",
+    "jquery.browser": "gabceb/jquery-browser-plugin",
+    "perfect-scrollbar": "noraesae/perfect-scrollbar"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

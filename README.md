@@ -11,6 +11,7 @@ The **_LEGO Universe News!_ Minifig Wizard** makes use of features in these fine
 * [Grunt](http://gruntjs.com/)
 * [jQuery](https://jquery.com/)
 * [jQuery Mouse Wheel Plugin](https://github.com/brandonaaron/jquery-mousewheel/)
+* [jquery.browser](https://github.com/gabceb/jquery-browser-plugin/)
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar/)
 * [String::format](https://github.com/davidchambers/string-format/)
 
