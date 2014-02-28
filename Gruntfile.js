@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       'Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n',
         baseFileName: "LUNWizard",
         jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "!js/string-format.js", "!js/perfect-scrollbar-*.js"],
-        cssFiles: ["css/*.css", "!css/*.min.css", "!css/perfect-scrollbar-0.4.8.min.css"],
+        cssFiles: ["css/*.css", "!css/*.min.css", "!css/perfect-scrollbar-*.min.css"],
 
         // Keep the devDependencies up-to-date
         devUpdate: {
