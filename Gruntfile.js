@@ -8,8 +8,8 @@ module.exports = function(grunt) {
       'Created <%= grunt.template.today("yyyy") %> <%= pkg.author %>; ' +
       'Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n',
         baseFileName: "LUNWizard",
-        jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "!js/string-format.js", "!js/perfect-scrollbar-*.js"],
-        cssFiles: ["css/*.css", "!css/*.min.css", "!css/perfect-scrollbar-*.min.css"],
+        jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],
+        cssFiles: ["css/*.css", "!css/*.min.css"],
 
         // Keep the devDependencies up-to-date
         devUpdate: {
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: "node_modules/",
                 src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
-                dest: "js/",
+                dest: "lib/",
                 flatten: true,
                 filter: "isFile"
             },
