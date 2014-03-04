@@ -1,12 +1,6 @@
 # Blender projects
-*.blend
 *.blend1
 *.blend2
-
-# Just for now
-models/minifigs
-*.py
-!Developer/makexml.py
 
 #############
 ## Windows
