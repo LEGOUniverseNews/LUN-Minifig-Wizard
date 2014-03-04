@@ -1,0 +1,165 @@
+/*
+    LEGO Universe News! Minifig Wizard
+
+    Created 2013-2014 Triangle717 & rioforce
+    <http://Triangle717.WordPress.com/>
+    <http://rioforce.WordPress.com/>
+
+    Licensed under The MIT License
+    <http://opensource.org/licenses/MIT>
+*/
+
+/* Fill entire screen, bg color, font settings */
+html {
+    height: 100%;
+    width: 100%;
+    background-color: #d0d0d0;
+    color: white;
+    font-family: sans-serif;
+}
+
+/* LUN Minifig Wizard logo */
+#lun-wizard-logo {
+    position: absolute;
+    left: 12em;
+    top: 30.3em;
+}
+
+/* Hide all table borders */
+table { border-style: none; }
+
+/* Align all the elements into their proper location */
+.myTables {
+    position: absolute;
+    left: 350px;
+    width: 315px;
+    top: 15px;
+}
+
+/* Button to resize the table */
+#resize-button {
+    position: absolute;
+    left: 550px;
+    top: 445px;
+    transition: left 0.3s ease;
+}
+
+/* Creation spark images */
+.myAvatar {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+}
+
+/* Move drop shadow behind minifigure in main display */
+#DropShadowImg{ z-index: -1; }
+
+/* User-made minifigure display */
+#myAvatarDisplay {
+    /* Image positioning */
+    z-index: -1;
+    position: absolute;
+    top: 45px;
+    left: 40px;
+
+    /* Background */
+    width: 312px;
+    height: 360px;
+    box-shadow: 1px 1px 10px #8c8c8c inset;
+    border-radius: 30px;
+
+    /* Do not curve the top and bottom-right corners */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    /* Older browsers will not render the gradient */
+    background: #ff8409;
+
+    /* Orange background gradient */
+    background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
+    background: linear-gradient(to right, #ff8409, #d76b00);
+}
+
+/* New Window button */
+#bigger-picture {
+    position: absolute;
+    top: 410px;
+    left: 260px;
+}
+
+/* Available items display */
+#background {
+    width: 320px;
+    height: 425px;
+    box-shadow: 1px 1px 10px #8c8c8c;
+    border-radius: 30px;
+    /* Older browsers will not render the gradient */
+    background: #000000;
+    background: -webkit-linear-gradient(#252525, #000000);
+    background: linear-gradient(#252525, #000000);
+}
+
+/* Buttons to view the different body parts */
+#category-buttons-div {
+    margin-left: 12px;
+    padding-top: 15px;
+}
+
+/* Separate the category buttons a bit */
+.category-buttons-th {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Background for the images */
+#content {
+    margin-top: -15px;
+    height: 315px;
+    width: 300px;
+    overflow: hidden;
+}
+
+/* Even spacing around the table */
+#minifigItems { margin-left: 5px; }
+
+/* The individual images */
+#minifigItems td {
+    /* Set column size */
+    width: 65px;
+    height: 65px;
+    /* Padding around each image */
+    padding: 4.2px;
+    /* Round off the edges for an LU-ish effect */
+    border-radius: 11px;
+}
+
+/* Orange background for invdividual part hover and selection */
+.selector:hover, .selected { background-color: rgb(255, 165, 0); }
+
+/* Orange background for category part hover and selection */
+.bubble {
+    border-radius: 50%;
+    background-color: rgb(255, 165, 0);
+}
+
+/* Customize perfect-scrollbar */
+.ps-scrollbar-y {
+    background-color: #B3B3B3 !important;
+    width: 9px !important;
+}
+
+.ps-scrollbar-y-rail {
+    /* Hide the scrollbar rail */
+    background-color: rgba(000, 000, 000, 000) !important;
+    top: 75px !important;
+    right: -2px !important;
+}
+
+/* Find the Special */
+#emmet {
+    position: relative;
+    display: block;
+    width: 35px;
+    height: 35px;
+    z-index: 1;
+}
