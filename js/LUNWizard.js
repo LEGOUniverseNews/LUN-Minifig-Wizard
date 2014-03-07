@@ -11,7 +11,6 @@
 
 // Global variables for various stuff
 var bodyPart, imagesList, rowSize, partNumberID, oldpartNumberID, oldpartTypeID,
-    imgSize = "63px",
     imagesList = [],
     rowSize = 4;
 
@@ -125,9 +124,6 @@ function resizeTable() {
         // Change the number of items in a row to 6
         rowSize = 6;
 
-        // Display the thumbnails at their full size
-        imgSize = "64px";
-
         // Run animations to increase the size/locations of whatever we need
         // Move the Enlarge image to the right
         $resizeButton.css("left", "+=190px");
@@ -156,9 +152,6 @@ function resizeTable() {
     } else {
         // Set the number of items in a row to 4
         rowSize = 4;
-
-        // Make the thumbnails slightly smaller
-        imgSize = "63px";
 
         // Run animations to reset sizes and location
         // Reduce button location
@@ -258,7 +251,10 @@ function parseXML(xml) {
     Update the table with the proper images as
     specified by the part parameter.
     */
-    var imgLink, fullImgLink, index, numOfImages, partNumber, tableString;
+    var imgLink, fullImgLink, tableString,
+        index = 0,
+        numOfImages = 0,
+        partNumber = 0;
 
     // Clear the array of full size images if it contains data
     if (imagesList[0]) {
@@ -279,10 +275,6 @@ function parseXML(xml) {
     // Construct the beginning of the table data
     tableString = '<tr><td id="0" class="selector">';
 
-    index = 0;
-    partNumber = 0;
-    numOfImages = 0;
-
     // Get the total number of images for this part
     $(xml).find(bodyPart).each(function() {
         numOfImages += 1;
@@ -297,8 +289,10 @@ function parseXML(xml) {
         imgLink = $(this).find("thumb").text();
 
         // Wrap the URL in an img tag, wrap that in a link, add it to the table
-        tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="{3}" src="{4}" /></a>'.format(
-            index, bodyPart, partNumber, imgSize, imgLink);
+        /* jshint ignore:start */
+        tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
+            index, bodyPart, partNumber, imgLink);
+        /* jshint ignore:end */
 
         /* Check if
         a. we have not run through all the images
