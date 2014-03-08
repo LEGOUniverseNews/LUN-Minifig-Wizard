@@ -21,7 +21,7 @@ function newMinifigWindow() {
         $("#LegImg").attr("src"),
         $("#SwordImg").attr("src"),
         $("#ShieldImg").attr("src"),
-        '\t<img class="TheBigPicture" id="ShadowImg" src="img/ui/figure/drop-shadow.png'
+        '\t<img class="the-big-picture" id="shadow-img" src="img/ui/figure/drop-shadow.png'
     ];
 
     // Construct the HTML for the beginning of the page
@@ -49,7 +49,7 @@ function newMinifigWindow() {
     var endCode = "</body>\n</html>\n";
 
     // Initial line for the body
-    var minifigDisplay = '\t<img class="TheBigPicture" src="';
+    var minifigDisplay = '\t<img class="the-big-picture" src="';
 
     for (var i = 0; i < myList.length; i += 1) {
         // Add the link to the image
@@ -58,7 +58,7 @@ function newMinifigWindow() {
         // Keep adding the images while there are images to display
         // AND if the image is not the drop shadow, do not assign the class
         if (i !== (myList.length - 1) && i !== 6) {
-            minifigDisplay += '\t<img class="TheBigPicture" src="';
+            minifigDisplay += '\t<img class="the-big-picture" src="';
         }
     }
 

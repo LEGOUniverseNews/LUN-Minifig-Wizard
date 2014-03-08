@@ -27,10 +27,10 @@ body {
 }
 
 /* Drop shadow for minifigure */
-#ShadowImg { z-index: -1; }
+#shadow-img { z-index: -1; }
 
 /* Position the minifigure */
-.TheBigPicture {
+.the-big-picture {
     position: fixed;
     bottom: 45px;
     left: 4px;

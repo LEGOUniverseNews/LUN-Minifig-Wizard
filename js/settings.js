@@ -84,8 +84,8 @@ $(function() {
          */
         if ((!isNaN($newImgSize)) && ($newImgSize <= 600)) {
             // Resize all images to the new size
-            $(".TheBigPicture").width($newImgSize);
-            $("#ShadowImg").width($newImgSize);
+            $(".the-big-picture").width($newImgSize);
+            $("#shadow-img").width($newImgSize);
         }
     });
 });
