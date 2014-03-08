@@ -84,7 +84,7 @@ table {
 }
 
 /* The boxes used to change the background color */
-.colorBox {
+.color-box {
     width: 12px;
     height: 12px;
     border: 1px solid black;
@@ -112,11 +112,14 @@ table {
 }
 
 /* Possible background and color box colors */
-#redColorBox { background-color: #f00; }
-#greenColorBox { background-color: #008000; }
-#blueColorBox { background-color: #00f; }
-#yellowColorBox { background-color: #ff0; }
-#grayColorBox { background-color: #d0d0d0; }
-#orangeColorBox { background-color: #ffa500; }
-#blackColorBox { background-color: #000; }
-#whiteColorBox { background-color: #fff; }
+#red-color-box { background-color: #f00; }
+#green-color-box { background-color: #008000; }
+#blue-color-box { background-color: #00f; }
+#yellow-color-box { background-color: #ff0; }
+#gray-color-box { background-color: #d0d0d0; }
+#orange-color-box { background-color: #ffa500; }
+#black-color-box { background-color: #000; }
+#white-color-box { background-color: #fff; }
+
+/* Change the border around the actively selected box */
+.white-border { border: 1.5px solid white; }

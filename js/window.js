@@ -35,14 +35,15 @@ function newMinifigWindow() {
     // Area for background-color changing boxes and image size
     // The content is injected by settings.js
     var tableCode = '\n\t<div id="gear">\n\t\t<img width="40" height="40" src="img/ui/Gear.svg" />' +
-    '\n\t</div>\n\t<div id="settings-panel">\n\t\tBackground Color\n\t\t<table>\n' +
-    '\t\t\t<tr></tr>\n\t\t</table>\n\t\t<br><span id="size-text">Size</span><br>\n' +
-    '\t\t<input id="size-input" type="number" placeholder="600" autocomplete="off">' +
-    '\n\t\t<label id="size-label" for="size-input">px</label>\n\t</div>\n';
+        '\n\t</div>\n\t<div id="settings-panel">\n\t\tBackground Color\n\t\t<table>\n' +
+        '\t\t\t<tr></tr>\n\t\t</table>\n\t\t<br><span id="size-text">Size</span><br>\n' +
+        '\t\t<input id="size-input" type="number" placeholder="600" autocomplete="off">' +
+        '\n\t\t<label id="size-label" for="size-input">px</label>\n\t</div>\n';
 
     // JavaScript links
     var scriptCode = '\t<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>\n' +
-    '\t<script src="js/LUNWizard.window.min.js"></script>\n';
+        '\t<script src="lib/string-format.js"></script>\n' +
+        '\t<script src="js/LUNWizard.window.min.js"></script>\n';
 
     // Closing HTML
     var endCode = "</body>\n</html>\n";

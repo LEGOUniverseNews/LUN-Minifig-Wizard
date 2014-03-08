@@ -11,9 +11,9 @@
 
 
 // IDs of background-color changing boxes and it's length
-var boxIDList = ["redColorBox", "greenColorBox", "blueColorBox",
-                 "yellowColorBox", "orangeColorBox", "grayColorBox",
-                 "blackColorBox", "whiteColorBox"
+var boxIDList = ["red-color-box", "green-color-box", "blue-color-box",
+                 "yellow-color-box", "orange-color-box", "gray-color-box",
+                 "black-color-box", "white-color-box"
                 ];
 
 
@@ -24,38 +24,40 @@ $(function() {
 
 
     // Construct the box. ID attribute will be added in a moment
-    var colorBoxes = '<td class="colorBox" onclick="changeColor(this.id)"></td>';
+    var colorBox = '<td class="color-box" onclick="changeColor(this.id)"></td>';
 
     // Append the required number of boxes to the table
-    for (var i = 0; i < boxIDList.length; i += 1) {
-        $("tbody").append(colorBoxes);
-    }
+    $.each(boxIDList, function() {
+        $("tbody").append(colorBox);
+    });
 
     // Go through each column and apply it's ID attribute
-    for (var m = 0; m < boxIDList.length; m += 1) {
+    $.each(boxIDList.reverse(), function(index, value) {
         // Counting VS real number stuff, + 2 for valid nth-child selectors
-        var realNumber = (m + 2);
-        $("td:nth-child(" + realNumber + ")").attr("id", boxIDList[m]);
-    }
+        $("td:nth-child({0})".format(index + 2)).attr("id", value);
+    });
 
+    // Now that the boxes are generated, apply the currently selected border
+    // to the gray box, as it is used on page load
+    $("#gray-color-box").addClass("white-border");
 
     /* ------- Settings panel displaying ------- */
 
 
     // Current location of settings panel
     // true === down, false === up
-    var position = true;
+    var displayPosition = true;
 
 
     // The user wants to display the settings
-    $("#gear").click(function () {
+    $("#gear").click(function() {
         // The settings are currently visible, trigger transition to hide them
-        if (position) {
-            position = false;
+        if (displayPosition) {
+            displayPosition = false;
             $("#settings-panel").css("transform", "translateY(-30px)");
         } else {
             // The settings are currently hidden, trigger transition to display them
-            position = true;
+            displayPosition = true;
             $("#settings-panel").css("transform", "");
         }
     });
@@ -67,17 +69,19 @@ $(function() {
     var $newImgSizeRaw, $newImgSize,
         $imgSize = $("#size-input");
 
-    // Get entered value on each keypress
+    // Get entered value on each keypress (this way, it is instant and dynamic)
     $imgSize.keyup(function () {
         $newImgSizeRaw = $imgSize.val();
 
         // Convert it to a Base10 integer
         $newImgSize = parseInt($newImgSizeRaw, 10);
 
-        /* If the integer:
-            1. is is a valid number
-            2. is less than or equal to 600 (original size),
-        */
+        /**
+         * If the integer entered is
+         * 1. a valid number,
+         * 2. less than or equal to 600 (original size)
+         * then resize the image
+         */
         if ((!isNaN($newImgSize)) && ($newImgSize <= 600)) {
             // Resize all images to the new size
             $(".TheBigPicture").width($newImgSize);
@@ -89,12 +93,22 @@ $(function() {
 
 function changeColor(newColor) {
     "use strict";
+    /* Change the window background color to the desired selection */
+
+    var bgColor, currentColor;
     // Construct the ID selector
-    newColor = "#" + newColor;
+    newColor = "#{0}".format(newColor);
 
     // Get the CSS value from the clicked box
-    var bgcolor = $(newColor).css("background-color");
+    bgColor = $(newColor).css("background-color");
+
+    // Get the ID of the currently selected box
+    currentColor = $(".color-box").find('.white-border').selector.replace(/ .white-border/, "");
+
+    // Remove the white border from the old box and apply it to the new one
+    $(currentColor).removeClass("white-border");
+    $(newColor).addClass("white-border");
 
     // Change the background color to the selected color
-    $("body").css("background-color", bgcolor);
+    $("body").css("background-color", bgColor);
 }
