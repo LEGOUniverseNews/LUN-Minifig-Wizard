@@ -10,7 +10,8 @@
 */
 
 // Global variables for various stuff
-var bodyPart, imagesList, rowSize, partNumberID, oldpartNumberID, oldpartTypeID,
+var bodyPart, imagesList, rowSize,
+    partNumberID, oldPartNumberID, oldPartTypeID,
     imagesList = [],
     rowSize = 4;
 
@@ -18,10 +19,10 @@ var bodyPart, imagesList, rowSize, partNumberID, oldpartNumberID, oldpartTypeID,
 $(function() {
     "use strict";
     var $content = $("#content"),
-    $background = $("#background"),
-    $resizeButton = $("#resize-button"),
-    $categoryButtons = $(".category-buttons-th"),
-    $categoryButtonsDiv = $("#category-buttons-div");
+        $background = $("#background"),
+        $resizeButton = $("#resize-button"),
+        $categoryButtons = $(".category-buttons-th"),
+        $categoryButtonsDiv = $("#category-buttons-div");
 
     // Apply orange bubble and mark as active the first button ("Head").
     // This must be done here to stop the orange bubble from sticking
@@ -96,14 +97,14 @@ function changePartImages(part) {
 
     // Construct jQuery id attribute selector
     var partTypeID = "#{0}".format(bodyPart);
-    changeCategoryImages(oldpartTypeID, partTypeID);
+    changeCategoryImages(oldPartTypeID, partTypeID);
 
     // Keep a copy of the old element ID
-    oldpartTypeID = "#{0}".format(bodyPart);
+    oldPartTypeID = "#{0}".format(bodyPart);
 
 
     // Fetch the XML for parsing
-    $(document).ready(function() {
+    $(function() {
         $.ajax({
             type: "GET",
             url: "img/images.xml",
@@ -119,6 +120,7 @@ function changePartImages(part) {
 function resizeTable() {
     "use strict";
     /* Resizes the table between small and large display */
+
     // We are currently using the small display
     if (rowSize === 4) {
         // Change the number of items in a row to 6
@@ -148,7 +150,7 @@ function resizeTable() {
         // Change button back to Reduce image
         $resizeButton.attr("src", "img/ui/Reduce-button.svg");
 
-    // We are currently using the larger size
+        // We are currently using the larger size
     } else {
         // Set the number of items in a row to 4
         rowSize = 4;
@@ -181,64 +183,64 @@ function resizeTable() {
     // Reconstruct the table using the desired size
     changePartImages(bodyPart);
 
-    $(document).ready(function() {
+    // Reapply the orange selection bubble
+    reapplyBubble(partNumberID);
+}
+
+function reapplyBubble(partNumberID) {
+    "use strict";
+    /* Preserve orange box around selected item (if present) between resizes */
+
+    // Only perform the class changes if an item is selected
+    if (partNumberID !== undefined) {
         // Remove the orange bubble from th selected part
         $(partNumberID).removeClass("selected");
 
         // 2 milliseconds (and no sooner!) later, reapply the bubble
-        setTimeout(function (){
+        // The timeout is required for jQuery to have time to remove the class
+        window.setTimeout(function() {
             $(partNumberID).addClass("selected");
         }, 2);
-    });
-}
-
-
-function reapplyBubble() {
-    "use strict";
-    $(partNumberID).removeClass("selected");
-
-    setTimeout(function () {
-        $(partNumberID).addClass("selected");
-    }, 2);
+    }
 }
 
 
 function main(partNumber) {
     "use strict";
     /* Change the part image to the selected one */
-    var imgID,
-        partNumberID = "#{0}".format(partNumber);
+    var imgID;
+    partNumberID = "#{0}".format(partNumber);
 
     // Get the proper imgID for each part
     switch (bodyPart) {
-    case "Torso":
-        imgID = "#TorsoImg";
-        break;
-    case "Leg":
-        imgID = "#LegImg";
-        break;
-    case "Hat":
-        imgID = "#HatImg";
-        break;
-    case "Shield":
-        imgID = "#ShieldImg";
-        break;
-    case "Sword":
-        imgID = "#SwordImg";
-        break;
-    case "Head":
-        imgID = "#HeadImg";
-        break;
+        case "Torso":
+            imgID = "#TorsoImg";
+            break;
+        case "Leg":
+            imgID = "#LegImg";
+            break;
+        case "Hat":
+            imgID = "#HatImg";
+            break;
+        case "Shield":
+            imgID = "#ShieldImg";
+            break;
+        case "Sword":
+            imgID = "#SwordImg";
+            break;
+        case "Head":
+            imgID = "#HeadImg";
+            break;
     }
 
     // The user clicked a new part, swap orange background
-    if (oldpartNumberID !== partNumberID) {
-        $(oldpartNumberID).removeClass("selected");
+    if (oldPartNumberID !== partNumberID) {
+        $(oldPartNumberID).removeClass("selected");
         $(partNumberID).addClass("selected");
     }
 
     // Set the old part number
-    oldpartNumberID = "#{0}".format(partNumber);
+    oldPartNumberID = "#{0}".format(partNumber);
 
     // Change the image to the selected one
     $(imgID).attr("src", imagesList[partNumber]);
@@ -301,6 +303,7 @@ function parseXML(xml) {
 
         If all this is true, then make a new table row.
         */
+        //FUTURE FIXME I'm sure this can be majorly cleaned up
         if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
             tableString += '</td></tr><tr><td id="{0}" class="selector">'.format(partNumber);
         } else {
@@ -330,7 +333,7 @@ function parseXML(xml) {
             });
         });
 
-    // The scroll bar is not needed, destroy it
+        // The scroll bar is not needed, destroy it
     } else {
         $(document).ready(function() {
             $content.perfectScrollbar("destroy");
