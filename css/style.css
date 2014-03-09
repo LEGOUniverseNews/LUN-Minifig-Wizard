@@ -41,6 +41,7 @@ table { border-style: none; }
     position: absolute;
     left: 550px;
     top: 445px;
+    /* FIXME Use transform rather than left */
     transition: left 0.3s ease;
 }
 
