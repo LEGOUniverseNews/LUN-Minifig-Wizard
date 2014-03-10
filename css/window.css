@@ -64,6 +64,10 @@ body {
 
     /* Display */
     text-align: center;
+
+    /* Older browsers will not render the gradient */
+    background: #252525;
+
     background: -webkit-linear-gradient(#252525, #000000);
     background: linear-gradient(#252525, #000000);
     border-radius: 7px;

@@ -41,7 +41,7 @@ table { border-style: none; }
     position: absolute;
     left: 550px;
     top: 445px;
-    /* FIXME Use transform rather than left */
+    /* FIXME Use `transform` rather than `left` */
     transition: left 0.3s ease;
 }
 
@@ -67,11 +67,8 @@ table { border-style: none; }
     width: 312px;
     height: 360px;
     box-shadow: 1px 1px 10px #8c8c8c inset;
-    border-radius: 30px;
-
-    /* Do not curve the top and bottom-right corners */
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
 
     /* Older browsers will not render the gradient */
     background: #ff8409;
@@ -94,8 +91,10 @@ table { border-style: none; }
     height: 425px;
     box-shadow: 1px 1px 10px #8c8c8c;
     border-radius: 30px;
+
     /* Older browsers will not render the gradient */
     background: #000000;
+
     background: -webkit-linear-gradient(#252525, #000000);
     background: linear-gradient(#252525, #000000);
 }
