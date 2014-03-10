@@ -126,28 +126,33 @@ function resizeTable() {
         // Change the number of items in a row to 6
         rowSize = 6;
 
-        // Run animations to increase the size/locations of whatever we need
-        // Move the Enlarge image to the right
+        /**
+         * Run animations to increase the size/locations of whatever we need
+         * In order in which the run for both enlarge and decrease:
+         *
+         * Resize button (location)
+         * Scrollbar
+         * Background
+         * Category buttons (enlargement)
+         * Category buttons (location)
+         * Container
+         * Left margin
+         * Resize button (SVG)
+         */
+
+        if (!Modernizr.csstransitions) {
+            $resizeButton.animate({"left": "+=190px"}, 300);
+        }
+
         $resizeButton.css("left", "+=190px");
-
-        // Reposition the scroll bar (if needed)
         $(".myTables").animate({"width": "+=180px"}, 300);
-
-        // Enlarge the background and category buttons
         $background.animate({width: "+=180px"}, 300);
         $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-
-        // Increase the size of the div holding the table
-        $content.animate({"width": 480}, 300);
-
-        // Increase the margins on left side of the table to make it all even
-        $("#minifigItems").animate({"margin-left": "20px"}, 100);
-
-        // Spread out the category buttons
         $categoryButtons.animate({"padding-left": "5px"}, 100);
         $categoryButtons.animate({"padding-right": "5px"}, 100);
-
-        // Change button back to Reduce image
+        $content.animate({"width": 480}, 300);
+        // Increase the margins on left side of the table to make it all even
+        $("#minifigItems").animate({"margin-left": "20px"}, 100);
         $resizeButton.attr("src", "img/ui/Reduce-button.svg");
 
         // We are currently using the larger size
@@ -157,26 +162,20 @@ function resizeTable() {
 
         // Run animations to reset sizes and location
         // Reduce button location
+
+        if (!Modernizr.csstransitions) {
+            $resizeButton.animate({"left": "-=190px"}, 300);
+        }
+
         $resizeButton.css("left", "-=190px");
-
-        // Reposition the scroll bar (if needed)
         $(".myTables").animate({"width": "-=180px"}, 300);
-
-        // Enlarge the background and category buttons
         $background.animate({width: "-=180px"}, 300);
         $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-
-        // Decrease the size of the div holding the table
-        $content.animate({"width": 300}, 300);
-
-        // Restore the margin on left side of the table
-        $("#minifigItems").animate({"margin-left": "5px"}, 100);
-
-        // Contract empty space between category buttons
         $categoryButtons.animate({"padding-left": "0px"}, 100);
         $categoryButtons.animate({"padding-right": "0px"}, 100);
-
-        // Revert button back to Enlarge image
+        $content.animate({"width": 300}, 300);
+        // Restore the margin on left side of the table
+        $("#minifigItems").animate({"margin-left": "5px"}, 100);
         $resizeButton.attr("src", "img/ui/Enlarge-button.svg");
     }
 
