@@ -15,7 +15,7 @@ function newMinifigWindow() {
     // Store the values of the images in an array
     var myList = [
         $("#HeadImg").attr("src"),
-        $("#SpecialImg").attr("src"),
+        $("#the-special").attr("src"),
         $("#TorsoImg").attr("src"),
         $("#HatImg").attr("src"),
         $("#LegImg").attr("src"),

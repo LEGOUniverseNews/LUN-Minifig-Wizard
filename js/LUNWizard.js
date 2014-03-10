@@ -33,7 +33,7 @@ $(function() {
 
     // Find "The Special" who will disarm the Kragle using his interesting abilities
     $("#emmet").dblclick(function() {
-        var $SpecialImg = $("#SpecialImg");
+        var $SpecialImg = $("#the-special");
         if ($SpecialImg.attr("src") === "img/ui/figure/empty.png") {
             $SpecialImg.attr("src", "img/special/Special001.png");
         } else {
@@ -127,8 +127,8 @@ function resizeTable() {
         rowSize = 6;
 
         /**
-         * Run animations to increase the size/locations of whatever we need
-         * In order in which the run for both enlarge and decrease:
+         * Run animations to in/decrease the size/locations of whatever we need
+         * In order in which they run for both enlarge and decrease:
          *
          * Resize button (location)
          * Scrollbar
@@ -137,22 +137,32 @@ function resizeTable() {
          * Category buttons (location)
          * Container
          * Left margin
-         * Resize button (SVG)
+         * Resize button (swap SVGs)
          */
 
+        // CSS transitions are not supported, fallback to jQuery animations
         if (!Modernizr.csstransitions) {
             $resizeButton.animate({"left": "+=190px"}, 300);
+            $(".my-tables").animate({"width": "+=180px"}, 300);
+            $background.animate({"width": "+=180px"}, 300);
+            $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
+            $categoryButtons.animate({"padding-left": "5px"}, 100);
+            $categoryButtons.animate({"padding-right": "5px"}, 100);
+            $content.animate({"width": "+=180px"}, 150);
         }
 
-        $resizeButton.css("left", "+=190px");
-        $(".myTables").animate({"width": "+=180px"}, 300);
-        $background.animate({width: "+=180px"}, 300);
-        $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-        $categoryButtons.animate({"padding-left": "5px"}, 100);
-        $categoryButtons.animate({"padding-right": "5px"}, 100);
-        $content.animate({"width": 480}, 300);
+        // For browsers that do support CSS transitions, trigger them
+        $resizeButton.css("transform", "translate3d(190px, 0, 0)");
+        $(".my-tables").css("width", "+=180px");
+        $background.css("width", "+=180px");
+        $categoryButtonsDiv.css("margin-left", "+=48px");
+        $categoryButtons.css("padding-left", "5px");
+        $categoryButtons.css("padding-right", "5px");
+        $content.css("width", "+=180px");
+
         // Increase the margins on left side of the table to make it all even
-        $("#minifigItems").animate({"margin-left": "20px"}, 100);
+        // This runs even if the browser does not support CSS transitions
+        $("#minifig-items").css("margin-left", "20px");
         $resizeButton.attr("src", "img/ui/Reduce-button.svg");
 
         // We are currently using the larger size
@@ -160,22 +170,26 @@ function resizeTable() {
         // Set the number of items in a row to 4
         rowSize = 4;
 
-        // Run animations to reset sizes and location
-        // Reduce button location
-
+        // CSS transitions are not supported, fallback to jQuery animations
         if (!Modernizr.csstransitions) {
             $resizeButton.animate({"left": "-=190px"}, 300);
+            $(".my-tables").animate({"width": "-=180px"}, 300);
+            $background.animate({"width": "-=180px"}, 300);
+            $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
+            $categoryButtons.animate({"padding-left": "0px"}, 100);
+            $categoryButtons.animate({"padding-right": "0px"}, 100);
+            $content.animate({"width": "-=180px"}, 150);
         }
 
-        $resizeButton.css("left", "-=190px");
-        $(".myTables").animate({"width": "-=180px"}, 300);
-        $background.animate({width: "-=180px"}, 300);
-        $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-        $categoryButtons.animate({"padding-left": "0px"}, 100);
-        $categoryButtons.animate({"padding-right": "0px"}, 100);
-        $content.animate({"width": 300}, 300);
-        // Restore the margin on left side of the table
-        $("#minifigItems").animate({"margin-left": "5px"}, 100);
+        // For browsers that do support CSS transitions, trigger them
+        $resizeButton.css("transform", "");
+        $(".my-tables").css("width", "");
+        $background.css("width", "");
+        $categoryButtonsDiv.css("margin-left", "");
+        $categoryButtons.css("padding-left", "");
+        $categoryButtons.css("padding-right", "");
+        $content.css("width", "-=180px");
+        $("#minifig-items").css("margin-left", "5px");
         $resizeButton.attr("src", "img/ui/Enlarge-button.svg");
     }
 
@@ -271,10 +285,10 @@ function parseXML(xml) {
     });
 
     // Clear the table of any previous images
-    $("#minifigItems").empty();
+    $("#minifig-items").empty();
 
     // Construct the beginning of the table data
-    tableString = '<tr><td id="0" class="selector">';
+    tableString = '<tr><td class="selector" id="0">';
 
     // Get the total number of images for this part
     $(xml).find(bodyPart).each(function() {
@@ -304,14 +318,14 @@ function parseXML(xml) {
         */
         //FUTURE FIXME I'm sure this can be majorly cleaned up
         if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
-            tableString += '</td></tr><tr><td id="{0}" class="selector">'.format(partNumber);
+            tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
         } else {
 
             /* Check if we have not run through all the images.
             if it is not, start a new table column
             */
             if (partNumber !== numOfImages) {
-                tableString += '</td><td id="{0}" class="selector">'.format(partNumber);
+                tableString += '</td><td class="selector" id="{0}">'.format(partNumber);
             } else {
                 // Otherwise, close the table column without making a new one
                 tableString += "</td>";
@@ -320,7 +334,7 @@ function parseXML(xml) {
     });
 
     // Finally, display the table with the images
-    $("#minifigItems").append(tableString);
+    $("#minifig-items").append(tableString);
 
     // Display the scroll bar when needed for both layout sizes
     if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {

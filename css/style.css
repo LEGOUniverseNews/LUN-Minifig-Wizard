@@ -29,11 +29,12 @@ html {
 table { border-style: none; }
 
 /* Align all the elements into their proper location */
-.myTables {
+.my-tables {
     position: absolute;
     left: 350px;
     width: 315px;
     top: 15px;
+    transition: width 0.3s ease;
 }
 
 /* Button to resize the table */
@@ -41,22 +42,23 @@ table { border-style: none; }
     position: absolute;
     left: 550px;
     top: 445px;
-    /* FIXME Use `transform` rather than `left` */
-    transition: left 0.3s ease;
+    transition-property: -webkit-transform, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
 }
 
+/* Move drop shadow behind minifigure in main display */
+#drop-shadow { z-index: -1; }
+
 /* Creation spark images */
-.myAvatar {
+.my-sigfig {
     position: absolute;
     top: 8px;
     left: 10px;
 }
 
-/* Move drop shadow behind minifigure in main display */
-#DropShadowImg{ z-index: -1; }
-
 /* User-made minifigure display */
-#myAvatarDisplay {
+#my-sigfig-display {
     /* Image positioning */
     z-index: -1;
     position: absolute;
@@ -97,18 +99,23 @@ table { border-style: none; }
 
     background: -webkit-linear-gradient(#252525, #000000);
     background: linear-gradient(#252525, #000000);
+    transition: width 0.3s ease;
 }
 
 /* Buttons to view the different body parts */
 #category-buttons-div {
     margin-left: 12px;
     padding-top: 15px;
+    transition: margin-left 0.3s ease;
 }
 
 /* Separate the category buttons a bit */
 .category-buttons-th {
     padding-left: 0;
     padding-right: 0;
+    transition-property: padding-left, padding-right;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
 }
 
 /* Background for the images */
@@ -117,13 +124,14 @@ table { border-style: none; }
     height: 315px;
     width: 300px;
     overflow: hidden;
+    transition: width 0.1s ease;
 }
 
 /* Even spacing around the table */
-#minifigItems { margin-left: 5px; }
+#minifig-items { margin-left: 5px; }
 
 /* The individual images */
-#minifigItems td {
+#minifig-items td {
     /* Set column size */
     width: 65px;
     height: 65px;
