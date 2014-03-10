@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON("package.json"),
         banner: '/* <%= pkg.name %> - v<%= pkg.version %>\n' +
       '<%= pkg.homepage ? "" + pkg.homepage + "\\n" : "" %>' +
-      'Created <%= grunt.template.today("yyyy") %> <%= pkg.author %>; ' +
+      'Created 2013-<%= grunt.template.today("yyyy") %> <%= pkg.author %>; ' +
       'Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n',
         baseFileName: "LUNWizard",
         jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],

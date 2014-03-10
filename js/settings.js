@@ -46,18 +46,37 @@ $(function() {
 
     // Current location of settings panel
     // true === hidden, false === visible
-    var panelPosition = true;
+    var panelPosition = true,
+        transitionSupport = Modernizr.csstransitions;
 
+    // Recreate gear movement for browsers that do not support CSS transitions
+    if (!transitionSupport) {
+        $("#gear").on("mouseover", function() {
+            $("#gear").animate({"bottom": "4px"}, 500);
+        });
+        $("#gear").on("mouseout", function() {
+            $("#gear").animate({"bottom": "-2px"}, 500);
+        });
+    }
 
     // The user wants to display the settings
     $("#gear").on("click", function() {
-        // The settings are currently visible, trigger transition to hide them
+        // The settings are currently hidden, trigger CSS transition to display them
         if (panelPosition) {
             panelPosition = false;
-            $("#settings-panel").css("transform", "translateY(-30px)");
+
+            // Except CSS transitions are not supported, so use jQuery animations
+            if (!transitionSupport) {
+                $("#settings-panel").animate({"bottom": "215px"}, 1150);
+            }
+            $("#settings-panel").css("transform", "translate3d(0, -30px, 0)");
+
         } else {
-            // The settings are currently hidden, trigger transition to display them
+            // The settings are currently visible, trigger CSS transition to hide them
             panelPosition = true;
+            if (!transitionSupport) {
+                $("#settings-panel").animate({"bottom": ""}, 1150);
+            }
             $("#settings-panel").css("transform", "");
         }
     });

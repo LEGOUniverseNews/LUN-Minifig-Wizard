@@ -43,6 +43,7 @@ function newMinifigWindow() {
     // JavaScript links
     var scriptCode = '\t<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>\n' +
         '\t<script src="lib/string-format.js"></script>\n' +
+        '\t<script src="lib/modernizr.custom.70680.js"></script>\n' +
         '\t<script src="js/LUNWizard.window.min.js"></script>\n';
 
     // Closing HTML
