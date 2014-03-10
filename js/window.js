@@ -64,7 +64,7 @@ function newMinifigWindow() {
 
     // Open a new popup window with the content
     //FUTURE Replace document.write() with existing page using parameters for image URLs
-    var myOwnMinifig = window.open("", "My Own Minifigure", "width=600, height=600");
+    var myOwnMinifig = window.open("index.html","MyOwnMinifigure","width=600, height=600");
     myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);
     myOwnMinifig.document.close();
 }

@@ -45,19 +45,19 @@ $(function() {
 
 
     // Current location of settings panel
-    // true === down, false === up
-    var displayPosition = true;
+    // true === hidden, false === visible
+    var panelPosition = true;
 
 
     // The user wants to display the settings
-    $("#gear").click(function() {
+    $("#gear").on("click", function() {
         // The settings are currently visible, trigger transition to hide them
-        if (displayPosition) {
-            displayPosition = false;
+        if (panelPosition) {
+            panelPosition = false;
             $("#settings-panel").css("transform", "translateY(-30px)");
         } else {
             // The settings are currently hidden, trigger transition to display them
-            displayPosition = true;
+            panelPosition = true;
             $("#settings-panel").css("transform", "");
         }
     });
@@ -70,7 +70,7 @@ $(function() {
         $imgSize = $("#size-input");
 
     // Get entered value on each keypress (this way, it is instant and dynamic)
-    $imgSize.keyup(function () {
+    $imgSize.keyup(function() {
         $newImgSizeRaw = $imgSize.val();
 
         // Convert it to a Base10 integer
@@ -95,12 +95,12 @@ function changeColor(newColor) {
     "use strict";
     /* Change the window background color to the desired selection */
 
-    var bgColor, currentColor;
+    var $bgColor, currentColor;
     // Construct the ID selector
     newColor = "#{0}".format(newColor);
 
     // Get the CSS value from the clicked box
-    bgColor = $(newColor).css("background-color");
+    $bgColor = $(newColor).css("background-color");
 
     // Get the ID of the currently selected box
     currentColor = $(".color-box").find('.white-border').selector.replace(/ .white-border/, "");
@@ -110,5 +110,5 @@ function changeColor(newColor) {
     $(newColor).addClass("white-border");
 
     // Change the background color to the selected color
-    $("body").css("background-color", bgColor);
+    $("body").css("background-color", $bgColor);
 }
