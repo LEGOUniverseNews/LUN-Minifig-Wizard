@@ -11,19 +11,18 @@
 
 /* Make contents fill entire page */
 html {
-  height: 100%;
   width: 100%;
-  cursor: default;
-  /* Disable scrolling to improve the experience */
+  height: 100%;
   overflow: hidden;
+  cursor: default;
 }
 
 /* Window settings */
 body {
   background-color: #d0d0d0;
   font-family: "Source Sans Pro", sans-serif;
-  color: white;
   font-size: 14px;
+  color: white;
 }
 
 /* Drop shadow for minifigure */
@@ -39,42 +38,41 @@ body {
 /* Gear SVG to open settings panel */
 #gear {
   position: absolute;
-  bottom: 3px;
   right: 10px;
+  bottom: 3px;
   z-index: 2;
   transition-property: -webkit-transform, transform;
-  transition-duration: 0.5s;
+  transition-duration: .5s;
   transition-timing-function: ease;
 }
 
 /* Small movement when gear is hovered over */
 #gear:hover {
   -webkit-transform: translate3d(0, -4px, 0);
-  transform: translate3d(0, -4px, 0);
+          transform: translate3d(0, -4px, 0);
 }
 
 /* Settings panel */
 #settings-panel {
   /* Size and location */
   position: absolute;
+  right: 15px;
   bottom: 20px;
   width: 160px;
   height: 100px;
-  right: 15px;
 
   /* Display */
   text-align: center;
 
   /* Older browsers will not render the gradient */
   background: #252525;
-
   background: -webkit-linear-gradient(#252525, #000000);
-  background: linear-gradient(#252525, #000000);
+          background: linear-gradient(#252525, #000000);
   border-radius: 7px;
 
   /* Sliding transition */
   -webkit-transform: translateY(160px);
-  transform: translateY(160px);
+          transform: translateY(160px);
   transition-property: -webkit-transform, transform;
   transition-duration: 1.15s;
   transition-timing-function: ease;
@@ -97,9 +95,9 @@ table {
 /* Location of image size input box */
 #size-input {
   position: absolute;
-  width: 50px;
-  left: 55px;
   bottom: 3px;
+  left: 55px;
+  width: 50px;
 }
 
 /* "Size" header for image size input */
@@ -111,8 +109,8 @@ table {
 /* "px" label for image size input */
 #size-label {
   position: absolute;
-  right: 30px;
   top: 73px;
+  right: 30px;
 }
 
 /* Possible background and color box colors */

@@ -11,18 +11,18 @@
 
 /* Fill entire screen, bg color, font settings */
 html {
-  height: 100%;
   width: 100%;
-  background-color: #d0d0d0;
+  height: 100%;
   color: white;
   font-family: sans-serif;
+  background-color: #d0d0d0;
 }
 
 /* LUN Minifig Wizard logo */
 #lun-wizard-logo {
   position: absolute;
-  left: 12em;
   top: 30.3em;
+  left: 12em;
 }
 
 /* Hide all table borders */
@@ -31,19 +31,19 @@ table { border-style: none; }
 /* Align all the elements into their proper location */
 .my-tables {
   position: absolute;
+  top: 15px;
   left: 350px;
   width: 315px;
-  top: 15px;
-  transition: width 0.3s ease;
+  transition: width .3s ease;
 }
 
 /* Button to resize the table */
 #resize-button {
   position: absolute;
-  left: 550px;
   top: 445px;
+  left: 550px;
   transition-property: -webkit-transform, transform;
-  transition-duration: 0.3s;
+  transition-duration: .3s;
   transition-timing-function: ease;
 }
 
@@ -60,24 +60,25 @@ table { border-style: none; }
 /* User-made minifigure display */
 #my-sigfig-display {
   /* Image positioning */
-  z-index: -1;
   position: absolute;
   top: 45px;
   left: 40px;
+  z-index: -1;
 
   /* Background */
   width: 312px;
   height: 360px;
-  box-shadow: 1px 1px 10px #8c8c8c inset;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
 
   /* Older browsers will not render the gradient */
   background: #ff8409;
 
   /* Orange background gradient */
   background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
-  background: linear-gradient(to right, #ff8409, #d76b00);
+          background: linear-gradient(to right, #ff8409, #d76b00);
+
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  box-shadow: 1px 1px 10px #8c8c8c inset;
 }
 
 /* New Window button */
@@ -91,22 +92,22 @@ table { border-style: none; }
 #background {
   width: 320px;
   height: 425px;
-  box-shadow: 1px 1px 10px #8c8c8c;
-  border-radius: 30px;
 
   /* Older browsers will not render the gradient */
   background: #000000;
-
   background: -webkit-linear-gradient(#252525, #000000);
-  background: linear-gradient(#252525, #000000);
-  transition: width 0.3s ease;
+          background: linear-gradient(#252525, #000000);
+
+  border-radius: 30px;
+  box-shadow: 1px 1px 10px #8c8c8c;
+  transition: width .3s ease;
 }
 
 /* Buttons to view the different body parts */
 #category-buttons-div {
   margin-left: 12px;
   padding-top: 15px;
-  transition: margin-left 0.3s ease;
+  transition: margin-left .3s ease;
 }
 
 /* Separate the category buttons a bit */
@@ -114,17 +115,17 @@ table { border-style: none; }
   padding-left: 0;
   padding-right: 0;
   transition-property: padding-left, padding-right;
-  transition-duration: 0.1s;
+  transition-duration: .1s;
   transition-timing-function: ease;
 }
 
 /* Background for the images */
 #content {
   margin-top: -15px;
-  height: 315px;
   width: 300px;
+  height: 315px;
   overflow: hidden;
-  transition: width 0.2s ease;
+  transition: width .2s ease;
 }
 
 /* Even spacing around the table */
@@ -132,42 +133,39 @@ table { border-style: none; }
 
 /* The individual images */
 #minifig-items td {
-  /* Set column size */
   width: 65px;
   height: 65px;
-  /* Padding around each image */
-  padding: 4.2px;
-  /* Round off the edges for an LU-ish effect */
+  padding: 3.9px;
   border-radius: 11px;
 }
 
 /* Orange background for invdividual part hover and selection */
-.selector:hover, .selected { background-color: rgb(255, 165, 0); }
+.selector:hover, .selected { background-color: #ffa500; }
 
 /* Orange background for category part hover and selection */
 .bubble {
+  background-color: #ffa500;
   border-radius: 50%;
-  background-color: rgb(255, 165, 0);
-}
-
-/* Customize perfect-scrollbar */
-.ps-scrollbar-y {
-  background-color: #B3B3B3 !important;
-  width: 9px !important;
-}
-
-/* Hide the scrollbar rail */
-.ps-scrollbar-y-rail {
-  background-color: rgba(000, 000, 000, 000) !important;
-  top: 75px !important;
-  right: -2px !important;
 }
 
 /* Find the Special */
 #emmet {
   position: relative;
+  z-index: 1;
   display: block;
   width: 35px;
   height: 35px;
-  z-index: 1;
+}
+
+/* Customize perfect-scrollbar */
+.ps-scrollbar-y {
+  width: 9px !important;
+  background-color: #B3B3B3 !important;
+}
+
+/* Hide the scrollbar rail */
+.ps-scrollbar-y-rail {
+  top: 75px !important;
+  right: -2px !important;
+  background-color: rgba(0,0,0,0) !important;
 }
