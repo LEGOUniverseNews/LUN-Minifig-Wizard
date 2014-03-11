@@ -149,16 +149,17 @@ function resizeTable() {
             $categoryButtons.animate({"padding-left": "5px"}, 100);
             $categoryButtons.animate({"padding-right": "5px"}, 100);
             $content.animate({"width": "+=180px"}, 150);
-        }
 
-        // For browsers that do support CSS transitions, trigger them
-        $resizeButton.css("transform", "translate3d(190px, 0, 0)");
-        $(".my-tables").css("width", "+=180px");
-        $background.css("width", "+=180px");
-        $categoryButtonsDiv.css("margin-left", "+=48px");
-        $categoryButtons.css("padding-left", "5px");
-        $categoryButtons.css("padding-right", "5px");
-        $content.css("width", "+=180px");
+        } else {
+            // For browsers that do support CSS transitions, trigger them
+            $resizeButton.css("transform", "translate3d(190px, 0, 0)");
+            $(".my-tables").css("width", "+=180px");
+            $background.css("width", "+=180px");
+            $categoryButtonsDiv.css("margin-left", "+=48px");
+            $categoryButtons.css("padding-left", "5px");
+            $categoryButtons.css("padding-right", "5px");
+            $content.css("width", "+=180px");
+        }
 
         // Increase the margins on left side of the table to make it all even
         // This runs even if the browser does not support CSS transitions
@@ -179,16 +180,17 @@ function resizeTable() {
             $categoryButtons.animate({"padding-left": "0px"}, 100);
             $categoryButtons.animate({"padding-right": "0px"}, 100);
             $content.animate({"width": "-=180px"}, 150);
-        }
 
-        // For browsers that do support CSS transitions, trigger them
-        $resizeButton.css("transform", "");
-        $(".my-tables").css("width", "");
-        $background.css("width", "");
-        $categoryButtonsDiv.css("margin-left", "");
-        $categoryButtons.css("padding-left", "");
-        $categoryButtons.css("padding-right", "");
-        $content.css("width", "-=180px");
+        } else {
+            // For browsers that do support CSS transitions, trigger them
+            $resizeButton.css("transform", "");
+            $(".my-tables").css("width", "");
+            $background.css("width", "");
+            $categoryButtonsDiv.css("margin-left", "");
+            $categoryButtons.css("padding-left", "");
+            $categoryButtons.css("padding-right", "");
+            $content.css("width", "-=180px");
+        }
         $("#minifig-items").css("margin-left", "5px");
         $resizeButton.attr("src", "img/ui/Enlarge-button.svg");
     }
