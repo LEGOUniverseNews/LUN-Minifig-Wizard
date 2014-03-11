@@ -1,28 +1,28 @@
 /*
-    LEGO Universe News! Minifig Wizard
+  LEGO Universe News! Minifig Wizard
 
-    Created 2013-2014 Triangle717 & rioforce
-    <http://Triangle717.WordPress.com/>
-    <http://rioforce.WordPress.com/>
+  Created 2013-2014 Triangle717 & rioforce
+  <http://Triangle717.WordPress.com/>
+  <http://rioforce.WordPress.com/>
 
-    Licensed under The MIT License
-    <http://opensource.org/licenses/MIT>
+  Licensed under The MIT License
+  <http://opensource.org/licenses/MIT>
 */
 
 /* Fill entire screen, bg color, font settings */
 html {
-    height: 100%;
-    width: 100%;
-    background-color: #d0d0d0;
-    color: white;
-    font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+  background-color: #d0d0d0;
+  color: white;
+  font-family: sans-serif;
 }
 
 /* LUN Minifig Wizard logo */
 #lun-wizard-logo {
-    position: absolute;
-    left: 12em;
-    top: 30.3em;
+  position: absolute;
+  left: 12em;
+  top: 30.3em;
 }
 
 /* Hide all table borders */
@@ -30,21 +30,21 @@ table { border-style: none; }
 
 /* Align all the elements into their proper location */
 .my-tables {
-    position: absolute;
-    left: 350px;
-    width: 315px;
-    top: 15px;
-    transition: width 0.3s ease;
+  position: absolute;
+  left: 350px;
+  width: 315px;
+  top: 15px;
+  transition: width 0.3s ease;
 }
 
 /* Button to resize the table */
 #resize-button {
-    position: absolute;
-    left: 550px;
-    top: 445px;
-    transition-property: -webkit-transform, transform;
-    transition-duration: 0.3s;
-    transition-timing-function: ease;
+  position: absolute;
+  left: 550px;
+  top: 445px;
+  transition-property: -webkit-transform, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }
 
 /* Move drop shadow behind minifigure in main display */
@@ -52,79 +52,79 @@ table { border-style: none; }
 
 /* Creation spark images */
 .my-sigfig {
-    position: absolute;
-    top: 8px;
-    left: 10px;
+  position: absolute;
+  top: 8px;
+  left: 10px;
 }
 
 /* User-made minifigure display */
 #my-sigfig-display {
-    /* Image positioning */
-    z-index: -1;
-    position: absolute;
-    top: 45px;
-    left: 40px;
+  /* Image positioning */
+  z-index: -1;
+  position: absolute;
+  top: 45px;
+  left: 40px;
 
-    /* Background */
-    width: 312px;
-    height: 360px;
-    box-shadow: 1px 1px 10px #8c8c8c inset;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+  /* Background */
+  width: 312px;
+  height: 360px;
+  box-shadow: 1px 1px 10px #8c8c8c inset;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 
-    /* Older browsers will not render the gradient */
-    background: #ff8409;
+  /* Older browsers will not render the gradient */
+  background: #ff8409;
 
-    /* Orange background gradient */
-    background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
-    background: linear-gradient(to right, #ff8409, #d76b00);
+  /* Orange background gradient */
+  background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
+  background: linear-gradient(to right, #ff8409, #d76b00);
 }
 
 /* New Window button */
 #bigger-picture {
-    position: absolute;
-    top: 410px;
-    left: 260px;
+  position: absolute;
+  top: 410px;
+  left: 260px;
 }
 
 /* Available items display */
 #background {
-    width: 320px;
-    height: 425px;
-    box-shadow: 1px 1px 10px #8c8c8c;
-    border-radius: 30px;
+  width: 320px;
+  height: 425px;
+  box-shadow: 1px 1px 10px #8c8c8c;
+  border-radius: 30px;
 
-    /* Older browsers will not render the gradient */
-    background: #000000;
+  /* Older browsers will not render the gradient */
+  background: #000000;
 
-    background: -webkit-linear-gradient(#252525, #000000);
-    background: linear-gradient(#252525, #000000);
-    transition: width 0.3s ease;
+  background: -webkit-linear-gradient(#252525, #000000);
+  background: linear-gradient(#252525, #000000);
+  transition: width 0.3s ease;
 }
 
 /* Buttons to view the different body parts */
 #category-buttons-div {
-    margin-left: 12px;
-    padding-top: 15px;
-    transition: margin-left 0.3s ease;
+  margin-left: 12px;
+  padding-top: 15px;
+  transition: margin-left 0.3s ease;
 }
 
 /* Separate the category buttons a bit */
 .category-buttons-th {
-    padding-left: 0;
-    padding-right: 0;
-    transition-property: padding-left, padding-right;
-    transition-duration: 0.1s;
-    transition-timing-function: ease;
+  padding-left: 0;
+  padding-right: 0;
+  transition-property: padding-left, padding-right;
+  transition-duration: 0.1s;
+  transition-timing-function: ease;
 }
 
 /* Background for the images */
 #content {
-    margin-top: -15px;
-    height: 315px;
-    width: 300px;
-    overflow: hidden;
-    transition: width 0.1s ease;
+  margin-top: -15px;
+  height: 315px;
+  width: 300px;
+  overflow: hidden;
+  transition: width 0.2s ease;
 }
 
 /* Even spacing around the table */
@@ -132,13 +132,13 @@ table { border-style: none; }
 
 /* The individual images */
 #minifig-items td {
-    /* Set column size */
-    width: 65px;
-    height: 65px;
-    /* Padding around each image */
-    padding: 4.2px;
-    /* Round off the edges for an LU-ish effect */
-    border-radius: 11px;
+  /* Set column size */
+  width: 65px;
+  height: 65px;
+  /* Padding around each image */
+  padding: 4.2px;
+  /* Round off the edges for an LU-ish effect */
+  border-radius: 11px;
 }
 
 /* Orange background for invdividual part hover and selection */
@@ -146,28 +146,28 @@ table { border-style: none; }
 
 /* Orange background for category part hover and selection */
 .bubble {
-    border-radius: 50%;
-    background-color: rgb(255, 165, 0);
+  border-radius: 50%;
+  background-color: rgb(255, 165, 0);
 }
 
 /* Customize perfect-scrollbar */
 .ps-scrollbar-y {
-    background-color: #B3B3B3 !important;
-    width: 9px !important;
+  background-color: #B3B3B3 !important;
+  width: 9px !important;
 }
 
+/* Hide the scrollbar rail */
 .ps-scrollbar-y-rail {
-    /* Hide the scrollbar rail */
-    background-color: rgba(000, 000, 000, 000) !important;
-    top: 75px !important;
-    right: -2px !important;
+  background-color: rgba(000, 000, 000, 000) !important;
+  top: 75px !important;
+  right: -2px !important;
 }
 
 /* Find the Special */
 #emmet {
-    position: relative;
-    display: block;
-    width: 35px;
-    height: 35px;
-    z-index: 1;
+  position: relative;
+  display: block;
+  width: 35px;
+  height: 35px;
+  z-index: 1;
 }
