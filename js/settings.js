@@ -10,10 +10,10 @@
 */
 
 
-// IDs of background-color changing boxes and it's length
+// Color boxes IDs
 var boxIDList = ["red-color-box", "green-color-box", "blue-color-box",
-                 "yellow-color-box", "orange-color-box", "gray-color-box",
-                 "black-color-box", "white-color-box"
+                 "yellow-color-box", "orange-color-box", "black-color-box",
+                 "white-color-box", "gray-color-box"
                 ];
 
 
@@ -41,43 +41,53 @@ $(function() {
     // to the gray box, as it is used on page load
     $("#gray-color-box").addClass("white-border");
 
+
     /* ------- Settings panel displaying ------- */
 
 
     // Current location of settings panel
     // true === hidden, false === visible
-    var panelPosition = true,
-        transitionSupport = Modernizr.csstransitions;
+    var panelIsHidden = true,
+        transitionSupport = Modernizr.csstransitions,
+        $gearBttn = $("#gear"),
+        $settingsPanel = $("#settings-panel");
 
-    // Recreate gear movement for browsers that do not support CSS transitions
+
+    // This browser does not support CSS transitions
     if (!transitionSupport) {
-        $("#gear").on("mouseover", function() {
-            $("#gear").animate({"bottom": "4px"}, 500);
+        // IE9 - Hide settings panel on window load
+        $settingsPanel.css("bottom", "-120px");
+
+        // IE9 - Recreate #gear:hover movement
+        // FIXME It keeps getting stuck in an up-down loop for a few seconds
+        $gearBttn.on("mouseover", function() {
+            $gearBttn.animate({"bottom": "4px"}, 500);
         });
-        $("#gear").on("mouseout", function() {
-            $("#gear").animate({"bottom": "-2px"}, 500);
+        $gearBttn.on("mouseout", function() {
+            $gearBttn.animate({"bottom": "-2px"}, 500);
         });
     }
 
-    // The user wants to display the settings
-    $("#gear").on("click", function() {
-        // The settings are currently hidden, trigger CSS transition to display them
-        if (panelPosition) {
-            panelPosition = false;
+    // The user wants to display the settings panel
+    $gearBttn.on("click", function() {
+        // The panel is currently hidden, trigger CSS transition to display them
+        if (panelIsHidden) {
+            panelIsHidden = false;
 
-            // Except CSS transitions are not supported, so use jQuery animations
+            // Except CSS transitions are not supported, use jQuery animation instead
             if (!transitionSupport) {
-                $("#settings-panel").animate({"bottom": "215px"}, 1150);
+                $settingsPanel.animate({"bottom": "52px"}, 1150);
+            } else {
+                $settingsPanel.css("transform", "translate3d(0, -35px, 0)");
             }
-            $("#settings-panel").css("transform", "translate3d(0, -30px, 0)");
-
         } else {
-            // The settings are currently visible, trigger CSS transition to hide them
-            panelPosition = true;
+            // The panel is currently visible, trigger CSS transition to hide them
+            panelIsHidden = true;
             if (!transitionSupport) {
-                $("#settings-panel").animate({"bottom": ""}, 1150);
+                $settingsPanel.animate({"bottom": "-120px"}, 1150);
+            } else {
+                $settingsPanel.css("transform", "");
             }
-            $("#settings-panel").css("transform", "");
         }
     });
 
