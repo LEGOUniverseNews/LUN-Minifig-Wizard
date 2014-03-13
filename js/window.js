@@ -27,9 +27,10 @@ function newMinifigWindow() {
     // Construct the HTML for the beginning of the page
     var docuCode = '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
         '\t<meta charset="utf-8">\n' +
+        '\t<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">\n' +
         "\t<title>LEGO Universe News! Minifig Wizard</title>\n" +
-        '\n<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600" rel="stylesheet" type="text/css">\n' +
-        '\t<link rel="stylesheet" type="text/css" href="css/LUNWizard.window.min.css">\n' +
+        '\n<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600">\n' +
+        '\t<link rel="stylesheet" href="css/LUNWizard.window.min.css">\n' +
         "</head>\n\n<body>\n";
 
     // Area for background-color changing boxes and image size
@@ -42,6 +43,7 @@ function newMinifigWindow() {
 
     // JavaScript links
     var scriptCode = '\t<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>\n' +
+    //var scriptCode = '\t<script src="lib/jquery-2.1.0.min.js"></script>\n' +
         '\t<script src="lib/string-format.js"></script>\n' +
         '\t<script src="lib/modernizr.custom.70680.js"></script>\n' +
         '\t<script src="js/LUNWizard.window.min.js"></script>\n';
@@ -65,7 +67,7 @@ function newMinifigWindow() {
 
     // Open a new popup window with the content
     //FUTURE Replace document.write() with existing page using parameters for image URLs
-    var myOwnMinifig = window.open("index.html","MyOwnMinifigure","width=600, height=600");
+    var myOwnMinifig = window.open("window.html","LUNMinifigWizard","width=600, height=600");
     myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);
     myOwnMinifig.document.close();
 }
