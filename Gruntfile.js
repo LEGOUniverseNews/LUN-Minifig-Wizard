@@ -24,6 +24,7 @@ module.exports = function(grunt) {
     },
 
     // Copy JavaScript dependencies to the proper location
+    // TODO Copy and rename perfect-scrollbar
     copy: {
       main: {
         expand: true,
@@ -88,7 +89,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          "js/<%= baseFileName %>.min.js": ["js/oldIE.js", "js/LUNWizard.js"],
+          "js/<%= baseFileName %>.min.js": ["js/oldbrowser.js", "js/LUNWizard.js"],
           "js/<%= baseFileName %>.window.min.js": ["js/window.js", "js/settings.js"],
         }
       }
