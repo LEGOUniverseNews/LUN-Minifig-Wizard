@@ -33,7 +33,7 @@ $(function() {
 
     // Go through each column and apply it's ID attribute
     $.each(boxIDList.reverse(), function(index, value) {
-        // Counting VS real number stuff, + 2 for valid nth-child selectors
+        // Counting VS real number stuff, index + 2 for valid `nth-child` selectors
         $("td:nth-child({0})".format(index + 2)).attr("id", value);
     });
 
@@ -48,6 +48,7 @@ $(function() {
     // Current location of settings panel
     // true === hidden, false === visible
     var panelIsHidden = true,
+        transitionSpeed = 1150,
         transitionSupport = Modernizr.csstransitions,
         $gearBttn = $("#gear"),
         $settingsPanel = $("#settings-panel");
@@ -59,7 +60,7 @@ $(function() {
         $settingsPanel.css("bottom", "-120px");
 
         // IE9 - Recreate #gear:hover movement
-        // FIXME It keeps getting stuck in an up-down loop for a few seconds
+        // FIXME It keeps getting stuck in an up-and-down loop for a few seconds
         $gearBttn.on("mouseover", function() {
             $gearBttn.animate({"bottom": "4px"}, 500);
         });
@@ -73,10 +74,11 @@ $(function() {
         // The panel is currently hidden, trigger CSS transition to display them
         if (panelIsHidden) {
             panelIsHidden = false;
+            $settingsPanel.css("visibility", "visible");
 
             // Except CSS transitions are not supported, use jQuery animation instead
             if (!transitionSupport) {
-                $settingsPanel.animate({"bottom": "52px"}, 1150);
+                $settingsPanel.animate({"bottom": "52px"}, transitionSpeed);
             } else {
                 $settingsPanel.css("transform", "translate3d(0, -35px, 0)");
             }
@@ -84,9 +86,14 @@ $(function() {
             // The panel is currently visible, trigger CSS transition to hide them
             panelIsHidden = true;
             if (!transitionSupport) {
-                $settingsPanel.animate({"bottom": "-120px"}, 1150);
+                $settingsPanel.animate({"bottom": "-120px"}, transitionSpeed);
             } else {
                 $settingsPanel.css("transform", "");
+
+                // transitionSpeed + 2 to accommodate for possible lag
+                window.setTimeout(function() {
+                    $settingsPanel.css("visibility", "hidden");
+                }, transitionSpeed + 2);
             }
         }
     });
@@ -98,7 +105,7 @@ $(function() {
     var $newImgSizeRaw, $newImgSize,
         $imgSize = $("#size-input");
 
-    // Get entered value on each keypress (this way, it is instant and dynamic)
+    // Get entered value on each key press (that way the change is instant and dynamic)
     $imgSize.keyup(function() {
         $newImgSizeRaw = $imgSize.val();
 

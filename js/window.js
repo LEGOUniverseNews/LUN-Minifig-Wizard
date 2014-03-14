@@ -65,7 +65,7 @@ function newMinifigWindow() {
         }
     }
 
-    // Open a new popup window with the content
+    // Open a new pop up window with the content
     //FUTURE Replace document.write() with existing page using parameters for image URLs
     var myOwnMinifig = window.open("window.html","LUNMinifigWizard","width=600, height=600");
     myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);

@@ -38,7 +38,7 @@ body {
 
 /* Gear SVG to open settings panel */
 #gear {
-  position: absolute;
+  position: fixed;
   right: 10px;
   bottom: 3px;
   z-index: 2;
@@ -61,6 +61,7 @@ body {
   bottom: 20px;
   width: 160px;
   height: 100px;
+  visibility: hidden;
 
   /* Display */
   text-align: center;
