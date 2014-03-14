@@ -90,35 +90,6 @@ function changeCategoryImages(old, current) {
 }
 
 
-function changePartImages(part) {
-  "use strict";
-  /* Parse the XML file for the specified values */
-
-  // Update global variable with chosen part
-  bodyPart = part;
-
-  // Construct jQuery id attribute selector
-  var partTypeID = "#{0}".format(bodyPart);
-  changeCategoryImages(oldPartTypeID, partTypeID);
-
-  // Keep a copy of the old element ID
-  oldPartTypeID = "#{0}".format(bodyPart);
-
-
-  // Fetch the XML for parsing
-  $(function() {
-    $.ajax({
-      type: "GET",
-      url: "img/images.xml",
-      dataType: "xml",
-      success: function(xml) {
-        parseXML(xml);
-      }
-    });
-  });
-}
-
-
 function resizeTable() {
   "use strict";
   /* Resizes the table between small and large display */
@@ -264,95 +235,120 @@ function main(partNumber) {
 }
 
 
-function parseXML(xml) {
+function changePartImages(part) {
   "use strict";
-  /*
+  /* Parse the XML file for image links.
    * Update the table with the proper images as
    * specified by the part parameter.
    */
-  var imgLink, fullImgLink, tableString,
-      index = 0,
-      numOfImages = 0,
-      partNumber = 0;
 
-  // Clear the array of full size images if it contains data
-  if (imagesList[0]) {
-    $.each(imagesList, function(value) {
-      imagesList.splice(value, imagesList.length);
-    });
-  }
+  // Update global variable with chosen part
+  bodyPart = part;
 
-  // Get the URL's to each full size image, add to imagesList array
-  $(xml).find(bodyPart).each(function() {
-    fullImgLink = $(this).find("image").text();
-    imagesList.push(fullImgLink);
-  });
+  // Construct jQuery id attribute selector
+  var partTypeID = "#{0}".format(bodyPart);
+  changeCategoryImages(oldPartTypeID, partTypeID);
 
-  // Clear the table of any previous images
-  $("#minifig-items").empty();
+  // Keep a copy of the old element ID
+  oldPartTypeID = "#{0}".format(bodyPart);
 
-  // Construct the beginning of the table data
-  tableString = '<tr><td class="selector" id="0">';
 
-  // Get the total number of images for this part
-  $(xml).find(bodyPart).each(function() {
-    numOfImages += 1;
-  });
+  // Fetch the XML for parsing
+  $(function() {
+    $.ajax({
+      type: "GET",
+      url: "img/images.xml",
+      dataType: "xml",
+      // TODO failure parameter
+      // FUTURE Isn't there a caching parameter too?
+      // Now begin using that data on successful download
+      success: function(xml) {
+        var imgLink, fullImgLink, tableString,
+            index = 0,
+            numOfImages = 0,
+            partNumber = 0;
 
-  // Go through all the images, adding them to the table
-  $(xml).find(bodyPart).each(function() {
-    partNumber += 1;
+        // Clear the array of full size images if it contains data
+        if (imagesList[0]) {
+          $.each(imagesList, function(value) {
+            imagesList.splice(value, imagesList.length);
+          });
+        }
 
-    // Bring it back down to work with array indexes
-    index = partNumber - 1;
-    imgLink = $(this).find("thumb").text();
+        // Get the URL's to each full size image, add to imagesList array
+        $(xml).find(bodyPart).each(function() {
+          fullImgLink = $(this).find("image").text();
+          imagesList.push(fullImgLink);
+        });
 
-    // Wrap the URL in an img tag, wrap that in a link, add it to the table
-    /* jshint ignore:start */
-    tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
-      index, bodyPart, partNumber, imgLink);
-    /* jshint ignore:end */
+        // Clear the table of any previous images
+        $("#minifig-items").empty();
 
-    /* Check if
-         * a. we have not run through all the images
-         * b. the index is a multiple of the current row size,
-         * c. we are not at the start of the images
-         * If all this is true, then make a new table row.
-         */
-    //FUTURE FIXME I'm sure this can be majorly cleaned up
-    if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
-      tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
-    } else {
+        // Construct the beginning of the table data
+        tableString = '<tr><td class="selector" id="0">';
 
-      /* Check if we have not run through all the images.
-       * if it is not, start a new table column
-       */
-      if (partNumber !== numOfImages) {
-        tableString += '</td><td class="selector" id="{0}">'.format(partNumber);
-      } else {
-        // Otherwise, close the table column without making a new one
-        tableString += "</td>";
+        // Get the total number of images for this part
+        $(xml).find(bodyPart).each(function() {
+          numOfImages += 1;
+        });
+
+        // Go through all the images, adding them to the table
+        $(xml).find(bodyPart).each(function() {
+          partNumber += 1;
+
+          // Bring it back down to work with array indexes
+          index = partNumber - 1;
+          imgLink = $(this).find("thumb").text();
+
+          // Wrap the URL in an img tag, wrap that in a link, add it to the table
+          /* jshint ignore:start */
+          tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
+            index, bodyPart, partNumber, imgLink);
+          /* jshint ignore:end */
+
+          /* Check if
+           * a. we have not run through all the images
+           * b. the index is a multiple of the current row size,
+           * c. we are not at the start of the images
+           * If all this is true, then make a new table row.
+           */
+          //FUTURE FIXME I'm sure this can be majorly cleaned up
+          if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
+            tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
+          } else {
+
+            /* Check if we have not run through all the images.
+             * if it is not, start a new table column
+             */
+            if (partNumber !== numOfImages) {
+              tableString += '</td><td class="selector" id="{0}">'.format(partNumber);
+            } else {
+              // Otherwise, close the table column without making a new one
+              tableString += "</td>";
+            }
+          }
+        });
+
+        // Finally, display the table with the images
+        $("#minifig-items").html(tableString);
+
+        // Display the scroll bar when needed for both layout sizes
+        if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
+          $(document).ready(function() {
+            // Activate scroll bar
+            $content.perfectScrollbar({
+              wheelSpeed: 30,
+              suppressScrollX: true
+            });
+          });
+
+        // The scroll bar is not needed, destroy it
+        } else {
+          $(document).ready(function() {
+            $content.perfectScrollbar("destroy");
+          });
+        }
       }
-    }
+    });
   });
-
-  // Finally, display the table with the images
-  $("#minifig-items").append(tableString);
-
-  // Display the scroll bar when needed for both layout sizes
-  if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
-    $(document).ready(function() {
-      // Activate scroll bar
-      $content.perfectScrollbar({
-        wheelSpeed: 30,
-        suppressScrollX: true
-      });
-    });
-
-    // The scroll bar is not needed, destroy it
-  } else {
-    $(document).ready(function() {
-      $content.perfectScrollbar("destroy");
-    });
-  }
 }
