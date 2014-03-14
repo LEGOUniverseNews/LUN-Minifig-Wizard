@@ -2,7 +2,7 @@
 
 ![LUN Minifig Wizard Logo](Logo/LUN-Minifig-Wizard-Small.png)
 
-The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) allows you to create your very own LEGO Minifigure [sigfig](http://www.brothers-brick.com/lego-glossary/#Sigfig)! You can design a minifigure with accessories to use in an avatar, signature, or anywhere!
+The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) allows you to create your very own LEGO minifigure [sigfig](http://www.brothers-brick.com/lego-glossary/#Sigfig)! You can design a minifigure with accessories to use in an avatar, signature, or anywhere!
 
 ## Official Website: [bit.ly/MinifigWizard](http://bit.ly/MinifigWizard) ##
 

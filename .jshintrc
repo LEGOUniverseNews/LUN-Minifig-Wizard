@@ -1,6 +1,6 @@
 {
     "maxlen" : 125,
-    "indent" : 4,
+    "indent" : 2,
     "strict" : true,
     "globals" : [
         "$",
