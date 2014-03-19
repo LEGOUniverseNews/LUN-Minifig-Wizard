@@ -340,6 +340,9 @@ function changePartImages(part) {
               wheelSpeed: 30,
               suppressScrollX: true
             });
+
+            // Update the scrollbar so it does not change sizes on us
+            $content.perfectScrollbar("update");
           });
 
         // The scroll bar is not needed, destroy it
