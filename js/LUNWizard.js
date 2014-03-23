@@ -25,6 +25,11 @@ $(function() {
       $categoryButtons = $(".category-buttons-th"),
       $categoryButtonsDiv = $("#category-buttons-div");
 
+  // IE9: place the New Window SVG with a PNG version
+  if ($.browser.msie && $.browser.versionNumber === 9) {
+    $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
+  }
+
   // Apply orange bubble and mark as active the first button ("Head").
   // This must be done here to stop the orange bubble from sticking
   // if a (singlular) new category is selected then the table is enlarged.
