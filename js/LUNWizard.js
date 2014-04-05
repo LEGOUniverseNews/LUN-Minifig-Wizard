@@ -1,13 +1,13 @@
 /*
-    LEGO Universe News! Minifig Wizard
-
-    Created 2013-2014 Triangle717 & rioforce
-    <http://Triangle717.WordPress.com/>
-    <http://rioforce.WordPress.com/>
-
-    Licensed under The MIT License
-    <http://opensource.org/licenses/MIT>
-*/
+ * LEGO Universe News! Minifig Wizard
+ *
+ * Created 2013-2014 Triangle717 & rioforce
+ * <http://Triangle717.WordPress.com/>
+ * <http://rioforce.WordPress.com/>
+ *
+ * Licensed under The MIT License
+ * <http://opensource.org/licenses/MIT>
+ */
 
 
 // Global variables for various stuff
@@ -25,7 +25,7 @@ $(function() {
       $categoryButtons = $(".category-buttons-th"),
       $categoryButtonsDiv = $("#category-buttons-div");
 
-  // IE9: replace the New Window SVG with a PNG version
+  // IE9: Replace the New Window SVG with a PNG version
   if ($.browser.msie && $.browser.versionNumber === 9) {
     $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
   }
@@ -265,7 +265,6 @@ function changePartImages(part) {
       cache: true,
       url: "img/images.xml",
       dataType: "xml",
-      // TODO failure parameter
       // Now begin using that data on successful download
       success: function(xml) {
         var imgLink, fullImgLink, tableString,
