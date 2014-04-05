@@ -60,12 +60,16 @@ $(function() {
     $settingsPanel.css("bottom", "-120px");
 
     // IE9 - Recreate #gear:hover movement
-    // FIXME It keeps getting stuck in an up-and-down loop for a few seconds
-    $gearBttn.on("mouseover", function() {
+    $gearBttn.on("mouseover", function(e) {
       $gearBttn.animate({"bottom": "4px"}, 500);
+
+      // Mostly prevent an up-and-down animation loop
+      e.stopPropagation();
     });
-    $gearBttn.on("mouseout", function() {
+
+    $gearBttn.on("mouseout", function(e) {
       $gearBttn.animate({"bottom": "-2px"}, 500);
+      e.stopPropagation();
     });
   }
 
