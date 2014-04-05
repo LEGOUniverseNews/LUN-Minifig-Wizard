@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       }
     },
 
-    // Copy JavaScript dependencies to the proper location
+    // Copy dependencies to the proper location
     // TODO Copy and rename perfect-scrollbar
     copy: {
       main: {
