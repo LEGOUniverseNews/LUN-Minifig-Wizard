@@ -15,13 +15,13 @@ function newMinifigWindow() {
   /* Open a new window with the user's Minifigure for picture taking */
   // Store the values of the images in an array
   var myList = [
-    $("#HeadImg").attr("src"),
+    $("#head-img").attr("src"),
     $("#the-special").attr("src"),
-    $("#TorsoImg").attr("src"),
-    $("#HatImg").attr("src"),
-    $("#LegImg").attr("src"),
-    $("#SwordImg").attr("src"),
-    $("#ShieldImg").attr("src"),
+    $("#torso-img").attr("src"),
+    $("#hat-img").attr("src"),
+    $("#leg-img").attr("src"),
+    $("#sword-img").attr("src"),
+    $("#shield-img").attr("src"),
     '\t<img class="the-big-picture" id="shadow-img" src="img/ui/figure/drop-shadow.png'
   ];
 

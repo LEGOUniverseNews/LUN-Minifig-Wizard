@@ -60,65 +60,72 @@
     The src attribute is changed to the the user's desired image within JavaScript.
   -->
 
-  <img class="my-sigfig" id="HeadImg" alt="Minifig Head"
-       width="375" height="375" src="img/ui/figure/head-spark.png" />
+  <img class="my-sigfig" id="head-img" alt="Minifig Head"
+     width="375" height="375" src="img/ui/figure/head-spark.png" />
+
   <img class="my-sigfig" id="the-special" alt="Special Item"
-       width="375" height="375" src="img/ui/figure/empty.png" />
-  <img class="my-sigfig" id="HatImg" alt="Minifig Hat"
-       width="375" height="375" src="img/ui/figure/empty.png" />
-  <img class="my-sigfig" id="LegImg" alt="Minifig Legs"
-       width="375" height="375" src="img/ui/figure/legs-spark.png" />
-  <img class="my-sigfig" id="TorsoImg" alt="Minifig Torso"
-       width="375" height="375" src="img/ui/figure/torso-spark.png" />
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <img class="my-sigfig" id="hat-img" alt="Minifig Hat"
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <img class="my-sigfig" id="leg-img" alt="Minifig Legs"
+     width="375" height="375" src="img/ui/figure/legs-spark.png" />
+
+  <img class="my-sigfig" id="torso-img" alt="Minifig Torso"
+     width="375" height="375" src="img/ui/figure/torso-spark.png" />
+
   <img class="my-sigfig" id="drop-shadow" alt="Drop Shadow"
-       width="375" height="375" src="img/ui/figure/drop-shadow.png" />
-  <img class="my-sigfig" id="ShieldImg" alt="Shield Item"
-       width="375" height="375" src="img/ui/figure/empty.png" />
-  <img class="my-sigfig" id="SwordImg" alt="Sword Item"
-       width="375" height="375" src="img/ui/figure/empty.png" />
+     width="375" height="375" src="img/ui/figure/drop-shadow.png" />
+
+  <img class="my-sigfig" id="shield-img" alt="Shield Item"
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <img class="my-sigfig" id="sword-img" alt="Sword Item"
+     width="375" height="375" src="img/ui/figure/empty.png" />
 
   <div class="my-tables">
-      <div id="background">
-          <!-- Buttons to view different parts -->
-          <div id="category-buttons-div">
-              <table>
-                  <tr>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Head.svg" />
-                      </th>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Torso.svg" />
-                      </th>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Legs.svg" />
-                      </th>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Hat.svg" />
-                      </th>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Sword.svg" />
-                      </th>
-                      <th class="category-buttons-th">
-                          <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
-                               onclick="changePartImages(this.id)" src="img/ui/categories/Shield.svg" />
-                      </th>
-                  </tr>
-              </table>
-          </div>
-          <br>
-
-          <!-- Area for building our Minifig -->
-          <div id="content">
-            <table id="minifig-items">
-              <tbody></tbody>
-            </table>
-          </div>
+    <div id="background">
+      <!-- Buttons to view different parts -->
+      <div id="category-buttons-div">
+        <table>
+          <tr>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Head.svg" />
+            </th>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Torso.svg" />
+            </th>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Legs.svg" />
+            </th>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Hat.svg" />
+            </th>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Sword.svg" />
+            </th>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Shield.svg" />
+            </th>
+          </tr>
+        </table>
       </div>
+      <br>
+
+      <!-- Area for building our Minifig -->
+      <div id="content">
+        <table id="minifig-items">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
   </div>  <!-- #my-tables -->
 
   <!-- Button to resize the layout -->
@@ -148,7 +155,6 @@
       https://github.com/gabceb/jquery-browser-plugin
     -->
     <script src="lib/jquery.browser.min.js"></script>
-
 
   <!--
     Custom build of Modernizr detecting CSS transitions and border-radius

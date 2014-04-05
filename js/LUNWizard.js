@@ -207,22 +207,22 @@ function main(partNumber) {
   // Get the proper imgID for each part
   switch (bodyPart) {
     case "Torso":
-      imgID = "#TorsoImg";
+      imgID = "#torso-img";
       break;
     case "Leg":
-      imgID = "#LegImg";
+      imgID = "#leg-img";
       break;
     case "Hat":
-      imgID = "#HatImg";
+      imgID = "#hat-img";
       break;
     case "Shield":
-      imgID = "#ShieldImg";
+      imgID = "#shield-img";
       break;
     case "Sword":
-      imgID = "#SwordImg";
+      imgID = "#sword-img";
       break;
     case "Head":
-      imgID = "#HeadImg";
+      imgID = "#head-img";
       break;
   }
 
@@ -316,7 +316,7 @@ function changePartImages(part) {
            * c. we are not at the start of the images
            * If all this is true, then make a new table row.
            */
-          //FUTURE FIXME I'm sure this can be majorly cleaned up
+          //FUTURE FIXME I'm sure this can be MAJORLY cleaned up
           if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
             tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
           } else {
