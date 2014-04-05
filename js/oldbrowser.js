@@ -1,13 +1,13 @@
 /*
-    LEGO Universe News! Minifig Wizard
-
-    Created 2013-2014 Triangle717 & rioforce
-    <http://Triangle717.WordPress.com/>
-    <http://rioforce.WordPress.com/>
-
-    Licensed under The MIT License
-    <http://opensource.org/licenses/MIT>
-*/
+ * LEGO Universe News! Minifig Wizard
+ *
+ * Created 2013-2014 Triangle717 & rioforce
+ * <http://Triangle717.WordPress.com/>
+ * <http://rioforce.WordPress.com/>
+ *
+ * Licensed under The MIT License
+ * <http://opensource.org/licenses/MIT>
+ */
 
 $(function() {
   "use strict";
@@ -40,9 +40,7 @@ $(function() {
     $("html").html(errorMessageText);
 
     // Apply the CSS
-    $.each(errorMessageCSS, function(key, value) {
-      $("#error").css(key, value);
-    });
+    $("#error").css(errorMessageCSS);
     return false;
   }
 });

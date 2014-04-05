@@ -25,7 +25,7 @@ $(function() {
       $categoryButtons = $(".category-buttons-th"),
       $categoryButtonsDiv = $("#category-buttons-div");
 
-  // IE9: place the New Window SVG with a PNG version
+  // IE9: replace the New Window SVG with a PNG version
   if ($.browser.msie && $.browser.versionNumber === 9) {
     $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
   }
