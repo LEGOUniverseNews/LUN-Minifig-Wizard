@@ -105,18 +105,18 @@ function resizeTable() {
     rowSize = 6;
 
     /**
-         * Run animations to in/decrease the size/locations of whatever we need
-         * In order in which they run for both enlarge and decrease:
-         *
-         * Resize button (location)
-         * Scrollbar
-         * Background
-         * Category buttons (enlargement)
-         * Category buttons (location)
-         * Container
-         * Left margin
-         * Resize button (swap SVGs)
-         */
+     * Run animations to in/decrease the size/locations of whatever we need
+     * In order in which they run for both enlarge and decrease:
+     *
+     * Resize button (location)
+     * Scrollbar
+     * Background
+     * Category buttons (enlargement)
+     * Category buttons (location)
+     * Container
+     * Left margin
+     * Resize button (swap SVGs)
+     */
 
     // CSS transitions are not supported, fallback to jQuery animations
     if (!Modernizr.csstransitions) {
@@ -262,10 +262,10 @@ function changePartImages(part) {
   $(function() {
     $.ajax({
       type: "GET",
+      cache: true,
       url: "img/images.xml",
       dataType: "xml",
       // TODO failure parameter
-      // FUTURE Isn't there a caching parameter too?
       // Now begin using that data on successful download
       success: function(xml) {
         var imgLink, fullImgLink, tableString,
@@ -342,7 +342,7 @@ function changePartImages(part) {
           $(document).ready(function() {
             // Activate scroll bar
             $content.perfectScrollbar({
-              wheelSpeed: 30,
+              wheelSpeed: 6.5,
               suppressScrollX: true
             });
 
