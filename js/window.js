@@ -22,52 +22,52 @@ function newMinifigWindow() {
     $("#leg-img").attr("src"),
     $("#sword-img").attr("src"),
     $("#shield-img").attr("src"),
-    '\t<img class="the-big-picture" id="shadow-img" src="img/ui/figure/drop-shadow.png'
+    '<img class="the-big-picture" id="shadow-img" src="img/ui/figure/drop-shadow.png'
   ];
 
   // Construct the HTML for the beginning of the page
-  var docuCode = '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
-      '\t<meta charset="utf-8">\n' +
-      '\t<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">\n' +
-      "\t<title>LEGO Universe News! Minifig Wizard</title>\n" +
-      '\n<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600" rel="stylesheet">\n' +
-      '\t<link rel="stylesheet" href="css/LUNWizard.window.min.css">\n' +
-      "</head>\n\n<body>\n";
+  var docuCode = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
+      '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">' +
+      "<title>LEGO Universe News! Minifig Wizard</title>" +
+      '<link  rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600">' +
+      '<link rel="stylesheet" href="css/LUNWizard.window.min.css">' +
+      "</head><body>";
 
   // Area for background-color changing boxes and image size
   // The content is injected by settings.js
-  var tableCode = '\n\t<div id="gear">\n\t\t<img width="40" height="40" src="img/ui/Gear.svg" />' +
-      '\n\t</div>\n\t<div id="settings-panel">\n\t\tBackground Color\n\t\t<table>\n' +
-      '\t\t\t<tr></tr>\n\t\t</table>\n\t\t<br><span id="size-text">Size</span><br>\n' +
-      '\t\t<input id="size-input" type="number" placeholder="600" autocomplete="off">' +
-      '\n\t\t<label id="size-label" for="size-input">px</label>\n\t</div>\n';
+  var tableCode = '<div id="gear"><img width="40" height="40" src="img/ui/Gear.svg" />' +
+      '</div><div id="settings-panel">Background Color<table>' +
+      '<tr></tr></table><br><span id="size-text">Size</span><br>' +
+      '<input id="size-input" type="number" placeholder="600" autocomplete="off">' +
+      '<label id="size-label" for="size-input">px</label></div>';
 
   // JavaScript links
-  var scriptCode = '\t<script src="lib/jquery-2.1.0.min.js"></script>\n' +
-      '\t<script src="lib/string-format.js"></script>\n' +
-      '\t<script src="lib/modernizr.custom.70680.js"></script>\n' +
-      //var scriptCode = '\t<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>\n' +
-      '\t<script src="js/LUNWizard.window.min.js"></script>\n';
+  var scriptCode = '<script src="lib/jquery-2.1.0.min.js"></script>' +
+    //var scriptCode = '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>' +
+      '<script src="lib/string-format.js"></script>' +
+      '<script src="lib/modernizr.custom.70680.js"></script>' +
+      '<script src="js/LUNWizard.window.min.js"></script>';
 
   // Closing HTML
-  var endCode = "</body>\n</html>\n";
+  var endCode = "</body></html>";
 
   // Initial line for the body
-  var minifigDisplay = '\t<img class="the-big-picture" src="';
-
+  var minifigDisplay = '<img class="the-big-picture" src="';
+  
+  // TODO This can be simplified ($.each() or Array.forEach)
   for (var i = 0; i < myList.length; i += 1) {
     // Add the link to the image
-    minifigDisplay += myList[i] + '" />\n';
+    minifigDisplay += myList[i] + '" />';
 
     // Keep adding the images while there are images to display
     // AND if the image is not the drop shadow, do not assign the class
     if (i !== (myList.length - 1) && i !== 6) {
-      minifigDisplay += '\t<img class="the-big-picture" src="';
+      minifigDisplay += '<img class="the-big-picture" src="';
     }
   }
 
   // Open a new pop up window with the content
-  //FUTURE Replace document.write() with existing page using parameters for image URLs
+  // TODO Replace document.write() with existing page using parameters for image URLs
   var myOwnMinifig = window.open("window.html","LUNMinifigWizard","width=600, height=600");
   myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);
   myOwnMinifig.document.close();
