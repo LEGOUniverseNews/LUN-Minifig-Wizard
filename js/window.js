@@ -42,8 +42,8 @@ function newMinifigWindow() {
       '<label id="size-label" for="size-input">px</label></div>';
 
   // JavaScript links
-  var scriptCode = '<script src="lib/jquery-2.1.0.min.js"></script>' +
-    //var scriptCode = '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>' +
+//  var scriptCode = '<script src="lib/jquery-2.1.0.min.js"></script>' +
+    var scriptCode = '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>' +
       '<script src="lib/string-format.js"></script>' +
       '<script src="lib/modernizr.custom.70680.js"></script>' +
       '<script src="js/LUNWizard.window.min.js"></script>';
