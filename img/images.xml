@@ -152,10 +152,6 @@
 		<thumb>img/hats/thumb/Hat035.png</thumb>
 		<image>img/hats/full/Hat035.png</image>
 	</Hat>
-	<Hat>
-		<thumb>img/hats/thumb/Hat036.png</thumb>
-		<image>img/hats/full/Hat036.png</image>
-	</Hat>
 	<Head>
 		<thumb>img/heads/thumb/Head001.png</thumb>
 		<image>img/heads/full/Head001.png</image>
@@ -451,10 +447,6 @@
 	<Torso>
 		<thumb>img/torsos/thumb/Torso033.png</thumb>
 		<image>img/torsos/full/Torso033.png</image>
-	</Torso>
-	<Torso>
-		<thumb>img/torsos/thumb/Torso034.png</thumb>
-		<image>img/torsos/full/Torso034.png</image>
 	</Torso>
 	<Shield>
 		<thumb>img/shield/thumb/Shield001.png</thumb>

@@ -1,6 +1,6 @@
 {
   "name": "LUN-Minifig-Wizard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Design your own LEGO sigfig!",
   "main": "index.html",
   "scripts": {
@@ -19,20 +19,20 @@
   ],
   "homepage": "http://LEGOUniverseNews.github.io/LUN-Minifig-Wizard",
   "dependencies": {
-    "string-format": "^0.2.1",
-    "jquery.browser": "^0.0.5",
-    "perfect-scrollbar": "noraesae/perfect-scrollbar"
+    "string-format": ">=0.2.1",
+    "jquery.browser": ">=0.0.6",
+    "perfect-scrollbar": "git://github.com/noraesae/perfect-scrollbar.git"
   },
   "devDependencies": {
-    "grunt": "^0.4.2",
-    "matchdep": "^0.3.0",
-    "grunt-contrib-jshint": "^0.8.0",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-watch": "^0.5.3",
-    "grunt-contrib-cssmin": "^0.9.0",
-    "grunt-contrib-csslint": "^0.2.0",
-    "grunt-dev-update": "^0.4.7",
-    "grunt-htmlhint": "^0.4.0",
-    "grunt-contrib-copy": "^0.5.0"
+    "grunt": ">=0.4.3",
+    "matchdep": ">=0.3.0",
+    "grunt-contrib-jshint": ">=0.10.0",
+    "grunt-contrib-uglify": ">=0.4.0",
+    "grunt-contrib-watch": ">=0.6.0",
+    "grunt-contrib-cssmin": ">=0.9.0",
+    "grunt-contrib-csslint": ">=0.2.0",
+    "grunt-dev-update": ">=0.5.6",
+    "grunt-contrib-copy": ">=0.5.0",
+    "grunt-htmlhint": ">=0.4.0"
   }
 }

@@ -1,152 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
 
-    <!--
-        LEGO Universe News! Minifig Wizard
+  <!--
+    LEGO Universe News! Minifig Wizard
 
-        Created 2013-2014 Triangle717 & rioforce
-        <http://Triangle717.WordPress.com/>
-        <http://rioforce.WordPress.com/>
+    Created 2013-2014 Triangle717 & rioforce
+    <http://Triangle717.WordPress.com/>
+    <http://rioforce.WordPress.com/>
 
-        Licensed under The MIT License
-        <http://opensource.org/licenses/MIT>
-    -->
+    Licensed under The MIT License
+    <http://opensource.org/licenses/MIT>
+  -->
 
-    <!-- Force IE to recognize HTML5 code -->
-    <!--[if IE]>
-        <script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
-    <![endif]-->
+  <!-- Force IE to recognize HTML5 code -->
+  <!--[if IE]>
+      <script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
+  <![endif]-->
 
-    <!-- Site title -->
-    <title>LEGO Universe News! Minifig Wizard</title>
+  <!-- Site title -->
+  <title>LEGO Universe News! Minifig Wizard</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="lib/perfect-scrollbar.min.css">
-    <link rel="stylesheet" type="text/css" href="css/LUNWizard.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="lib/perfect-scrollbar.min.css">
+  <link rel="stylesheet" href="css/LUNWizard.min.css">
 </head>
 
 <body>
-    <!-- Orange background for minifigure display -->
-    <div id="myAvatarDisplay"></div>
+  <!-- Orange background for minifigure display -->
+  <div id="my-sigfig-display"></div>
 
-    <!-- The Special -->
-    <div id="emmet"></div>
+  <!-- The Special -->
+  <div id="emmet"></div>
 
-    <!-- Open new window with larger version of minifigure -->
-    <img id="bigger-picture" alt="New Window button" width="85" height="20"
-         onclick="newMinifigWindow()" src="img/ui/New-window-button.svg" />
+  <!-- Open new window with larger version of minifigure -->
+  <!-- IE9: the SVG is replaced with a PNG version-->
+  <img id="bigger-picture" alt="New Window button" width="85" height="20"
+     onclick="newMinifigWindow();" src="img/ui/New-window-button.svg" />
 
-    <!--
+  <!--
     Top to bottom:
-        Head
-        The Special
-        Hat
-        Legs
-        Torso
-        Drop Shadow
-        Shield
-        Sword
+      Head
+      The Special
+      Hat
+      Legs
+      Torso
+      Drop Shadow
+      Shield
+      Sword
 
     This is the only order in which the images properly overlay each other.
     The src attribute is changed to the the user's desired image within JavaScript.
-    -->
+  -->
 
-    <img class="myAvatar" id="HeadImg" alt="Minifig Head"
-         width="375" height="375" src="img/ui/figure/head-spark.png" />
-    <img class="myAvatar" id="SpecialImg" alt="Special Item"
-         width="375" height="375" src="img/ui/figure/empty.png" />
-    <img class="myAvatar" id="HatImg" alt="Minifig Hat"
-         width="375" height="375" src="img/ui/figure/empty.png" />
-    <img class="myAvatar" id="LegImg" alt="Minifig Legs"
-         width="375" height="375" src="img/ui/figure/legs-spark.png" />
-    <img class="myAvatar" id="TorsoImg" alt="Minifig Torso"
-         width="375" height="375" src="img/ui/figure/torso-spark.png" />
-    <img class="myAvatar" id="DropShadowImg" alt="Drop Shadow"
-         width="375" height="375" src="img/ui/figure/drop-shadow.png" />
-    <img class="myAvatar" id="ShieldImg" alt="Shield Item"
-         width="375" height="375" src="img/ui/figure/empty.png" />
-    <img class="myAvatar" id="SwordImg" alt="Sword Item"
-         width="375" height="375" src="img/ui/figure/empty.png" />
+  <img class="my-sigfig" id="head-img" alt="Minifig Head"
+     width="375" height="375" src="img/ui/figure/head-spark.png" />
 
-    <div class="myTables">
-        <div id="background">
-            <!-- Buttons to view different parts -->
-            <div id="category-buttons-div">
-                <table>
-                    <tr>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Head.svg" />
-                        </th>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Torso.svg" />
-                        </th>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Legs.svg" />
-                        </th>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Hat.svg" />
-                        </th>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Sword.svg" />
-                        </th>
-                        <th class="category-buttons-th">
-                            <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
-                                 onclick="changePartImages(this.id)" src="img/ui/categories/Shield.svg" />
-                        </th>
-                    </tr>
-                </table>
-            </div>
-            <br>
+  <img class="my-sigfig" id="the-special" alt="Special Item"
+     width="375" height="375" src="img/ui/figure/empty.png" />
 
-            <!-- Area for building our Minifig -->
-            <div id="content">
-                <table id="minifigItems"><tbody></tbody></table>
-            </div>
-        </div>
+  <img class="my-sigfig" id="hat-img" alt="Minifig Hat"
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <img class="my-sigfig" id="leg-img" alt="Minifig Legs"
+     width="375" height="375" src="img/ui/figure/legs-spark.png" />
+
+  <img class="my-sigfig" id="torso-img" alt="Minifig Torso"
+     width="375" height="375" src="img/ui/figure/torso-spark.png" />
+
+  <img class="my-sigfig" id="drop-shadow" alt="Drop Shadow"
+     width="375" height="375" src="img/ui/figure/drop-shadow.png" />
+
+  <img class="my-sigfig" id="shield-img" alt="Shield Item"
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <img class="my-sigfig" id="sword-img" alt="Sword Item"
+     width="375" height="375" src="img/ui/figure/empty.png" />
+
+  <div class="my-tables">
+    <div id="background">
+      <!-- Buttons to view different parts -->
+      <div id="category-buttons-div">
+        <table>
+          <tr>
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Head.svg" />
+            </th>
+
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Torso.svg" />
+            </th>
+
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Legs.svg" />
+            </th>
+
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Hat.svg" />
+            </th>
+
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Sword.svg" />
+            </th>
+
+            <th class="category-buttons-th">
+            <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
+               onclick="changePartImages(this.id)" src="img/ui/categories/Shield.svg" />
+            </th>
+          </tr>
+        </table>
+      </div>
+      <br>
+
+      <!-- Area for building our Minifig -->
+      <div id="content">
+        <table id="minifig-items">
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
-    <!-- Button to resize the layout -->
-    <img id="resize-button" alt="Resize layout" width="85" height="20" onclick="resizeTable()" src="img/ui/Enlarge-button.svg" />
+  </div>  <!-- #my-tables -->
 
-    <!-- LUN Minifig Wizard logo -->
-    <a target="_blank" title="LEGO Universe News!" href="http://LEGOUniverseNews.WordPress.com"><img id="lun-wizard-logo" alt="LEGO Universe News! Minifig Wizard logo" width="350" src="img/Minifig-Wizard.png" /></a>
+  <!-- Button to resize the layout -->
+  <img id="resize-button" alt="Resize layout" width="85" height="20" onclick="resizeTable()" src="img/ui/Enlarge-button.svg" />
 
-    <!-- jQuery -->
-    <script src="lib/jquery-2.1.0.min.js"></script>
-<!--    <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>-->
+  <!-- LUN Minifig Wizard logo -->
+  <a style="color: transparent" href="http://LEGOUniverseNews.WordPress.com" target="_blank"><img id="lun-wizard-logo" alt="LEGO Universe News! Minifig Wizard logo" width="350" src="img/Minifig-Wizard.png" /></a>
+
+  <!-- jQuery -->
+<!--  <script src="lib/jquery-2.1.0.min.js"></script>-->
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+
+  <!--
+    perfect-scrollbar
+    http://noraesae.github.io/perfect-scrollbar
+  -->
+  <script src="lib/perfect-scrollbar-mousewheel.min.js"></script>
+
+  <!--
+    String::format
+    https://github.com/davidchambers/string-format
+  -->
+  <script src="lib/string-format.js"></script>
 
     <!--
-        perfect-scrollbar
-        http://noraesae.github.io/perfect-scrollbar
-    -->
-    <script src="lib/perfect-scrollbar-mousewheel.min.js"></script>
-
-    <!--
-        String::format
-        https://github.com/davidchambers/string-format
-    -->
-    <script src="lib/string-format.js"></script>
-
-    <!--
-        jquery.browser
-        https://github.com/gabceb/jquery-browser-plugin
+      jquery.browser
+      https://github.com/gabceb/jquery-browser-plugin
     -->
     <script src="lib/jquery.browser.min.js"></script>
 
-    <!-- LEGO Universe News! Minifig Wizard -->
-    <script src="js/LUNWizard.min.js"></script>
-    <script src="js/LUNWizard.window.min.js"></script>
+  <!--
+    Custom build of Modernizr detecting CSS transitions and border-radius
+    http://modernizr.com/download/#-borderradius-csstransitions-shiv-cssclasses-testprop-testallprops-domprefixes-load
+  -->
+  <script src="lib/modernizr.custom.70680.js"></script>
+
+  <!-- LEGO Universe News! Minifig Wizard -->
+  <script src="js/LUNWizard.min.js"></script>
+  <script src="js/LUNWizard.window.min.js"></script>
 </body>
 </html>

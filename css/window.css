@@ -1,122 +1,130 @@
 /*
-    LEGO Universe News! Minifig Wizard
+ * LEGO Universe News! Minifig Wizard
+ *
+ * Created 2013-2014 Triangle717 & rioforce
+ * <http://Triangle717.WordPress.com/>
+ * <http://rioforce.WordPress.com/>
+ *
+ * Licensed under The MIT License
+ * <http://opensource.org/licenses/MIT>
+ */
 
-    Created 2013-2014 Triangle717 & rioforce
-    <http://Triangle717.WordPress.com/>
-    <http://rioforce.WordPress.com/>
-
-    Licensed under The MIT License
-    <http://opensource.org/licenses/MIT>
-*/
 
 /* Make contents fill entire page */
 html {
-    height: 100%;
-    width: 100%;
-    cursor: default;
-    /* Disable scrolling to improve the experience */
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: default;
 }
 
 /* Window settings */
 body {
-    background-color: #d0d0d0;
-    font-family: "Source Sans Pro", sans-serif;
-    color: white;
-    font-size: 14px;
+  background-color: #d0d0d0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
 }
 
 /* Drop shadow for minifigure */
-#ShadowImg { z-index: -1; }
+#shadow-img { z-index: -1; }
 
 /* Position the minifigure */
-.TheBigPicture {
-    position: fixed;
-    bottom: 45px;
-    left: 4px;
+.the-big-picture {
+  position: fixed;
+  bottom: 45px;
+  left: 4px;
 }
 
 /* Gear SVG to open settings panel */
 #gear {
-    position: absolute;
-    bottom: 3px;
-    right: 10px;
-    z-index: 2;
-    transition-property: -webkit-transform, transform;
-    transition-duration: 0.5s;
-    transition-timing-function: ease;
+  position: fixed;
+  right: 10px;
+  bottom: 3px;
+  z-index: 2;
+  transition-property: -webkit-transform, transform;
+  transition-duration: .5s;
+  transition-timing-function: ease;
 }
 
 /* Small movement when gear is hovered over */
 #gear:hover {
-    -webkit-transform: translate3d(0, -4px, 0);
-    transform: translate3d(0, -4px, 0);
+  -webkit-transform: translate3d(0, -4px, 0);
+          transform: translate3d(0, -4px, 0);
 }
 
 /* Settings panel */
 #settings-panel {
-    /* Size and location */
-    position: absolute;
-    bottom: 20px;
-    width: 160px;
-    height: 100px;
-    right: 15px;
+  /* Size and location */
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+  width: 160px;
+  height: 100px;
+  visibility: hidden;
 
-    /* Display */
-    text-align: center;
-    background: -webkit-linear-gradient(#252525, #000000);
-    background: linear-gradient(#252525, #000000);
-    border-radius: 7px;
+  /* Display */
+  text-align: center;
 
-    /* Sliding transition */
-    -webkit-transform: translateY(160px);
-    transform: translateY(160px);
-    transition-property: -webkit-transform, transform;
-    transition-duration: 1.15s;
-    transition-timing-function: ease;
+  /* Older browsers will not render the gradient */
+  background: #252525;
+  background: -webkit-linear-gradient(#252525, #000000);
+          background: linear-gradient(#252525, #000000);
+  border-radius: 7px;
+
+  /* Sliding transition */
+  -webkit-transform: translateY(160px);
+          transform: translateY(160px);
+  transition-property: -webkit-transform, transform;
+  transition-duration: 1.15s;
+  transition-timing-function: ease;
 }
 
 /* The color boxes are actually a table! (Shhhhhh) :P */
 table {
-    position: relative;
-    margin-left: 7px;
-    margin-top: 2px;
+  position: relative;
+  margin-left: 7px;
+  margin-top: 2px;
 }
 
 /* The boxes used to change the background color */
-.colorBox {
-    width: 12px;
-    height: 12px;
-    border: 1px solid black;
+.color-box {
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
 }
 
 /* Location of image size input box */
 #size-input {
-    position: absolute;
-    width: 50px;
-    left: 55px;
-    bottom: 3px;
+  position: absolute;
+  bottom: 3px;
+  left: 55px;
+  width: 50px;
 }
 
 /* "Size" header for image size input */
 #size-text {
-    position: relative;
-    bottom: 3px;
+  position: relative;
+  bottom: 3px;
 }
 
 /* "px" label for image size input */
 #size-label {
-    position: absolute;
-    right: 30px;
-    top: 73px;
+  position: absolute;
+  top: 73px;
+  right: 30px;
 }
 
 /* Possible background and color box colors */
-#redColorBox { background-color: #f00; }
-#greenColorBox { background-color: #008000; }
-#blueColorBox { background-color: #00f; }
-#yellowColorBox { background-color: #ff0; }
-#grayColorBox { background-color: #d0d0d0; }
-#orangeColorBox { background-color: #ffa500; }
-#blackColorBox { background-color: #000; }
-#whiteColorBox { background-color: #fff; }
+#red-color-box { background-color: #f00; }
+#green-color-box { background-color: #008000; }
+#blue-color-box { background-color: #00f; }
+#yellow-color-box { background-color: #ff0; }
+#gray-color-box { background-color: #d0d0d0; }
+#orange-color-box { background-color: #ffa500; }
+#black-color-box { background-color: #000; }
+#white-color-box { background-color: #fff; }
+
+/* Change the border around the actively selected box */
+.white-border { border: 1.5px solid white; }
