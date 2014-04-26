@@ -43,7 +43,12 @@ body {
   right: 10px;
   bottom: 3px;
   z-index: 2;
-  transition-property: -webkit-transform, transform;
+
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: .5s;
+  -webkit-transition-timing-function: ease;
+
+  transition-property: -webkit-transform, -ms-transform, transform;
   transition-duration: .5s;
   transition-timing-function: ease;
 }
@@ -51,6 +56,7 @@ body {
 /* Small movement when gear is hovered over */
 #gear:hover {
   -webkit-transform: translate3d(0, -4px, 0);
+      -ms-transform: translate3d(0, -4px, 0);
           transform: translate3d(0, -4px, 0);
 }
 
@@ -74,9 +80,16 @@ body {
   border-radius: 7px;
 
   /* Sliding transition */
+  /* TODO Convert to translate3d() */
   -webkit-transform: translateY(160px);
+      -ms-transform: translateY(160px);
           transform: translateY(160px);
-  transition-property: -webkit-transform, transform;
+
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 1.15s;
+  -webkit-transition-timing-function: ease;
+
+  transition-property: -webkit-transform, -ms-transform, transform;
   transition-duration: 1.15s;
   transition-timing-function: ease;
 }
