@@ -17,9 +17,9 @@ function newMinifigWindow() {
   var myList = [
     $("#head-img").attr("src"),
     $("#the-special").attr("src"),
-    $("#torso-img").attr("src"),
     $("#hat-img").attr("src"),
     $("#leg-img").attr("src"),
+    $("#torso-img").attr("src"),
     $("#sword-img").attr("src"),
     $("#shield-img").attr("src"),
     '<img class="the-big-picture" id="shadow-img" src="img/ui/figure/drop-shadow.png'
@@ -43,7 +43,7 @@ function newMinifigWindow() {
 
   // JavaScript links
 //  var scriptCode = '<script src="lib/jquery-2.1.0.min.js"></script>' +
-    var scriptCode = '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>' +
+  var scriptCode = '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>' +
       '<script src="lib/string-format.js"></script>' +
       '<script src="lib/modernizr.custom.70680.js"></script>' +
       '<script src="js/LUNWizard.window.min.js"></script>';
