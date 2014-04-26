@@ -448,6 +448,10 @@
 		<thumb>img/torsos/thumb/Torso033.png</thumb>
 		<image>img/torsos/full/Torso033.png</image>
 	</Torso>
+	<Torso>
+		<thumb>img/torsos/thumb/Torso034.png</thumb>
+		<image>img/torsos/full/Torso034.png</image>
+	</Torso>
 	<Shield>
 		<thumb>img/shield/thumb/Shield001.png</thumb>
 		<image>img/shield/full/Shield001.png</image>
