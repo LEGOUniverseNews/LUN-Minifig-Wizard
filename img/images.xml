@@ -328,6 +328,18 @@
 		<thumb>img/legs/thumb/Legs018.png</thumb>
 		<image>img/legs/full/Legs018.png</image>
 	</Leg>
+	<Leg>
+		<thumb>img/legs/thumb/Legs019.png</thumb>
+		<image>img/legs/full/Legs019.png</image>
+	</Leg>
+	<Leg>
+		<thumb>img/legs/thumb/Legs020.png</thumb>
+		<image>img/legs/full/Legs020.png</image>
+	</Leg>
+	<Leg>
+		<thumb>img/legs/thumb/Legs021.png</thumb>
+		<image>img/legs/full/Legs021.png</image>
+	</Leg>
 	<Torso>
 		<thumb>img/torsos/thumb/Torso001.png</thumb>
 		<image>img/torsos/full/Torso001.png</image>
@@ -467,6 +479,10 @@
 	<Torso>
 		<thumb>img/torsos/thumb/Torso035.png</thumb>
 		<image>img/torsos/full/Torso035.png</image>
+	</Torso>
+	<Torso>
+		<thumb>img/torsos/thumb/Torso036.png</thumb>
+		<image>img/torsos/full/Torso036.png</image>
 	</Torso>
 	<Shield>
 		<thumb>img/shield/thumb/Shield001.png</thumb>
