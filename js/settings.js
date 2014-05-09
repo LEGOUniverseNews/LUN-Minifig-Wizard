@@ -116,13 +116,18 @@ $(function() {
     // Convert it to a Base10 integer
     $newImgSize = parseInt($newImgSizeRaw, 10);
 
-    /**
-       * If the integer entered is
-       * 1. a valid number,
-       * 2. less than or equal to 600 (original size)
-       * then resize the image
-       */
-    if ((!isNaN($newImgSize)) && ($newImgSize <= 600)) {
+    /*
+     * If the integer entered is
+     * 1. a valid number,
+     * 2. less than or equal to 600 (full size)
+     * then resize the image
+     * 3. If it is greater than 600, change it to 600
+     */
+    if (!isNaN($newImgSize)) {
+      if ($newImgSize >= 600) {
+        $newImgSize = 600;
+      }
+
       // Resize all images to the new size
       $(".the-big-picture").width($newImgSize);
       $("#shadow-img").width($newImgSize);
