@@ -3,10 +3,10 @@ module.exports = function(grunt) {
   // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-    banner: '/* <%= pkg.name %> - v<%= pkg.version %>\n' +
-    '<%= pkg.homepage ? "" + pkg.homepage + "\\n" : "" %>' +
-    'Created 2013-<%= grunt.template.today("yyyy") %> <%= pkg.author %>; ' +
-    'Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n',
+    banner: "/* <%= pkg.name %> - v<%= pkg.version %>\n" +
+    "<%= pkg.homepage ? '' + pkg.homepage + '\\n' : '' %>" +
+    "Created 2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %>; " +
+    "Licensed under the <%= _.pluck(pkg.licenses, 'type').join(', ') %>\n*/\n",
     baseFileName: "LUNWizard",
     jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],
     cssFiles: ["css/*.css", "!css/*.min.css"],
@@ -18,22 +18,37 @@ module.exports = function(grunt) {
           // Do not mention already updated dependencies
           reportUpdated: false,
           // Prompt asking if the dependency should be updated
-          updateType : "prompt"
+          updateType : "prompt",
+          packages: {
+            devDependencies: true,
+            dependencies: true
+          },
         }
       }
     },
 
     // Copy dependencies to the proper location
-    // TODO Copy and rename perfect-scrollbar
     copy: {
       main: {
-        expand: true,
-        cwd: "node_modules/",
-        src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
-        dest: "lib/",
-        flatten: true,
-        filter: "isFile"
-      },
+        files: [
+          {
+            expand: true,
+            cwd: "node_modules/",
+            src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
+            dest: "lib/",
+            flatten: true,
+            filter: "isFile"
+          },
+          {
+            expand: true,
+            flatten: true,
+            cwd: "node_modules/",
+            src: ["perfect-scrollbar/min/perfect-scrollbar.min.css",
+                  "perfect-scrollbar/min/perfect-scrollbar.with-mousewheel.min.js"],
+            dest: "lib/",
+          },
+        ]
+      }
     },
 
     // Lint the HTML using HTMLHint
@@ -103,14 +118,14 @@ module.exports = function(grunt) {
   });
 
   // Load all the plugins required to perform our tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', 'List commands', function () {
+  grunt.registerTask("default", "List of commands", function() {
     grunt.log.writeln("");
-    grunt.log.writeln('Run "grunt lint" to lint the source files');
-    grunt.log.writeln('Run "grunt build" to minify the source files');
-    grunt.log.writeln('Run "grunt devUpdate" to update the devDependencies');
-    grunt.log.writeln('Run "grunt all" to run all tasks except "devUpdate"');
+    grunt.log.writeln("Run 'grunt lint' to lint the source files");
+    grunt.log.writeln("Run 'grunt build' to minify the source files");
+    grunt.log.writeln("Run 'grunt devUpdate' to update the devDependencies");
+    grunt.log.writeln("Run 'grunt all' to run all tasks except 'devUpdate'");
   });
 
   // Define the tasks
