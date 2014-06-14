@@ -1,14 +1,14 @@
 {
-  "indent":      2,
-  "jquery":      true,
-  "maxlen":      125,
-  "quotmark":    "double",
-  "strict":      true,
-  "undef":       true,
-  "unused":      true,
+  "indent"      : 2,
+  "jquery"      : true,
+  "maxlen"      : 125,
+  "quotmark"    : "double",
+  "strict"      : true,
+  "undef"       : true,
+  "unused"      : true,
   "globals": {
-    "document":  true,
-    "window":    true,
-    "Modernizr": true
+    "document"  : true,
+    "window"    : true,
+    "Modernizr" : true
   }
 }

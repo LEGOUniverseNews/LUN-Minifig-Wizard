@@ -17,48 +17,6 @@ var bodyPart, imagesList, rowSize,
     rowSize = 4;
 
 
-$(function() {
-  "use strict";
-  var $content = $("#content"),
-      $background = $("#background"),
-      $resizeButton = $("#resize-button"),
-      $categoryButtons = $(".category-buttons-th"),
-      $categoryButtonsDiv = $("#category-buttons-div");
-
-  // IE9: Replace the New Window SVG with a PNG version
-  if ($.browser.msie && $.browser.versionNumber === 9) {
-    $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
-  }
-
-  // Apply orange bubble and mark as active the first button ("Head").
-  // This must be done here to stop the orange bubble from sticking
-  // if a (singlular) new category is selected then the table is enlarged.
-  // Selecting multiple categories before enlarging is not bugged.
-  $(".category-buttons-img:first").addClass("active");
-  $(".category-buttons-img:first").addClass("bubble");
-
-  // Find "The Special" who will disarm the Kragle using his interesting abilities
-  $("#emmet").dblclick(function() {
-    var $SpecialImg = $("#the-special");
-    if ($SpecialImg.attr("src") === "img/ui/figure/empty.png") {
-      $SpecialImg.attr("src", "img/special/Special001.png");
-    } else {
-      $SpecialImg.attr("src", "img/ui/figure/empty.png");
-    }
-  });
-
-  // Export global jQuery variables
-  window.$content = $content;
-  window.$background = $background;
-  window.$resizeButton = $resizeButton;
-  window.$categoryButtons = $categoryButtons;
-  window.$categoryButtonsDiv = $categoryButtonsDiv;
-
-  // Run process to display the available minifig heads upon page load
-  changePartImages("Head");
-});
-
-
 function changeCategoryImages(old, current) {
   "use strict";
   /* Apply orange "bubble" to category image */
@@ -94,92 +52,6 @@ function changeCategoryImages(old, current) {
   }
 }
 
-
-//function resizeTable() {
-$("#resize-button").on("click", function() {
-  "use strict";
-  /* Resizes the table between small and large display */
-
-  // We are currently using the small display
-  if (rowSize === 4) {
-    // Change the number of items in a row to 6
-    rowSize = 6;
-
-    /**
-     * Run animations to in/decrease the size/locations of whatever we need
-     * In order in which they run for both enlarge and decrease:
-     *
-     * Resize button (location)
-     * Scrollbar
-     * Background
-     * Category buttons (enlargement)
-     * Category buttons (location)
-     * Container
-     * Left margin
-     * Resize button (swap SVGs)
-     */
-
-    // CSS transitions are not supported, fallback to jQuery animations
-    if (!Modernizr.csstransitions) {
-      $resizeButton.animate({"left": "+=190px"}, 300);
-      $(".my-tables").animate({"width": "+=180px"}, 300);
-      $background.animate({"width": "+=180px"}, 300);
-      $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-      $categoryButtons.animate({"padding-left": "5px"}, 100);
-      $categoryButtons.animate({"padding-right": "5px"}, 100);
-      $content.animate({"width": "+=180px"}, 150);
-
-    } else {
-      // For browsers that do support CSS transitions, trigger them
-      $resizeButton.css("transform", "translate3d(190px, 0, 0)");
-      $(".my-tables").css("width", "+=180px");
-      $background.css("width", "+=180px");
-      $categoryButtonsDiv.css("margin-left", "+=48px");
-      $categoryButtons.css("padding-left", "5px");
-      $categoryButtons.css("padding-right", "5px");
-      $content.css("width", "+=180px");
-    }
-
-    // Increase the margins on left side of the table to make it all even
-    // This runs even if the browser does not support CSS transitions
-    $("#minifig-items").css("margin-left", "20px");
-    $resizeButton.attr("src", "img/ui/Reduce-button.svg");
-
-    // We are currently using the larger size
-  } else {
-    // Set the number of items in a row to 4
-    rowSize = 4;
-
-    // CSS transitions are not supported, fallback to jQuery animations
-    if (!Modernizr.csstransitions) {
-      $resizeButton.animate({"left": "-=190px"}, 300);
-      $(".my-tables").animate({"width": "-=180px"}, 300);
-      $background.animate({"width": "-=180px"}, 300);
-      $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-      $categoryButtons.animate({"padding-left": "0px"}, 100);
-      $categoryButtons.animate({"padding-right": "0px"}, 100);
-      $content.animate({"width": "-=180px"}, 150);
-
-    } else {
-      // For browsers that do support CSS transitions, trigger them
-      $resizeButton.css("transform", "");
-      $(".my-tables").css("width", "");
-      $background.css("width", "");
-      $categoryButtonsDiv.css("margin-left", "");
-      $categoryButtons.css("padding-left", "");
-      $categoryButtons.css("padding-right", "");
-      $content.css("width", "-=180px");
-    }
-    $("#minifig-items").css("margin-left", "5px");
-    $resizeButton.attr("src", "img/ui/Enlarge-button.svg");
-  }
-
-  // Reconstruct the table using the desired size
-  changePartImages(bodyPart);
-
-  // Reapply the orange selection bubble
-  reapplyBubble(partNumberID);
-});
 
 function reapplyBubble(partNumberID) {
   "use strict";
@@ -290,7 +162,7 @@ function changePartImages(part) {
         $("#minifig-items").empty();
 
         // Construct the beginning of the table data
-        tableString = '<tr><td class="selector" id="0">';
+        tableString = "<tr><td class='selector' id='0'>";
 
         // Get the total number of images for this part
         $(xml).find(bodyPart).each(function() {
@@ -319,14 +191,14 @@ function changePartImages(part) {
            */
           //FUTURE FIXME I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
           if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
-            tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
+            tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
           } else {
 
             /* Check if we have not run through all the images.
              * if it is not, start a new table column
              */
             if (partNumber !== numOfImages) {
-              tableString += '</td><td class="selector" id="{0}">'.format(partNumber);
+              tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
             } else {
               // Otherwise, close the table column without making a new one
               tableString += "</td>";
@@ -360,3 +232,131 @@ function changePartImages(part) {
     });
   });
 }
+
+
+$("#resize-button").on("click", function() {
+  "use strict";
+  /* Resizes the table between small and large display */
+
+  // We are currently using the small display
+  if (rowSize === 4) {
+    // Change the number of items in a row to 6
+    rowSize = 6;
+
+    /**
+     * Run animations to in/decrease the size/locations of whatever we need
+     * In order in which they run for both enlarge and decrease:
+     *
+     * Resize button (location)
+     * Scrollbar
+     * Background
+     * Category buttons (enlargement)
+     * Category buttons (location)
+     * Container
+     * Left margin
+     * Resize button (swap SVGs)
+     */
+
+    // CSS transitions are not supported, fallback to jQuery animations
+    if (!Modernizr.csstransitions) {
+      window.$resizeButton.animate({"left": "+=190px"}, 300);
+      $(".my-tables").animate({"width": "+=180px"}, 300);
+      window.$background.animate({"width": "+=180px"}, 300);
+      window.$categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
+      window.$categoryButtons.animate({"padding-left": "5px"}, 100);
+      window.$categoryButtons.animate({"padding-right": "5px"}, 100);
+      window.$content.animate({"width": "+=180px"}, 150);
+
+    } else {
+      // For browsers that do support CSS transitions, trigger them
+      window.$resizeButton.css("transform", "translate3d(190px, 0, 0)");
+      $(".my-tables").css("width", "+=180px");
+      window.$background.css("width", "+=180px");
+      window.$categoryButtonsDiv.css("margin-left", "+=48px");
+      window.$categoryButtons.css("padding-left", "5px");
+      window.$categoryButtons.css("padding-right", "5px");
+      window.$content.css("width", "+=180px");
+    }
+
+    // Increase the margins on left side of the table to make it all even
+    // This runs even if the browser does not support CSS transitions
+    $("#minifig-items").css("margin-left", "20px");
+    window.$resizeButton.attr("src", "img/ui/Reduce-button.svg");
+
+    // We are currently using the larger size
+  } else {
+    // Set the number of items in a row to 4
+    rowSize = 4;
+
+    // CSS transitions are not supported, fallback to jQuery animations
+    if (!Modernizr.csstransitions) {
+      window.$resizeButton.animate({"left": "-=190px"}, 300);
+      $(".my-tables").animate({"width": "-=180px"}, 300);
+      window.$background.animate({"width": "-=180px"}, 300);
+      window.$categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
+      window.$categoryButtons.animate({"padding-left": "0px"}, 100);
+      window.$categoryButtons.animate({"padding-right": "0px"}, 100);
+      window.$content.animate({"width": "-=180px"}, 150);
+
+    } else {
+      // For browsers that do support CSS transitions, trigger them
+      window.$resizeButton.css("transform", "");
+      $(".my-tables").css("width", "");
+      window.$background.css("width", "");
+      window.$categoryButtonsDiv.css("margin-left", "");
+      window.$categoryButtons.css("padding-left", "");
+      window.$categoryButtons.css("padding-right", "");
+      window.$content.css("width", "-=180px");
+    }
+    $("#minifig-items").css("margin-left", "5px");
+    window.$resizeButton.attr("src", "img/ui/Enlarge-button.svg");
+  }
+
+  // Reconstruct the table using the desired size
+  changePartImages(bodyPart);
+
+  // Reapply the orange selection bubble
+  reapplyBubble(partNumberID);
+});
+
+
+$(function() {
+  "use strict";
+  var $content = $("#content"),
+      $background = $("#background"),
+      $resizeButton = $("#resize-button"),
+      $categoryButtons = $(".category-buttons-th"),
+      $categoryButtonsDiv = $("#category-buttons-div");
+
+  // IE9: Replace the New Window SVG with a PNG version
+  if ($.browser.msie && $.browser.versionNumber === 9) {
+    $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
+  }
+
+  // Apply orange bubble and mark as active the first button ("Head").
+  // This must be done here to stop the orange bubble from sticking
+  // if a (singlular) new category is selected then the table is enlarged.
+  // Selecting multiple categories before enlarging is not bugged.
+  $(".category-buttons-img:first").addClass("active");
+  $(".category-buttons-img:first").addClass("bubble");
+
+  // Find "The Special" who will disarm the Kragle using his interesting abilities
+  $("#emmet").dblclick(function() {
+    var $SpecialImg = $("#the-special");
+    if ($SpecialImg.attr("src") === "img/ui/figure/empty.png") {
+      $SpecialImg.attr("src", "img/special/Special001.png");
+    } else {
+      $SpecialImg.attr("src", "img/ui/figure/empty.png");
+    }
+  });
+
+  // Export global jQuery variables
+  window.$content = $content;
+  window.$background = $background;
+  window.$resizeButton = $resizeButton;
+  window.$categoryButtons = $categoryButtons;
+  window.$categoryButtonsDiv = $categoryButtonsDiv;
+
+  // Run process to display the available minifig heads upon page load
+  changePartImages("Head");
+});

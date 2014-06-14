@@ -76,16 +76,15 @@ table { border-style: none; }
   width: 312px;
   height: 360px;
 
-  /* Older browsers will not render the gradient */
-  background: #ff8409;
-
-  /* Orange background gradient */
-  background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
-          background: linear-gradient(to right, #ff8409, #d76b00);
+  /* Older browsers will not render the orange gradient */
+  background-color: #ff8409;
+  background-image: -webkit-linear-gradient(to right, #ff8409, #d76b00);
+  background-image:         linear-gradient(to right, #ff8409, #d76b00);
 
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  box-shadow: 1px 1px 10px #8c8c8c inset;
+  -webkit-box-shadow: 1px 1px 10px #8c8c8c inset;
+          box-shadow: 1px 1px 10px #8c8c8c inset;
 }
 
 /* New Window button */
@@ -100,13 +99,14 @@ table { border-style: none; }
   width: 320px;
   height: 425px;
 
-  /* Older browsers will not render the gradient */
-  background: #000000;
-  background: -webkit-linear-gradient(#252525, #000000);
-          background: linear-gradient(#252525, #000000);
+  /* Older browsers will not render the orange gradient */
+  background-color: #000000;
+  background-image: -webkit-linear-gradient(#252525, #000000);
+  background-image:         linear-gradient(#252525, #000000);
 
   border-radius: 30px;
-  box-shadow: 1px 1px 10px #8c8c8c;
+  -webkit-box-shadow: 1px 1px 10px #8c8c8c;
+          box-shadow: 1px 1px 10px #8c8c8c;
   -webkit-transition: width .3s ease;
           transition: width .3s ease;
 }
@@ -182,5 +182,5 @@ table { border-style: none; }
 .ps-scrollbar-y-rail {
   top: 75px !important;
   right: -2px !important;
-  background-color: rgba(0,0,0,0) !important;
+  background-color: transparent !important;
 }

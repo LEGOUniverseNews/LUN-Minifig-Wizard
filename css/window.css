@@ -74,16 +74,15 @@ body {
   text-align: center;
 
   /* Older browsers will not render the gradient */
-  background: #252525;
-  background: -webkit-linear-gradient(#252525, #000000);
-          background: linear-gradient(#252525, #000000);
+  background-color: #252525;
+  background-image: -webkit-linear-gradient(#252525, #000000);
+  background-image:         linear-gradient(#252525, #000000);
   border-radius: 7px;
 
   /* Sliding transition */
-  /* TODO Convert to translate3d() */
-  -webkit-transform: translateY(160px);
-      -ms-transform: translateY(160px);
-          transform: translateY(160px);
+  -webkit-transform: translate3d(0, 125px, 0);
+      -ms-transform: translate3d(0, 125px, 0);
+          transform: translate3d(0, 125px, 0);
 
   -webkit-transition-property: -webkit-transform;
   -webkit-transition-duration: 1.15s;
