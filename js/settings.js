@@ -54,25 +54,6 @@ $(function() {
       $settingsPanel = $("#settings-panel");
 
 
-  // This browser does not support CSS transitions
-  if (!transitionSupport) {
-    // IE9 - Hide settings panel on window load
-    $settingsPanel.css("bottom", "-120px");
-
-    // IE9 - Recreate #gear:hover movement
-    $gearBttn.on("mouseover", function(e) {
-      $gearBttn.animate({"bottom": "4px"}, 500);
-
-      // Mostly prevent an up-and-down animation loop
-      e.stopPropagation();
-    });
-
-    $gearBttn.on("mouseout", function(e) {
-      $gearBttn.animate({"bottom": "-2px"}, 500);
-      e.stopPropagation();
-    });
-  }
-
   // The user wants to display the settings panel
   $gearBttn.on("click", function() {
 
