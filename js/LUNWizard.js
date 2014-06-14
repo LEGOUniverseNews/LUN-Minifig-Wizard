@@ -62,7 +62,7 @@ $(function() {
 function changeCategoryImages(old, current) {
   "use strict";
   /* Apply orange "bubble" to category image */
-  $(document).ready(function() {
+  $(function() {
     // On hover, if this is not already the active button,
     // apply the bubble to the images
     $(".category-buttons-img").on("mouseover", function() {
@@ -95,7 +95,8 @@ function changeCategoryImages(old, current) {
 }
 
 
-function resizeTable() {
+//function resizeTable() {
+$("#resize-button").on("click", function() {
   "use strict";
   /* Resizes the table between small and large display */
 
@@ -178,7 +179,7 @@ function resizeTable() {
 
   // Reapply the orange selection bubble
   reapplyBubble(partNumberID);
-}
+});
 
 function reapplyBubble(partNumberID) {
   "use strict";
@@ -316,7 +317,7 @@ function changePartImages(part) {
            * c. we are not at the start of the images
            * If all this is true, then make a new table row.
            */
-          //FUTURE FIXME I'm sure this can be MAJORLY cleaned up
+          //FUTURE FIXME I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
           if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
             tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
           } else {
@@ -338,21 +339,21 @@ function changePartImages(part) {
 
         // Display the scroll bar when needed for both layout sizes
         if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
-          $(document).ready(function() {
+          $(function() {
             // Activate scroll bar
-            $content.perfectScrollbar({
+            window.$content.perfectScrollbar({
               wheelSpeed: 6.5,
               suppressScrollX: true
             });
 
             // Update the scrollbar so it does not change sizes on us
-            $content.perfectScrollbar("update");
+            window.$content.perfectScrollbar("update");
           });
 
         // The scroll bar is not needed, destroy it
         } else {
-          $(document).ready(function() {
-            $content.perfectScrollbar("destroy");
+          $(function() {
+            window.$content.perfectScrollbar("destroy");
           });
         }
       }

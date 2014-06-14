@@ -26,10 +26,10 @@ function newMinifigWindow() {
   ];
 
   // Construct the HTML for the beginning of the page
-  var docuCode = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
+  var docuCode = '<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8">' +
       '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">' +
       "<title>LEGO Universe News! Minifig Wizard</title>" +
-      '<link  rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600">' +
+      '<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600">' +
       '<link rel="stylesheet" href="css/LUNWizard.window.min.css">' +
       "</head><body>";
 
@@ -53,8 +53,7 @@ function newMinifigWindow() {
 
   // Initial line for the body
   var minifigDisplay = '<img class="the-big-picture" src="';
-  
-  // TODO This can be simplified ($.each() or Array.forEach)
+
   for (var i = 0; i < myList.length; i += 1) {
     // Add the link to the image
     minifigDisplay += myList[i] + '" />';
