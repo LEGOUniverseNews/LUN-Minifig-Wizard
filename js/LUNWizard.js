@@ -1,4 +1,4 @@
-/*
+/**
  * LEGO Universe News! Minifig Wizard
  *
  * Created 2013-2014 Triangle717 & rioforce
@@ -115,7 +115,8 @@ function main(partNumber) {
 
 function changePartImages(part) {
   "use strict";
-  /* Parse the XML file for image links.
+  /**
+   * Parse the XML file for image links.
    * Update the table with the proper images as
    * specified by the part parameter.
    */
@@ -183,7 +184,8 @@ function changePartImages(part) {
             index, bodyPart, partNumber, imgLink);
           /* jshint ignore:end */
 
-          /* Check if
+          /**
+           * Check if
            * a. we have not run through all the images
            * b. the index is a multiple of the current row size,
            * c. we are not at the start of the images
@@ -194,7 +196,8 @@ function changePartImages(part) {
             tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
           } else {
 
-            /* Check if we have not run through all the images.
+            /**
+             * Check if we have not run through all the images.
              * if it is not, start a new table column
              */
             if (partNumber !== numOfImages) {

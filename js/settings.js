@@ -1,4 +1,4 @@
-/*
+/**
  * LEGO Universe News! Minifig Wizard
  *
  * Created 2013-2014 Triangle717 & rioforce
@@ -98,7 +98,7 @@ $(function() {
     // Convert it to a Base10 integer
     $newImgSize = parseInt($newImgSizeRaw, 10);
 
-    /*
+    /**
      * If the integer entered is
      * 1. a valid number,
      * 2. less than or equal to 600 (full size)

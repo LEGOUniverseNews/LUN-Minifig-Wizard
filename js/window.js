@@ -1,4 +1,4 @@
-/*
+/**
  * LEGO Universe News! Minifig Wizard
  *
  * Created 2013-2014 Triangle717 & rioforce
