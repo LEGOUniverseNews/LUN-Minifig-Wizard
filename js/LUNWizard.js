@@ -237,7 +237,7 @@ function changePartImages(part) {
 }
 
 
-$("#resize-button").on("click", function() {
+$("#button-resize").on("click", function() {
   "use strict";
   /* Resizes the table between small and large display */
 
@@ -262,7 +262,7 @@ $("#resize-button").on("click", function() {
 
     // CSS transitions are not supported, fallback to jQuery animations
     if (!Modernizr.csstransitions) {
-      window.$resizeButton.animate({"left": "+=190px"}, 300);
+      window.$buttonResize.animate({"left": "+=190px"}, 300);
       $(".my-tables").animate({"width": "+=180px"}, 300);
       window.$background.animate({"width": "+=180px"}, 300);
       window.$categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
@@ -272,7 +272,7 @@ $("#resize-button").on("click", function() {
 
     } else {
       // For browsers that do support CSS transitions, trigger them
-      window.$resizeButton.css("transform", "translate3d(190px, 0, 0)");
+      window.$buttonResize.css("transform", "translate3d(190px, 0, 0)");
       $(".my-tables").css("width", "+=180px");
       window.$background.css("width", "+=180px");
       window.$categoryButtonsDiv.css("margin-left", "+=48px");
@@ -284,7 +284,7 @@ $("#resize-button").on("click", function() {
     // Increase the margins on left side of the table to make it all even
     // This runs even if the browser does not support CSS transitions
     $("#minifig-items").css("margin-left", "20px");
-    window.$resizeButton.attr("src", "img/ui/Reduce-button.svg");
+    window.$buttonResize.attr("src", "img/ui/Reduce-button.svg");
 
     // We are currently using the larger size
   } else {
@@ -293,7 +293,7 @@ $("#resize-button").on("click", function() {
 
     // CSS transitions are not supported, fallback to jQuery animations
     if (!Modernizr.csstransitions) {
-      window.$resizeButton.animate({"left": "-=190px"}, 300);
+      window.$buttonResize.animate({"left": "-=190px"}, 300);
       $(".my-tables").animate({"width": "-=180px"}, 300);
       window.$background.animate({"width": "-=180px"}, 300);
       window.$categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
@@ -303,7 +303,7 @@ $("#resize-button").on("click", function() {
 
     } else {
       // For browsers that do support CSS transitions, trigger them
-      window.$resizeButton.css("transform", "");
+      window.$buttonResize.css("transform", "");
       $(".my-tables").css("width", "");
       window.$background.css("width", "");
       window.$categoryButtonsDiv.css("margin-left", "");
@@ -312,7 +312,7 @@ $("#resize-button").on("click", function() {
       window.$content.css("width", "-=180px");
     }
     $("#minifig-items").css("margin-left", "5px");
-    window.$resizeButton.attr("src", "img/ui/Enlarge-button.svg");
+    window.$buttonResize.attr("src", "img/ui/Enlarge-button.svg");
   }
 
   // Reconstruct the table using the desired size
@@ -322,18 +322,17 @@ $("#resize-button").on("click", function() {
   reapplyBubble(partNumberID);
 });
 
-
 $(function() {
   "use strict";
   var $content = $("#content"),
       $background = $("#background"),
-      $resizeButton = $("#resize-button"),
+      $buttonResize = $("#button-resize"),
       $categoryButtons = $(".category-buttons-th"),
       $categoryButtonsDiv = $("#category-buttons-div");
 
   // IE9: Replace the New Window SVG with a PNG version
   if ($.browser.msie && $.browser.versionNumber === 9) {
-    $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
+    $("#button-new-window").attr("src", "img/ui/New-window-button.png");
   }
 
   // Apply orange bubble and mark as active the first button ("Head").
@@ -356,7 +355,7 @@ $(function() {
   // Export global jQuery variables
   window.$content = $content;
   window.$background = $background;
-  window.$resizeButton = $resizeButton;
+  window.$buttonResize = $buttonResize;
   window.$categoryButtons = $categoryButtons;
   window.$categoryButtonsDiv = $categoryButtonsDiv;
 

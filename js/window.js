@@ -10,7 +10,7 @@
  */
 
 
-function newMinifigWindow() {
+$("#button-new-window").on("click", function() {
   "use strict";
   /* Open a new window with the user's Minifigure for picture taking */
   // Store the values of the images in an array
@@ -45,7 +45,7 @@ function newMinifigWindow() {
   var scriptCode = '<script src="lib/jquery-2.1.1.min.js"></script>' +
 //  var scriptCode = '<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>' +
       '<script src="lib/string-format.js"></script>' +
-      '<script src="lib/modernizr.custom.70680.js"></script>' +
+      '<script src="lib/modernizr.custom.13815.js"></script>' +
       '<script src="js/LUNWizard.window.min.js"></script>';
 
   // Closing HTML
@@ -70,4 +70,4 @@ function newMinifigWindow() {
   var myOwnMinifig = window.open("window.html","LUNMinifigWizard","width=600, height=600");
   myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);
   myOwnMinifig.document.close();
-}
+});

@@ -1,4 +1,4 @@
-/*
+/**
  * LEGO Universe News! Minifig Wizard
  *
  * Created 2013-2014 Triangle717 & rioforce
@@ -40,7 +40,7 @@ table { border-style: none; }
 }
 
 /* Button to resize the table */
-#resize-button {
+#button-resize {
   position: absolute;
   top: 445px;
   left: 550px;
@@ -88,7 +88,7 @@ table { border-style: none; }
 }
 
 /* New Window button */
-#bigger-picture {
+#button-new-window {
   position: absolute;
   top: 410px;
   left: 260px;
