@@ -30,7 +30,7 @@ html {
 table { border-style: none; }
 
 /* Align all the elements into their proper location */
-.my-tables {
+.area-minifig-parts {
   position: absolute;
   top: 15px;
   left: 350px;
@@ -134,7 +134,7 @@ table { border-style: none; }
 }
 
 /* Background for the images */
-#content {
+#area-minifig-built {
   margin-top: -15px;
   width: 300px;
   height: 315px;
@@ -155,7 +155,8 @@ table { border-style: none; }
 }
 
 /* Orange background for invdividual part hover and selection */
-.selector:hover, .selected { background-color: #ffa500; }
+.selector:hover,
+.selected { background-color: #ffa500; }
 
 /* Orange background for category part hover and selection */
 .bubble {

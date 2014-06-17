@@ -27,7 +27,7 @@ $("#button-new-window").on("click", function() {
 
   // Construct the HTML for the beginning of the page
   var docuCode = '<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8">' +
-      '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">' +
+      '<meta http-equiv="x-ua-compatible" content="IE=edge">' +
       "<title>LEGO Universe News! Minifig Wizard</title>" +
       '<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600">' +
       '<link rel="stylesheet" href="css/LUNWizard.window.min.css">' +
