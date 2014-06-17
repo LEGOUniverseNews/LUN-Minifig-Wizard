@@ -25,12 +25,12 @@ var imagesList = [],
  */
 (function() {
   "use strict";
-  $buttonResize = $(getVariable("buttonResize"));
-  $background = $(getVariable("background"));
-  $categoryButtonsTh = $(getVariable("categoryButtonsTh"));
+  $buttonResize       = $(getVariable("buttonResize"));
+  $buildArea          = $(getVariable("buildArea"));
+  $background         = $(getVariable("background"));
+  $categoryButtonsTh  = $(getVariable("categoryButtonsTh"));
   $categoryButtonsDiv = $(getVariable("categoryButtonsDiv"));
   $categoryButtonsImg = $(getVariable("categoryButtonsImg"));
-  $buildArea = $(getVariable("buildArea"));
 }());
 
 
@@ -342,11 +342,6 @@ $buttonResize.on("click", function() {
 
 $(function() {
   "use strict";
-
-  // IE9: Replace the New Window SVG with a PNG version
-  if ($.browser.msie && $.browser.versionNumber === 9) {
-    $("#button-new-window").attr("src", "img/ui/New-window-button.png");
-  }
 
   // Apply orange bubble and mark as active the first button ("Head").
   // This must be done here to stop the orange bubble from sticking

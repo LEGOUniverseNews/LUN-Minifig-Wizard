@@ -18,19 +18,19 @@
 function getVariable(variable) {
   "use strict";
   var _variables = {
-    "imgHead": "#head-img",
-    "imgSpecial" : "#the-special",
-    "imgHat" : "#hat-img",
-    "imgLeg" : "#leg-img",
-    "imgTorso": "#torso-img",
-    "imgSword": "#sword-img",
-    "imgShield": "#shield-img",
-    "buttonResize": "#button-resize",
-    "background": "#background",
-    "categoryButtonsTh": ".category-buttons-th",
+    "imgHead"           : "#head-img",
+    "imgSpecial"        : "#the-special",
+    "imgHat"            : "#hat-img",
+    "imgLeg"            : "#leg-img",
+    "imgTorso"          : "#torso-img",
+    "imgSword"          : "#sword-img",
+    "imgShield"         : "#shield-img",
+    "buttonResize"      : "#button-resize",
+    "buildArea"         : "#area-minifig-built",
+    "background"        : "#background",
+    "categoryButtonsTh" : ".category-buttons-th",
     "categoryButtonsDiv": ".category-buttons-div",
     "categoryButtonsImg": ".category-buttons-img",
-    "buildArea": "#area-minifig-built"
     };
 
   return _variables[variable];
