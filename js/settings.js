@@ -92,7 +92,7 @@ $(function() {
       $imgSize = $("#size-input");
 
   // Get entered value on each key press (that way the change is instant and dynamic)
-  $imgSize.keyup(function() {
+  $imgSize.on("keyup change", function() {
     $newImgSizeRaw = $imgSize.val();
 
     // Convert it to a Base10 integer
@@ -101,8 +101,7 @@ $(function() {
     /**
      * If the integer entered is
      * 1. a valid number,
-     * 2. less than or equal to 600 (full size)
-     * then resize the image
+     * 2. less than or equal to 600 (full size), then resize the image
      * 3. If it is greater than 600, change it to 600
      */
     if (!isNaN($newImgSize)) {
