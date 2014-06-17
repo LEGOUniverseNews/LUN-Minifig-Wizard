@@ -28,13 +28,13 @@ $(function() {
 
   // Append the required number of boxes to the table
   $.each(boxIDList, function() {
-    $("tbody").append(colorBox);
+    $("table").append(colorBox).wrap("<tr/>");
   });
 
   // Go through each column and apply it's ID attribute
-  $.each(boxIDList.reverse(), function(index, value) {
-    // Counting VS real number stuff, index + 2 for valid `nth-child` selectors
-    $("td:nth-child({0})".format(index + 2)).attr("id", value);
+  boxIDList.reverse().forEach(function(value, index) {
+    // Counting VS real number stuff, index + 1 for valid `nth-child` selectors
+    $("td:nth-child({0})".format(index + 1)).attr("id", value);
   });
 
   // Now that the boxes are generated, apply the currently selected border
