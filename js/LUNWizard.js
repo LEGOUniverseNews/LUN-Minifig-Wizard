@@ -12,9 +12,26 @@
 
 // Global variables for various stuff
 var bodyPart, imagesList, rowSize,
-    partNumberID, oldPartNumberID, oldPartTypeID,
-    imagesList = [],
+    partNumberID, oldPartNumberID,
+    oldPartTypeID, $buttonResize,
+    $background, $categoryButtonsTh,
+    $categoryButtonsDiv, $categoryButtonsImg, $buildArea;
+
+var imagesList = [],
     rowSize = 4;
+
+/**
+ * Retrieve a jQuery selector for commonly used elements
+ */
+(function() {
+  "use strict";
+  $buttonResize = $(getVariable("buttonResize"));
+  $background = $(getVariable("background"));
+  $categoryButtonsTh = $(getVariable("categoryButtonsTh"));
+  $categoryButtonsDiv = $(getVariable("categoryButtonsDiv"));
+  $categoryButtonsImg = $(getVariable("categoryButtonsImg"));
+  $buildArea = $(getVariable("buildArea"));
+}());
 
 
 function changeCategoryImages(old, current) {
@@ -23,7 +40,7 @@ function changeCategoryImages(old, current) {
   $(function() {
     // On hover, if this is not already the active button,
     // apply the bubble to the images
-    $(".category-buttons-img").on("mouseover", function() {
+    $categoryButtonsImg.on("mouseover", function() {
       if (!$(this).hasClass("active")) {
         $(this).addClass("bubble");
       }
@@ -31,7 +48,7 @@ function changeCategoryImages(old, current) {
 
     // On mouseout, if this is not the active button,
     // remove the bubble to the images
-    $(".category-buttons-img").on("mouseout", function() {
+    $categoryButtonsImg.on("mouseout", function() {
       if (!$(this).hasClass("active")) {
         $(this).removeClass("bubble");
       }
@@ -40,7 +57,7 @@ function changeCategoryImages(old, current) {
 
   // A button different from the current one was clicked
   if (old !== current) {
-    $(".category-buttons-img").click(function() {
+    $categoryButtonsImg.click(function() {
       // Swap the orange bubble
       $(old).removeClass("bubble");
       $(current).addClass("bubble");
@@ -216,19 +233,19 @@ function changePartImages(part) {
         if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
           $(function() {
             // Activate scroll bar
-            window.$content.perfectScrollbar({
+            $buildArea.perfectScrollbar({
               wheelSpeed: 6.5,
               suppressScrollX: true
             });
 
             // Update the scrollbar so it does not change sizes on us
-            window.$content.perfectScrollbar("update");
+            $buildArea.perfectScrollbar("update");
           });
 
         // The scroll bar is not needed, destroy it
         } else {
           $(function() {
-            window.$content.perfectScrollbar("destroy");
+            $buildArea.perfectScrollbar("destroy");
           });
         }
       }
@@ -237,7 +254,7 @@ function changePartImages(part) {
 }
 
 
-$("#button-resize").on("click", function() {
+$buttonResize.on("click", function() {
   "use strict";
   /* Resizes the table between small and large display */
 
@@ -262,29 +279,29 @@ $("#button-resize").on("click", function() {
 
     // CSS transitions are not supported, fallback to jQuery animations
     if (!Modernizr.csstransitions) {
-      window.$buttonResize.animate({"left": "+=190px"}, 300);
-      $(".my-tables").animate({"width": "+=180px"}, 300);
-      window.$background.animate({"width": "+=180px"}, 300);
-      window.$categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-      window.$categoryButtons.animate({"padding-left": "5px"}, 100);
-      window.$categoryButtons.animate({"padding-right": "5px"}, 100);
-      window.$content.animate({"width": "+=180px"}, 150);
+      $buttonResize.animate({"left": "+=190px"}, 300);
+      $(".area-minifig-parts").animate({"width": "+=180px"}, 300);
+      $background.animate({"width": "+=180px"}, 300);
+      $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
+      $categoryButtonsTh.animate({"padding-left": "5px"}, 100);
+      $categoryButtonsTh.animate({"padding-right": "5px"}, 100);
+      $buildArea.animate({"width": "+=180px"}, 150);
 
     } else {
       // For browsers that do support CSS transitions, trigger them
-      window.$buttonResize.css("transform", "translate3d(190px, 0, 0)");
-      $(".my-tables").css("width", "+=180px");
-      window.$background.css("width", "+=180px");
-      window.$categoryButtonsDiv.css("margin-left", "+=48px");
-      window.$categoryButtons.css("padding-left", "5px");
-      window.$categoryButtons.css("padding-right", "5px");
-      window.$content.css("width", "+=180px");
+      $buttonResize.css("transform", "translate3d(190px, 0, 0)");
+      $(".area-minifig-parts").css("width", "+=180px");
+      $background.css("width", "+=180px");
+      $categoryButtonsDiv.css("margin-left", "+=48px");
+      $categoryButtonsTh.css("padding-left", "5px");
+      $categoryButtonsTh.css("padding-right", "5px");
+      $buildArea.css("width", "+=180px");
     }
 
     // Increase the margins on left side of the table to make it all even
     // This runs even if the browser does not support CSS transitions
     $("#minifig-items").css("margin-left", "20px");
-    window.$buttonResize.attr("src", "img/ui/Reduce-button.svg");
+    $buttonResize.attr("src", "img/ui/Reduce-button.svg");
 
     // We are currently using the larger size
   } else {
@@ -293,26 +310,27 @@ $("#button-resize").on("click", function() {
 
     // CSS transitions are not supported, fallback to jQuery animations
     if (!Modernizr.csstransitions) {
-      window.$buttonResize.animate({"left": "-=190px"}, 300);
-      $(".my-tables").animate({"width": "-=180px"}, 300);
-      window.$background.animate({"width": "-=180px"}, 300);
-      window.$categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-      window.$categoryButtons.animate({"padding-left": "0px"}, 100);
-      window.$categoryButtons.animate({"padding-right": "0px"}, 100);
-      window.$content.animate({"width": "-=180px"}, 150);
+      $buttonResize.animate({"left": "-=190px"}, 300);
+      $(".area-minifig-parts").animate({"width": "-=180px"}, 300);
+      $background.animate({"width": "-=180px"}, 300);
+      $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
+      $categoryButtonsTh.animate({"padding-left": "0px"}, 100);
+      $categoryButtonsTh.animate({"padding-right": "0px"}, 100);
+      $buildArea.animate({"width": "-=180px"}, 150);
 
     } else {
       // For browsers that do support CSS transitions, trigger them
       window.$buttonResize.css("transform", "");
-      $(".my-tables").css("width", "");
-      window.$background.css("width", "");
-      window.$categoryButtonsDiv.css("margin-left", "");
-      window.$categoryButtons.css("padding-left", "");
-      window.$categoryButtons.css("padding-right", "");
-      window.$content.css("width", "-=180px");
+      $(".area-minifig-parts").css("width", "");
+      $background.css("width", "");
+      $categoryButtonsDiv.css("margin-left", "");
+      $categoryButtonsTh.css("padding-left", "");
+      $categoryButtonsTh.css("padding-right", "");
+      $buildArea.css("width", "-=180px");
     }
+
     $("#minifig-items").css("margin-left", "5px");
-    window.$buttonResize.attr("src", "img/ui/Enlarge-button.svg");
+    $buttonResize.attr("src", "img/ui/Enlarge-button.svg");
   }
 
   // Reconstruct the table using the desired size
@@ -324,11 +342,6 @@ $("#button-resize").on("click", function() {
 
 $(function() {
   "use strict";
-  var $content = $("#content"),
-      $background = $("#background"),
-      $buttonResize = $("#button-resize"),
-      $categoryButtons = $(".category-buttons-th"),
-      $categoryButtonsDiv = $("#category-buttons-div");
 
   // IE9: Replace the New Window SVG with a PNG version
   if ($.browser.msie && $.browser.versionNumber === 9) {
@@ -344,20 +357,13 @@ $(function() {
 
   // Find "The Special" who will disarm the Kragle using his interesting abilities
   $("#emmet").dblclick(function() {
-    var $SpecialImg = $("#the-special");
-    if ($SpecialImg.attr("src") === "img/ui/figure/empty.png") {
+    var $SpecialImg = $(getVariable("imgSpecial"));
+    if ($SpecialImg.attr("src").split("/")[3] === "empty.png") {
       $SpecialImg.attr("src", "img/special/Special001.png");
     } else {
       $SpecialImg.attr("src", "img/ui/figure/empty.png");
     }
   });
-
-  // Export global jQuery variables
-  window.$content = $content;
-  window.$background = $background;
-  window.$buttonResize = $buttonResize;
-  window.$categoryButtons = $categoryButtons;
-  window.$categoryButtonsDiv = $categoryButtonsDiv;
 
   // Run process to display the available minifig heads upon page load
   changePartImages("Head");
