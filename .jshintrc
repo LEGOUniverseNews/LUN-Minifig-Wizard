@@ -1,7 +1,8 @@
 {
   "indent"       : 2,
-  "jquery"       : true,
   "maxlen"       : 125,
+  "jquery"       : true,
+  "node"         : true,
   "quotmark"     : "double",
   "strict"       : true,
   "undef"        : true,
