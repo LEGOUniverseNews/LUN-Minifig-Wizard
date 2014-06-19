@@ -97,22 +97,22 @@ function main(partNumber) {
   // Get the proper imgID for each part
   switch (bodyPart) {
     case "Torso":
-      imgID = "#torso-img";
+      imgID = getVariable("imgTorso");
       break;
     case "Leg":
-      imgID = "#leg-img";
+      imgID = getVariable("imgLeg");
       break;
     case "Hat":
-      imgID = "#hat-img";
+      imgID = getVariable("imgHat");
       break;
     case "Shield":
-      imgID = "#shield-img";
+      imgID = getVariable("imgShield");
       break;
     case "Sword":
-      imgID = "#sword-img";
+      imgID = getVariable("imgSword");
       break;
     case "Head":
-      imgID = "#head-img";
+      imgID = getVariable("imgHead");
       break;
   }
 

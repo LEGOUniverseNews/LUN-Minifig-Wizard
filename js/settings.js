@@ -111,7 +111,6 @@ $(function() {
 
       // Resize all images to the new size
       $(".the-big-picture").width($newImgSize);
-      $("#shadow-img").width($newImgSize);
     }
   });
 

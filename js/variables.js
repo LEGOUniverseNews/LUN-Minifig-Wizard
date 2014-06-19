@@ -18,18 +18,19 @@
 function getVariable(variable) {
   "use strict";
   var _variables = {
-    "imgHead"           : "#head-img",
-    "imgSpecial"        : "#the-special",
-    "imgHat"            : "#hat-img",
-    "imgLeg"            : "#leg-img",
-    "imgTorso"          : "#torso-img",
-    "imgSword"          : "#sword-img",
-    "imgShield"         : "#shield-img",
+    "imgHead"           : "#img-head",
+    "imgSpecial"        : "#img-special",
+    "imgHat"            : "#img-hat",
+    "imgLeg"            : "#img-leg",
+    "imgTorso"          : "#img-torso",
+    "imgSword"          : "#img-sword",
+    "imgShield"         : "#img-shield",
+    "imgShadow"         : "#img-shadow",
     "buttonResize"      : "#button-resize",
     "buildArea"         : "#area-minifig-built",
     "background"        : "#background",
     "categoryButtonsTh" : ".category-buttons-th",
-    "categoryButtonsDiv": ".category-buttons-div",
+    "categoryButtonsDiv": "#category-buttons-div",
     "categoryButtonsImg": ".category-buttons-img",
     };
 
