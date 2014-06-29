@@ -28,7 +28,7 @@ body {
 }
 
 /* Drop shadow for minifigure */
-#shadow-img { z-index: -1; }
+#img-shadow { z-index: -1; }
 
 /* Position the minifigure */
 .the-big-picture {

@@ -34,9 +34,12 @@ var imagesList = [],
 }());
 
 
+/**
+ * Apply orange "bubble" to category image
+ */
 function changeCategoryImages(old, current) {
   "use strict";
-  /* Apply orange "bubble" to category image */
+
   $(function() {
     // On hover, if this is not already the active button,
     // apply the bubble to the images
@@ -70,9 +73,12 @@ function changeCategoryImages(old, current) {
 }
 
 
+/**
+ * Preserve orange box around selected item
+ * (if present) between resizes
+ */
 function reapplyBubble(partNumberID) {
   "use strict";
-  /* Preserve orange box around selected item (if present) between resizes */
 
   // Only perform the class changes if an item is selected
   if (partNumberID !== undefined) {
@@ -80,7 +86,7 @@ function reapplyBubble(partNumberID) {
     $(partNumberID).removeClass("selected");
 
     // 2 milliseconds (and no sooner!) later, reapply the bubble
-    // The timeout is required for jQuery to have time to remove the class
+    // The timeout is required so jQuery has time to remove the class
     window.setTimeout(function() {
       $(partNumberID).addClass("selected");
     }, 2);
@@ -88,9 +94,11 @@ function reapplyBubble(partNumberID) {
 }
 
 
+/**
+ * Change the part image to the selected one
+ */
 function main(partNumber) {
   "use strict";
-  /* Change the part image to the selected one */
   var imgID;
   partNumberID = "#{0}".format(partNumber);
 
@@ -130,13 +138,13 @@ function main(partNumber) {
 }
 
 
+/**
+ * Parse the XML file for image links.
+ * Update the table with the proper images as
+ * specified by the part parameter.
+ */
 function changePartImages(part) {
   "use strict";
-  /**
-   * Parse the XML file for image links.
-   * Update the table with the proper images as
-   * specified by the part parameter.
-   */
 
   // Update global variable with chosen part
   bodyPart = part;
@@ -195,7 +203,7 @@ function changePartImages(part) {
           index = partNumber - 1;
           imgLink = $(this).find("thumb").text();
 
-          // Wrap the URL in an img tag, wrap that in a link, add it to the table
+          // Wrap the URL in an image tag, wrap that in a link, add it to the table
           /* jshint ignore:start */
           tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
             index, bodyPart, partNumber, imgLink);
@@ -254,9 +262,11 @@ function changePartImages(part) {
 }
 
 
+/**
+ * Resizes the table between small and large display
+ */
 $buttonResize.on("click", function() {
   "use strict";
-  /* Resizes the table between small and large display */
 
   // We are currently using the small display
   if (rowSize === 4) {
@@ -277,7 +287,7 @@ $buttonResize.on("click", function() {
      * Resize button (swap SVGs)
      */
 
-    // CSS transitions are not supported, fallback to jQuery animations
+    // CSS transitions are not supported, fall back to jQuery animations
     if (!Modernizr.csstransitions) {
       $buttonResize.animate({"left": "+=190px"}, 300);
       $(".area-minifig-parts").animate({"width": "+=180px"}, 300);
@@ -308,7 +318,7 @@ $buttonResize.on("click", function() {
     // Set the number of items in a row to 4
     rowSize = 4;
 
-    // CSS transitions are not supported, fallback to jQuery animations
+    // CSS transitions are not supported, fall back to jQuery animations
     if (!Modernizr.csstransitions) {
       $buttonResize.animate({"left": "-=190px"}, 300);
       $(".area-minifig-parts").animate({"width": "-=180px"}, 300);
@@ -345,7 +355,7 @@ $(function() {
 
   // Apply orange bubble and mark as active the first button ("Head").
   // This must be done here to stop the orange bubble from sticking
-  // if a (singlular) new category is selected then the table is enlarged.
+  // if a (singular) new category is selected then the table is enlarged.
   // Selecting multiple categories before enlarging is not bugged.
   $(".category-buttons-img:first").addClass("active");
   $(".category-buttons-img:first").addClass("bubble");

@@ -129,6 +129,7 @@ $(function() {
     $bgColor = $(newColor).css("background-color");
 
     // Get the ID of the currently selected box
+    // TODO Will /\s.white-border/ work for the regex?
     currentColor = $(".color-box").find(".white-border").selector.replace(/ .white-border/, "");
 
     // Remove the white border from the old box and apply it to the new one

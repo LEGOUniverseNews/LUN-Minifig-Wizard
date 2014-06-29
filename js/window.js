@@ -22,7 +22,7 @@ $("#button-new-window").on("click", function() {
     $(getVariable("imgTorso")).attr("src"),
     $(getVariable("imgSword")).attr("src"),
     $(getVariable("imgShield")).attr("src"),
-    "<img class='the-big-picture' id='shadow-img' src='img/ui/figure/drop-shadow.png"
+    "<img class='the-big-picture' id='img-shadow' src='img/ui/figure/drop-shadow.png"
   ];
 
   // Construct the HTML for the beginning of the page
@@ -46,6 +46,7 @@ $("#button-new-window").on("click", function() {
 //  var scriptCode = "<script src='//code.jquery.com/jquery-2.1.1.min.js'></script>" +
       "<script src='lib/string-format.js'></script>" +
       "<script src='lib/modernizr.custom.13815.js'></script>" +
+      "<script src='js/variables.js'></script>" + 
       "<script src='js/LUNWizard.window.min.js'></script>";
 
   // Closing HTML
