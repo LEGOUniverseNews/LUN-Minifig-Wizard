@@ -15,12 +15,12 @@ from __future__ import print_function
 import sys
 import os
 
-# If this is Python 3, use input()
-if sys.version_info >= (3, 0):
-    get_input = input
+# Support Python 2 and 3 input
+# Default to Python 3's input()
+get_input = input
 
 # If this is Python 2, use raw_input()
-elif sys.version_info <= (2, 7):
+if sys.version_info[:2] <= (2, 7):
     get_input = raw_input
 
 # Store the final file lists for writing
@@ -41,10 +41,10 @@ noImageXML = ["<thumb>img/Clear-Selection.png</thumb>",
               "<image>img/ui/figure/empty.png</image>"]
 
 
-for num in range(0, len(imageFols)):
+for folder in imageFols:
     # Go through every subfolder in `img`
     for root, dirnames, filenames in os.walk(
-            os.path.join("..", "..", "img", "{0}".format(imageFols[num]))):
+            os.path.join("..", "..", "img", "{0}".format(folder))):
 
         # Get each file in the list
         for files in filenames:
@@ -88,18 +88,14 @@ for num in range(0, len(imageFols)):
 
 # There were no images to make an XML
 if len(thumbList) == 0:
-    print('''Could not find any images! Ensure there are images at\n
-{0}'''.format(os.path.abspath(os.path.dirname(xmlPath))))
+    print("""Could not find any images! Ensure there are images at\n
+{0}""".format(os.path.abspath(os.path.dirname(xmlPath))))
 
     # Abort only on user input
     print("\nAn XML file has not been generated.")
     get_input("\nPress Enter to close.")
     raise SystemExit(0)
 
-# Begin the file contents
-with open(xmlPath, "wt") as f:
-    f.write('''<?xml version="1.0" encoding="UTF-8"?>
-<Minifigure>''')
 
 # Each part is accessed by it's index
 # Since each list (should be) the same length,
@@ -111,20 +107,26 @@ if thumbListLen != len(imageList):
 
     # There are more thumbnails than images
     if thumbListLen > len(imageList):
-        print('''A thumbnail does not have a corresponding full size image.
+        print("""A thumbnail does not have a corresponding full size image.
 Double check all "thumb" and "full" folders and fix this error before
-continuing.''')
+continuing.""")
 
     # There are more images than thumbnails
     else:
-        print('''A full size image does not have a corresponding thumbnail.
+        print("""A full size image does not have a corresponding thumbnail.
 Double check all "thumb" and "full" folders and fix this error before
-continuing.''')
+continuing.""")
 
     # Abort only on user input
     print("\nAn XML file has not been generated.")
     get_input("\nPress Enter to close.")
     raise SystemExit(0)
+
+
+# Begin the file contents
+with open(xmlPath, "wt") as f:
+    f.write("""<?xml version="1.0" encoding="UTF-8"?>
+<Minifigure>""")
 
 
 # Write Clear Selection image for Hats and Items
@@ -136,27 +138,27 @@ for dividingPart in (tagNames[0], tagNames[4], tagNames[5]):
         f.write("\n\t</{0}>".format(dividingPart))
 
 
-for listIndex in range(0, thumbListLen):
+for listIndex in thumbList:
     # Create the proper XML divider
-    blah = thumbList[listIndex].split("/")
-    if blah[1] == "hats":
+    selector = listIndex.split("/")
+    if selector[1] == "hats":
         divide = tagNames[0]
-    elif blah[1] == "heads":
+    elif selector[1] == "heads":
         divide = tagNames[1]
-    elif blah[1] == "legs":
+    elif selector[1] == "legs":
         divide = tagNames[2]
-    elif blah[1] == "torsos":
+    elif selector[1] == "torsos":
         divide = tagNames[3]
-    elif blah[1] == "shield":
+    elif selector[1] == "shield":
         divide = tagNames[4]
-    elif blah[1] == "sword":
+    elif selector[1] == "sword":
         divide = tagNames[5]
 
     # Write our XML document
     with open(xmlPath, "at") as f:
         f.write("\n\t<{0}>".format(divide))
-        f.write("\n\t\t{0}".format(thumbList[listIndex]))
-        f.write("\n\t\t{0}".format(imageList[listIndex]))
+        f.write("\n\t\t{0}".format(listIndex))
+        f.write("\n\t\t{0}".format(imageList[thumbList.index(listIndex)]))
         f.write("\n\t</{0}>".format(divide))
 
 
@@ -165,11 +167,11 @@ with open(xmlPath, "at") as f:
     f.write("\n</Minifigure>\n")
 
 # Delete now unneeded lists
-del blah[:]
+del selector[:]
 del bodyType[:]
 
 # Success!
-print('''A new XML file has been successfully generated and saved to\n
-{0}'''.format(os.path.abspath(xmlPath)))
+print("""A new XML file has been successfully generated and saved to\n
+{0}""".format(os.path.abspath(xmlPath)))
 get_input("\nPress Enter to close.")
 raise SystemExit(0)
