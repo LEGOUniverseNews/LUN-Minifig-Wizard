@@ -11,9 +11,9 @@
 
 
 // Color boxes IDs
-var boxIDList = ["red-color-box", "green-color-box", "blue-color-box",
-                 "yellow-color-box", "orange-color-box", "black-color-box",
-                 "white-color-box", "gray-color-box"
+var boxIDList = ["gray-color-box", "white-color-box", "black-color-box",
+                 "orange-color-box", "yellow-color-box", "blue-color-box",
+                 "green-color-box", "red-color-box"
                 ];
 
 
@@ -32,7 +32,7 @@ $(function() {
   });
 
   // Go through each column and apply it's ID attribute
-  boxIDList.reverse().forEach(function(value, index) {
+  boxIDList.forEach(function(value, index) {
     // Counting VS real number stuff, index + 1 for valid `nth-child` selectors
     $("td:nth-child({0})".format(index + 1)).attr("id", value);
   });
@@ -92,7 +92,7 @@ $(function() {
       $imgSize = $("#size-input");
 
   // Get entered value on each key press (that way the change is instant and dynamic)
-  $imgSize.on("keyup change", function() {
+  $imgSize.on("input", function() {
     $newImgSizeRaw = $imgSize.val();
 
     // Convert it to a Base10 integer
