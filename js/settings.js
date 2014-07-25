@@ -1,4 +1,4 @@
-/**
+/*
  * LEGO Universe News! Minifig Wizard
  *
  * Created 2013-2014 Triangle717 & rioforce
@@ -129,8 +129,7 @@ $(function() {
     $bgColor = $(newColor).css("background-color");
 
     // Get the ID of the currently selected box
-    // TODO Will /\s.white-border/ work for the regex?
-    currentColor = $(".color-box").find(".white-border").selector.replace(/ .white-border/, "");
+    currentColor = $(".color-box").find(".white-border").selector.replace(/\s.white-border/, "");
 
     // Remove the white border from the old box and apply it to the new one
     $(currentColor).removeClass("white-border");
