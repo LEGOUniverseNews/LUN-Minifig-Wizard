@@ -36,8 +36,8 @@ $("#button-new-window").on("click", function() {
   // Area for background-color changing boxes and image size
   // The content is injected by settings.js
   var tableCode = "<div id='gear'><img width='40' height='40' alt='Settings panel toggle button' src='img/ui/Gear.svg' />" +
-      "</div><div id='settings-panel'>Background Color<table>" +
-      "</table><br><span id='size-text'>Size</span><br>" +
+      "</div><div id='settings-panel'>Background Color<table><tr>" +
+      "</tr></table><br><span id='size-text'>Size</span><br>" +
       "<input id='size-input' type='number' placeholder='600' autocomplete='off'>" +
       "<label id='size-label' for='size-input'>px</label></div>";
 

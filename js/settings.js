@@ -26,7 +26,7 @@ $(function() {
 
   // Display the color boxes, giving them IDs
   $.each(boxIDList, function(index, value) {
-    $("table").append("<td class='color-box'></td>").wrap("<tr/>");
+    $("tr").append("<td class='color-box'></td>");
     $("td:nth-child({0})".format(index + 1)).attr("id", value);
   });
 
