@@ -11,10 +11,11 @@
 
 
 // Color boxes IDs
-var boxIDList = ["gray-color-box", "white-color-box", "black-color-box",
-                 "orange-color-box", "yellow-color-box", "blue-color-box",
-                 "green-color-box", "red-color-box"
-                ];
+var boxIDList = [
+  "gray-color-box", "white-color-box", "black-color-box",
+   "orange-color-box", "yellow-color-box", "blue-color-box",
+   "green-color-box", "red-color-box"
+];
 
 
 $(function() {
@@ -23,17 +24,9 @@ $(function() {
   /* ------- Initialize color boxes ------- */
 
 
-  // Construct the color box. An ID will be assigned in a moment
-  var colorBox = "<td class='color-box'></td>";
-
-  // Append the required number of boxes to the table
-  $.each(boxIDList, function() {
-    $("table").append(colorBox).wrap("<tr/>");
-  });
-
-  // Go through each column and apply it's ID attribute
-  boxIDList.forEach(function(value, index) {
-    // Counting VS real number stuff, index + 1 for valid `nth-child` selectors
+  // Display the color boxes, giving them IDs
+  $.each(boxIDList, function(index, value) {
+    $("table").append("<td class='color-box'></td>").wrap("<tr/>");
     $("td:nth-child({0})".format(index + 1)).attr("id", value);
   });
 
@@ -47,16 +40,13 @@ $(function() {
 
   // Current location of settings panel
   // true === hidden, false === visible
-  var panelIsHidden = true,
-      transitionSpeed = 1150,
+  var panelIsHidden     = true,
+      transitionSpeed   = 1150,
       transitionSupport = Modernizr.csstransitions,
-      $gearBttn = $("#gear"),
-      $settingsPanel = $("#settings-panel");
+      $gearBtn          = $("#gear"),
+      $settingsPanel    = $("#settings-panel");
 
-
-  // The user wants to display the settings panel
-  $gearBttn.on("click", function() {
-
+  $gearBtn.on("click", function() {
     // The panel is currently hidden, trigger CSS transition to display them
     if (panelIsHidden) {
       panelIsHidden = false;
@@ -64,15 +54,15 @@ $(function() {
 
       // Except CSS transitions are not supported, use jQuery animation instead
       if (!transitionSupport) {
-        $settingsPanel.animate({"bottom": "52px"}, transitionSpeed);
+        $settingsPanel.animate({"bottom": "3.6em"}, transitionSpeed);
       } else {
-        $settingsPanel.css("transform", "translate3d(0, -35px, 0)");
+        $settingsPanel.css("transform", "translate3d(0, -2.188em, 0)");
       }
     } else {
       // The panel is currently visible, trigger CSS transition to hide them
       panelIsHidden = true;
       if (!transitionSupport) {
-        $settingsPanel.animate({"bottom": "-120px"}, transitionSpeed);
+        $settingsPanel.animate({"bottom": "-7.5em"}, transitionSpeed);
       } else {
         $settingsPanel.css("transform", "");
 
@@ -87,23 +77,16 @@ $(function() {
 
   /* ------- Image size changing ------- */
 
-
-  var $newImgSizeRaw, $newImgSize,
-      $imgSize = $("#size-input");
-
-  // Get entered value on each key press (that way the change is instant and dynamic)
+  // Get changed value
+  var $imgSize = $("#size-input");
   $imgSize.on("input", function() {
-    $newImgSizeRaw = $imgSize.val();
+    var $newImgSizeRaw = $imgSize.val(),
+        $newImgSize    = parseInt($newImgSizeRaw);
 
-    // Convert it to a Base10 integer
-    $newImgSize = parseInt($newImgSizeRaw, 10);
-
-    /**
-     * If the integer entered is
-     * 1. a valid number,
-     * 2. less than or equal to 600 (full size), then resize the image
-     * 3. If it is greater than 600, change it to 600
-     */
+     // If the integer entered is
+     // 1. a valid number,
+     // 2. less than or equal to 600 (full size), then resize the image
+     // 3. If it is greater than 600, change it to 600
     if (!isNaN($newImgSize)) {
       if ($newImgSize >= 600) {
         $newImgSize = 600;
@@ -119,21 +102,12 @@ $(function() {
 
 
   $(".color-box").on("click", function() {
-    var $bgColor, currentColor,
-        newColor = $(this).attr("id");
-
-    // Construct the ID selector
-    newColor = "#{0}".format(newColor);
-
     // Get the CSS value from the clicked box
-    $bgColor = $(newColor).css("background-color");
-
-    // Get the ID of the currently selected box
-    currentColor = $(".color-box").find(".white-border").selector.replace(/\s.white-border/, "");
+    var $bgColor = $(this).css("background-color");
 
     // Remove the white border from the old box and apply it to the new one
-    $(currentColor).removeClass("white-border");
-    $(newColor).addClass("white-border");
+    $(".color-box").removeClass("white-border");
+    $(this).addClass("white-border");
 
     // Change the background color to the selected color
     $("body").css("background-color", $bgColor);
