@@ -17,8 +17,8 @@ var bodyPart, imagesList, rowSize,
     $background, $categoryButtonsTh,
     $categoryButtonsDiv, $categoryButtonsImg, $buildArea;
 
-var imagesList = [],
-    rowSize = 4;
+var rowSize    = 4,
+    imagesList = [];
 
 /**
  * Retrieve a jQuery selector for commonly used elements
@@ -37,41 +37,13 @@ var imagesList = [],
 /**
  * Apply orange "bubble" to category image
  */
-function changeCategoryImages(old, current) {
+function highlightCategory() {
   "use strict";
-
-  $(function() {
-    // On hover, if this is not already the active button,
-    // apply the bubble to the images
-    $categoryButtonsImg.on("mouseover", function() {
-      if (!$(this).hasClass("active")) {
-        $(this).addClass("bubble");
-      }
-    });
-
-    // On mouseout, if this is not the active button,
-    // remove the bubble to the images
-    $categoryButtonsImg.on("mouseout", function() {
-      if (!$(this).hasClass("active")) {
-        $(this).removeClass("bubble");
-      }
-    });
+  $categoryButtonsImg.on("click", function() {
+    $categoryButtonsImg.removeClass("bubble active");
+    $(this).addClass("bubble active");
   });
-
-  // A button different from the current one was clicked
-  if (old !== current) {
-    $categoryButtonsImg.click(function() {
-      // Swap the orange bubble
-      $(old).removeClass("bubble");
-      $(current).addClass("bubble");
-
-      // Swap the active label
-      $(old).removeClass("active");
-      $(current).addClass("active");
-    });
-  }
 }
-
 
 /**
  * Preserve orange box around selected item
@@ -151,7 +123,7 @@ function changePartImages(part) {
 
   // Construct jQuery id attribute selector
   var partTypeID = "#{0}".format(bodyPart);
-  changeCategoryImages(oldPartTypeID, partTypeID);
+  highlightCategory(oldPartTypeID, partTypeID);
 
   // Keep a copy of the old element ID
   oldPartTypeID = "#{0}".format(bodyPart);
@@ -166,16 +138,15 @@ function changePartImages(part) {
       dataType: "xml",
       // Now begin using that data on successful download
       success: function(xml) {
-        var imgLink, fullImgLink, tableString,
-            index = 0,
+        var imgLink, fullImgLink,
+            index       = 0,
+            partNumber  = 0,
             numOfImages = 0,
-            partNumber = 0;
+            tableString = "<tr><td class='selector' id='0'>";
 
         // Clear the array of full size images if it contains data
-        if (imagesList[0]) {
-          $.each(imagesList, function(value) {
-            imagesList.splice(value, imagesList.length);
-          });
+        if (imagesList.length > 0) {
+            imagesList.splice(0, imagesList.length);
         }
 
         // Get the URL's to each full size image, add to imagesList array
@@ -186,9 +157,6 @@ function changePartImages(part) {
 
         // Clear the table of any previous images
         $("#minifig-items").empty();
-
-        // Construct the beginning of the table data
-        tableString = "<tr><td class='selector' id='0'>";
 
         // Get the total number of images for this part
         $(xml).find(bodyPart).each(function() {
@@ -209,22 +177,20 @@ function changePartImages(part) {
             index, bodyPart, partNumber, imgLink);
           /* jshint ignore:end */
 
-          /**
-           * Check if
-           * a. we have not run through all the images
-           * b. the index is a multiple of the current row size,
-           * c. we are not at the start of the images
-           * If all this is true, then make a new table row.
-           */
+
+          // Check if
+          // a. we have not run through all the images
+          // b. the index is a multiple of the current row size,
+          // c. we are not at the start of the images
+          // If all this is true, then make a new table row.
+
           //FUTURE FIXME I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
           if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
             tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
           } else {
 
-            /**
-             * Check if we have not run through all the images.
-             * if it is not, start a new table column
-             */
+             // Check if we have not run through all the images.
+             // if it is not, start a new table column
             if (partNumber !== numOfImages) {
               tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
             } else {
@@ -239,22 +205,18 @@ function changePartImages(part) {
 
         // Display the scroll bar when needed for both layout sizes
         if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
-          $(function() {
-            // Activate scroll bar
-            $buildArea.perfectScrollbar({
-              wheelSpeed: 6.5,
-              suppressScrollX: true
-            });
-
-            // Update the scrollbar so it does not change sizes on us
-            $buildArea.perfectScrollbar("update");
+          // Activate scroll bar
+          $buildArea.perfectScrollbar({
+            wheelSpeed: 6.5,
+            suppressScrollX: true
           });
+
+          // Update the scrollbar so it does not change sizes on us
+          $buildArea.perfectScrollbar("update");
 
         // The scroll bar is not needed, destroy it
         } else {
-          $(function() {
-            $buildArea.perfectScrollbar("destroy");
-          });
+          $buildArea.perfectScrollbar("destroy");
         }
       }
     });
@@ -273,19 +235,16 @@ $buttonResize.on("click", function() {
     // Change the number of items in a row to 6
     rowSize = 6;
 
-    /**
-     * Run animations to in/decrease the size/locations of whatever we need
-     * In order in which they run for both enlarge and decrease:
-     *
-     * Resize button (location)
-     * Scrollbar
-     * Background
-     * Category buttons (enlargement)
-     * Category buttons (location)
-     * Container
-     * Left margin
-     * Resize button (swap SVGs)
-     */
+    // Run animations to in/decrease the size/locations of whatever we need
+    // In order in which they run for both enlarge and decrease:
+    // Resize button (location)
+    // Scrollbar
+    // Background
+    // Category buttons (enlargement)
+    // Category buttons (location)
+    // Container
+    // Left margin
+    // Resize button (swap SVGs)
 
     // CSS transitions are not supported, fall back to jQuery animations
     if (!Modernizr.csstransitions) {

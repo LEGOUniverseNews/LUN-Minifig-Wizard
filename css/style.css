@@ -159,7 +159,8 @@ table { border-style: none; }
 .selected { background-color: #ffa500; }
 
 /* Orange background for category part hover and selection */
-.bubble {
+.bubble,
+.category-buttons-img:hover {
   background-color: #ffa500;
   border-radius: 50%;
 }
