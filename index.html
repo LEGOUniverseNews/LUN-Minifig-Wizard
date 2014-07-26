@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="IE=edge">
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -22,9 +22,9 @@
 
   <title>LEGO Universe News! Minifig Wizard</title>
 
-  <!-- Force IE to recognize HTML5 code -->
+  <!-- IE <= 9 HTML5 support -->
   <!--[if IE]>
-      <script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
   <![endif]-->
 
   <!-- CSS -->
@@ -89,53 +89,51 @@
         <table>
           <tr>
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Head.svg" />
+              <img class="category-buttons-img" id="Head" alt="Heads" width="48" height="48"
+                   src="img/ui/categories/Head.svg" />
             </th>
 
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Torso.svg" />
+              <img class="category-buttons-img" id="Torso" alt="Torsos" width="48" height="48"
+                  src="img/ui/categories/Torso.svg" />
             </th>
 
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Legs.svg" />
+              <img class="category-buttons-img" id="Leg" alt="Legs" width="48" height="48"
+                    src="img/ui/categories/Legs.svg" />
             </th>
 
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Hat.svg" />
+              <img class="category-buttons-img" id="Hat" alt="Hats" width="48" height="48"
+                   src="img/ui/categories/Hat.svg" />
             </th>
 
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Sword.svg" />
+              <img class="category-buttons-img" id="Sword" alt="R. Hand Items" width="48" height="48"
+                   src="img/ui/categories/Sword.svg" />
             </th>
 
             <th class="category-buttons-th">
-            <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
-               onclick="changePartImages(this.id)" src="img/ui/categories/Shield.svg" />
+              <img class="category-buttons-img" id="Shield" alt="L. Hand Items" width="48" height="48"
+                   src="img/ui/categories/Shield.svg" />
             </th>
           </tr>
         </table>
       </div>
       <br>
 
-      <!-- Area for building our Minifig -->
+      <!-- Area for building the Minifig -->
       <div id="area-minifig-built">
-        <table id="minifig-items">
-          <tbody></tbody>
-        </table>
+        <table id="minifig-items"></table>
       </div>
     </div>
-  </div>  <!-- #my-tables -->
+  </div>
 
   <!-- Resize layout button -->
   <img id="button-resize" alt="Resize layout" width="85" height="20" src="img/ui/Enlarge-button.svg" />
 
   <!-- LUN Minifig Wizard logo -->
-  <a style="color: transparent" href="http://LEGOUniverseNews.WordPress.com" target="_blank"><img id="lun-wizard-logo" alt="LEGO Universe News! Minifig Wizard logo" width="350" src="img/Minifig-Wizard.png" /></a>
+  <a style="color: transparent;" target="_blank" href="http://LEGOUniverseNews.WordPress.com"><img id="lun-wizard-logo" alt="LEGO Universe News! Minifig Wizard logo" width="350" src="img/Minifig-Wizard.png" /></a>
 
   <!-- jQuery -->
   <script src="lib/jquery-2.1.1.min.js"></script>

@@ -11,23 +11,28 @@
 
 
 // Global variables for various stuff
-var bodyPart, imagesList, rowSize,
-    partNumberID, oldPartNumberID,
-    oldPartTypeID, $buttonResize,
-    $background, $categoryButtonsTh,
-    $categoryButtonsDiv, $categoryButtonsImg, $buildArea;
-
-var rowSize    = 4,
+var bodyPart,
+    partNumberID,
+    oldPartTypeID,
+    oldPartNumberID,
+    rowSize    = 4,
     imagesList = [];
 
 /**
  * Retrieve a jQuery selector for commonly used elements
  */
+var $buildArea,
+    $background,
+    $buttonResize,
+    $categoryButtonsTh,
+    $categoryButtonsDiv,
+    $categoryButtonsImg;
+
 (function() {
   "use strict";
-  $buttonResize       = $(getVariable("buttonResize"));
   $buildArea          = $(getVariable("buildArea"));
   $background         = $(getVariable("background"));
+  $buttonResize       = $(getVariable("buttonResize"));
   $categoryButtonsTh  = $(getVariable("categoryButtonsTh"));
   $categoryButtonsDiv = $(getVariable("categoryButtonsDiv"));
   $categoryButtonsImg = $(getVariable("categoryButtonsImg"));
@@ -44,6 +49,7 @@ function highlightCategory() {
     $(this).addClass("bubble active");
   });
 }
+
 
 /**
  * Preserve orange box around selected item
@@ -108,6 +114,15 @@ function main(partNumber) {
   // Change the image to the selected one
   $(imgID).attr("src", imagesList[partNumber]);
 }
+
+/**
+ * Alias changePartImages function
+ * to remove onclick attribute in the HTML.
+ */
+$categoryButtonsImg.on("click", function() {
+  "use strict";
+  changePartImages($(this).attr("id"));
+});
 
 
 /**
