@@ -12,9 +12,9 @@
 
 // Global variables for various stuff
 var bodyPart,
-    partNumberID,
-    oldPartTypeID,
-    oldPartNumberID,
+    partNumberId,
+    oldPartTypeId,
+    oldPartNumberId,
     rowSize    = 4,
     imagesList = [];
 
@@ -55,18 +55,18 @@ function highlightCategory() {
  * Preserve orange box around selected item
  * (if present) between resizes
  */
-function reapplyBubble(partNumberID) {
+function reapplyBubble(partNumberId) {
   "use strict";
 
   // Only perform the class changes if an item is selected
-  if (partNumberID !== undefined) {
+  if (partNumberId !== undefined) {
     // Remove the orange bubble from th selected part
-    $(partNumberID).removeClass("selected");
+    $(partNumberId).removeClass("selected");
 
     // 2 milliseconds (and no sooner!) later, reapply the bubble
     // The timeout is required so jQuery has time to remove the class
     window.setTimeout(function() {
-      $(partNumberID).addClass("selected");
+      $(partNumberId).addClass("selected");
     }, 2);
   }
 }
@@ -77,42 +77,42 @@ function reapplyBubble(partNumberID) {
  */
 function main(partNumber) {
   "use strict";
-  var imgID;
-  partNumberID = "#{0}".format(partNumber);
+  var imageElementId;
+  partNumberId = "#{0}".format(partNumber);
 
-  // Get the proper imgID for each part
+  // Get the proper image id for each part
   switch (bodyPart) {
     case "Torso":
-      imgID = getVariable("imgTorso");
+      imageElementId = getVariable("imgTorso");
       break;
     case "Leg":
-      imgID = getVariable("imgLeg");
+      imageElementId = getVariable("imgLeg");
       break;
     case "Hat":
-      imgID = getVariable("imgHat");
+      imageElementId = getVariable("imgHat");
       break;
     case "Shield":
-      imgID = getVariable("imgShield");
+      imageElementId = getVariable("imgShield");
       break;
     case "Sword":
-      imgID = getVariable("imgSword");
+      imageElementId = getVariable("imgSword");
       break;
     case "Head":
-      imgID = getVariable("imgHead");
+      imageElementId = getVariable("imgHead");
       break;
   }
 
   // The user clicked a new part, swap orange background
-  if (oldPartNumberID !== partNumberID) {
-    $(oldPartNumberID).removeClass("selected");
-    $(partNumberID).addClass("selected");
+  if (oldPartNumberId !== partNumberId) {
+    $(oldPartNumberId).removeClass("selected");
+    $(partNumberId).addClass("selected");
   }
 
   // Set the old part number
-  oldPartNumberID = "#{0}".format(partNumber);
+  oldPartNumberId = "#{0}".format(partNumber);
 
   // Change the image to the selected one
-  $(imgID).attr("src", imagesList[partNumber]);
+  $(imageElementId).attr("src", imagesList[partNumber]);
 }
 
 /**
@@ -137,11 +137,11 @@ function changePartImages(part) {
   bodyPart = part;
 
   // Construct jQuery id attribute selector
-  var partTypeID = "#{0}".format(bodyPart);
-  highlightCategory(oldPartTypeID, partTypeID);
+  var partTypeId = "#{0}".format(bodyPart);
+  highlightCategory(oldPartTypeId, partTypeId);
 
-  // Keep a copy of the old element ID
-  oldPartTypeID = "#{0}".format(bodyPart);
+  // Keep a copy of the old element Id
+  oldPartTypeId = "#{0}".format(bodyPart);
 
 
   // Fetch the XML for parsing
@@ -321,18 +321,11 @@ $buttonResize.on("click", function() {
   changePartImages(bodyPart);
 
   // Reapply the orange selection bubble
-  reapplyBubble(partNumberID);
+  reapplyBubble(partNumberId);
 });
 
 $(function() {
   "use strict";
-
-  // Apply orange bubble and mark as active the first button ("Head").
-  // This must be done here to stop the orange bubble from sticking
-  // if a (singular) new category is selected then the table is enlarged.
-  // Selecting multiple categories before enlarging is not bugged.
-  $(".category-buttons-img:first").addClass("active");
-  $(".category-buttons-img:first").addClass("bubble");
 
   // Find "The Special" who will disarm the Kragle using his interesting abilities
   $("#emmet").dblclick(function() {
