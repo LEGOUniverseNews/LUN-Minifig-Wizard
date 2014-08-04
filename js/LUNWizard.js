@@ -24,6 +24,8 @@ var bodyPart,
 var $buildArea,
     $background,
     $buttonResize,
+    $minifigItems,
+    $areaMinifigParts,
     $categoryButtonsTh,
     $categoryButtonsDiv,
     $categoryButtonsImg;
@@ -33,6 +35,8 @@ var $buildArea,
   $buildArea          = $(getVariable("buildArea"));
   $background         = $(getVariable("background"));
   $buttonResize       = $(getVariable("buttonResize"));
+  $minifigItems       = $(getVariable("minifigItems"));
+  $areaMinifigParts   = $(getVariable("areaMinifigParts"));
   $categoryButtonsTh  = $(getVariable("categoryButtonsTh"));
   $categoryButtonsDiv = $(getVariable("categoryButtonsDiv"));
   $categoryButtonsImg = $(getVariable("categoryButtonsImg"));
@@ -116,8 +120,8 @@ function main(partNumber) {
 }
 
 /**
- * Alias changePartImages function
- * to remove onclick attribute in the HTML.
+ * Alias changePartImages() function
+ * to remove `onclick` attribute in the HTML.
  */
 $categoryButtonsImg.on("click", function() {
   "use strict";
@@ -153,7 +157,8 @@ function changePartImages(part) {
       dataType: "xml",
       // Now begin using that data on successful download
       success: function(xml) {
-        var imgLink, fullImgLink,
+        var imgLink,
+            fullImgLink,
             index       = 0,
             partNumber  = 0,
             numOfImages = 0,
@@ -171,7 +176,7 @@ function changePartImages(part) {
         });
 
         // Clear the table of any previous images
-        $("#minifig-items").empty();
+        $minifigItems.empty();
 
         // Get the total number of images for this part
         $(xml).find(bodyPart).each(function() {
@@ -216,7 +221,7 @@ function changePartImages(part) {
         });
 
         // Finally, display the table with the images
-        $("#minifig-items").html(tableString);
+        $minifigItems.html(tableString);
 
         // Display the scroll bar when needed for both layout sizes
         if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
@@ -264,7 +269,7 @@ $buttonResize.on("click", function() {
     // CSS transitions are not supported, fall back to jQuery animations
     if (!Modernizr.csstransitions) {
       $buttonResize.animate({"left": "+=190px"}, 300);
-      $(".area-minifig-parts").animate({"width": "+=180px"}, 300);
+      $areaMinifigParts.animate({"width": "+=180px"}, 300);
       $background.animate({"width": "+=180px"}, 300);
       $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
       $categoryButtonsTh.animate({"padding-left": "5px"}, 100);
@@ -274,7 +279,7 @@ $buttonResize.on("click", function() {
     } else {
       // For browsers that do support CSS transitions, trigger them
       $buttonResize.css("transform", "translate3d(190px, 0, 0)");
-      $(".area-minifig-parts").css("width", "+=180px");
+      $areaMinifigParts.css("width", "+=180px");
       $background.css("width", "+=180px");
       $categoryButtonsDiv.css("margin-left", "+=48px");
       $categoryButtonsTh.css("padding-left", "5px");
@@ -284,7 +289,7 @@ $buttonResize.on("click", function() {
 
     // Increase the margins on left side of the table to make it all even
     // This runs even if the browser does not support CSS transitions
-    $("#minifig-items").css("margin-left", "20px");
+    $minifigItems.css("margin-left", "20px");
     $buttonResize.attr("src", "img/ui/Reduce-button.svg");
 
     // We are currently using the larger size
@@ -295,7 +300,7 @@ $buttonResize.on("click", function() {
     // CSS transitions are not supported, fall back to jQuery animations
     if (!Modernizr.csstransitions) {
       $buttonResize.animate({"left": "-=190px"}, 300);
-      $(".area-minifig-parts").animate({"width": "-=180px"}, 300);
+      $areaMinifigParts.animate({"width": "-=180px"}, 300);
       $background.animate({"width": "-=180px"}, 300);
       $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
       $categoryButtonsTh.animate({"padding-left": "0px"}, 100);
@@ -305,7 +310,7 @@ $buttonResize.on("click", function() {
     } else {
       // For browsers that do support CSS transitions, trigger them
       window.$buttonResize.css("transform", "");
-      $(".area-minifig-parts").css("width", "");
+      $areaMinifigParts.css("width", "");
       $background.css("width", "");
       $categoryButtonsDiv.css("margin-left", "");
       $categoryButtonsTh.css("padding-left", "");
@@ -313,7 +318,7 @@ $buttonResize.on("click", function() {
       $buildArea.css("width", "-=180px");
     }
 
-    $("#minifig-items").css("margin-left", "5px");
+    $minifigItems.css("margin-left", "5px");
     $buttonResize.attr("src", "img/ui/Enlarge-button.svg");
   }
 
@@ -328,12 +333,13 @@ $(function() {
   "use strict";
 
   // Find "The Special" who will disarm the Kragle using his interesting abilities
+  // TODO Make this mobile compatible
   $("#emmet").dblclick(function() {
-    var $SpecialImg = $(getVariable("imgSpecial"));
-    if ($SpecialImg.attr("src").split("/")[3] === "empty.png") {
-      $SpecialImg.attr("src", "img/special/Special001.png");
+    var $specialImg = $(getVariable("imgSpecial"));
+    if ($specialImg.attr("src").split("/")[3] === "empty.png") {
+      $specialImg.attr("src", "img/special/Special001.png");
     } else {
-      $SpecialImg.attr("src", "img/ui/figure/empty.png");
+      $specialImg.attr("src", "img/ui/figure/empty.png");
     }
   });
 

@@ -25,26 +25,25 @@ $(function() {
 
   // Error message styling
   errorCSS       = {
-    "font-size": "1.9em",
+    "color"      : "red",
+    "font-size"  : "1.9em",
     "font-weight": "bold",
     "font-family": "Times New Roman, serif",
-    "color": "red",
     "margin-left": "0.9em"
   };
 
-  // Check if the browser does not support the border-radius CSS property
+  // Check if the browser does not support the CSS border-radius property
   if (!Modernizr.borderradius) {
     // Remove page contents for a clean palette
     $("body").remove();
 
     // Display error message and apply CSS
-    $("html").html("<head />");
-    $("head").append("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-    $("head").append("<style />");
-    $("head").append("<style />");
+    $("html").html("<head />")
+             .append("<body />");
+    $("head").append("<meta name='viewport' content='width=device-width, initial-scale=1.0'>")
+             .append("<style />");
     $("style").html(errorStyle);
-    $("html").html("<body />");
-    $("body").append(errorText);
+    $("body").html(errorText);
     $(".error").css(errorCSS);
     return false;
   }

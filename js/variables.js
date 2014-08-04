@@ -12,26 +12,28 @@
 
 /**
   * @private
-  * Parameter variable: Key to access common variable
-  * @return {String}
+  * @param variable Key to access common variables
+  * @return {string}
   */
 function getVariable(variable) {
   "use strict";
   var _variables = {
-    "imgHead"           : "#img-head",
-    "imgSpecial"        : "#img-special",
     "imgHat"            : "#img-hat",
     "imgLeg"            : "#img-leg",
+    "imgHead"           : "#img-head",
     "imgTorso"          : "#img-torso",
     "imgSword"          : "#img-sword",
+    "buildArea"         : "#area-minifig-built",
     "imgShield"         : "#img-shield",
     "imgShadow"         : "#img-shadow",
-    "buttonResize"      : "#button-resize",
-    "buildArea"         : "#area-minifig-built",
     "background"        : "#background",
+    "imgSpecial"        : "#img-special",
+    "buttonResize"      : "#button-resize",
+    "minifigItems"      : "#minifig-items",
+    "areaMinifigParts"  : ".area-minifig-parts",
     "categoryButtonsTh" : ".category-buttons-th",
     "categoryButtonsDiv": "#category-buttons-div",
-    "categoryButtonsImg": ".category-buttons-img",
+    "categoryButtonsImg": ".category-buttons-img"
     };
 
   return _variables[variable];

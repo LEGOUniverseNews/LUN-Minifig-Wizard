@@ -13,8 +13,8 @@
 // Color boxes IDs
 var boxIDList = [
   "gray-color-box", "white-color-box", "black-color-box",
-   "orange-color-box", "yellow-color-box", "blue-color-box",
-   "green-color-box", "red-color-box"
+  "orange-color-box", "yellow-color-box", "blue-color-box",
+  "green-color-box", "red-color-box"
 ];
 
 
