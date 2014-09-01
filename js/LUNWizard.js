@@ -18,6 +18,7 @@ var bodyPart,
     rowSize    = 4,
     imagesList = [];
 
+
 /**
  * Retrieve a jQuery selector for commonly used elements
  */
@@ -112,12 +113,11 @@ function main(partNumber) {
     $(partNumberId).addClass("selected");
   }
 
-  // Set the old part number
+  // Store the old part number and change to the selected image
   oldPartNumberId = "#{0}".format(partNumber);
-
-  // Change the image to the selected one
   $(imageElementId).attr("src", imagesList[partNumber]);
 }
+
 
 /**
  * Alias changePartImages() function
@@ -140,7 +140,7 @@ function changePartImages(part) {
   // Update global variable with chosen part
   bodyPart = part;
 
-  // Construct jQuery id attribute selector
+  // Construct jQuery ID attribute selector
   var partTypeId = "#{0}".format(bodyPart);
   highlightCategory(oldPartTypeId, partTypeId);
 
@@ -164,19 +164,17 @@ function changePartImages(part) {
             numOfImages = 0,
             tableString = "<tr><td class='selector' id='0'>";
 
-        // Clear the array of full size images if it contains data
+        // Clear any previous images
+        $minifigItems.empty();
         if (imagesList.length > 0) {
             imagesList.splice(0, imagesList.length);
         }
 
-        // Get the URL's to each full size image, add to imagesList array
+        // Store the URL to each full size image
         $(xml).find(bodyPart).each(function() {
           fullImgLink = $(this).find("image").text();
           imagesList.push(fullImgLink);
         });
-
-        // Clear the table of any previous images
-        $minifigItems.empty();
 
         // Get the total number of images for this part
         $(xml).find(bodyPart).each(function() {
@@ -329,14 +327,14 @@ $buttonResize.on("click", function() {
   reapplyBubble(partNumberId);
 });
 
+
 $(function() {
   "use strict";
-
-  // Find "The Special" who will disarm the Kragle using his interesting abilities
+  // Show/hide jetpack easter egg
   // TODO Make this mobile compatible
   $("#emmet").dblclick(function() {
     var $specialImg = $(getVariable("imgSpecial"));
-    if ($specialImg.attr("src").split("/")[3] === "empty.png") {
+    if ($specialImg.attr("src").indexOf("empty") > -1)  {
       $specialImg.attr("src", "img/special/Special001.png");
     } else {
       $specialImg.attr("src", "img/ui/figure/empty.png");

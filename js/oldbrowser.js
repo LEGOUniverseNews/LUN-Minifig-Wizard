@@ -16,7 +16,6 @@
  */
 $(function() {
   "use strict";
-
   // Error message that might need to be displayed
   var errorStyle = "#error-link{text-decoration:none;}#error-link:hover{text-decoration:underline;}span{font-style:italic;}",
       errorText  = "<p class='error'>Your browser is not supported!<br>Please update your browser to enjoy the" +
@@ -25,9 +24,9 @@ $(function() {
 
   // Error message styling
   errorCSS       = {
-    "color"      : "red",
+    "color"      : "#f00",
     "font-size"  : "1.9em",
-    "font-weight": "bold",
+    "font-weight": "700",
     "font-family": "Times New Roman, serif",
     "margin-left": "0.9em"
   };

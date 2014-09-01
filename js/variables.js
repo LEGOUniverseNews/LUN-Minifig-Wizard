@@ -11,11 +11,11 @@
 
 
 /**
-  * @private
-  * @param variable Key to access common variables
-  * @return {string}
-  */
-function getVariable(variable) {
+ * @private
+ * @param variable Key to access common variables
+ * @return {string}
+ */
+function getVariable(elementName) {
   "use strict";
   var _variables = {
     "imgHat"            : "#img-hat",
@@ -36,5 +36,5 @@ function getVariable(variable) {
     "categoryButtonsImg": ".category-buttons-img"
     };
 
-  return _variables[variable];
+  return _variables[elementName];
 }
