@@ -33,14 +33,14 @@ var $buildArea,
 
 (function() {
   "use strict";
-  $buildArea          = $(getVariable("buildArea"));
-  $background         = $(getVariable("background"));
-  $buttonResize       = $(getVariable("buttonResize"));
-  $minifigItems       = $(getVariable("minifigItems"));
-  $areaMinifigParts   = $(getVariable("areaMinifigParts"));
-  $categoryButtonsTh  = $(getVariable("categoryButtonsTh"));
-  $categoryButtonsDiv = $(getVariable("categoryButtonsDiv"));
-  $categoryButtonsImg = $(getVariable("categoryButtonsImg"));
+  $buildArea          = $(_getVariable("buildArea"));
+  $background         = $(_getVariable("background"));
+  $buttonResize       = $(_getVariable("buttonResize"));
+  $minifigItems       = $(_getVariable("minifigItems"));
+  $areaMinifigParts   = $(_getVariable("areaMinifigParts"));
+  $categoryButtonsTh  = $(_getVariable("categoryButtonsTh"));
+  $categoryButtonsDiv = $(_getVariable("categoryButtonsDiv"));
+  $categoryButtonsImg = $(_getVariable("categoryButtonsImg"));
 }());
 
 
@@ -88,22 +88,22 @@ function main(partNumber) {
   // Get the proper image id for each part
   switch (bodyPart) {
     case "Torso":
-      imageElementId = getVariable("imgTorso");
+      imageElementId = _getVariable("imgTorso");
       break;
     case "Leg":
-      imageElementId = getVariable("imgLeg");
+      imageElementId = _getVariable("imgLeg");
       break;
     case "Hat":
-      imageElementId = getVariable("imgHat");
+      imageElementId = _getVariable("imgHat");
       break;
     case "Shield":
-      imageElementId = getVariable("imgShield");
+      imageElementId = _getVariable("imgShield");
       break;
     case "Sword":
-      imageElementId = getVariable("imgSword");
+      imageElementId = _getVariable("imgSword");
       break;
     case "Head":
-      imageElementId = getVariable("imgHead");
+      imageElementId = _getVariable("imgHead");
       break;
   }
 
@@ -333,7 +333,7 @@ $(function() {
   // Show/hide jetpack easter egg
   // TODO Make this mobile compatible
   $("#emmet").dblclick(function() {
-    var $specialImg = $(getVariable("imgSpecial"));
+    var $specialImg = $(_getVariable("imgSpecial"));
     if ($specialImg.attr("src").indexOf("empty") > -1)  {
       $specialImg.attr("src", "img/special/Special001.png");
     } else {

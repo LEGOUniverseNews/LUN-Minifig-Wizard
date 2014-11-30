@@ -46,13 +46,13 @@ $("#button-new-window").on("click", function() {
 
   // Images that compose the user's minifig
   var myImages = [
-    $(getVariable("imgHead")).attr("src"),
-    $(getVariable("imgSpecial")).attr("src"),
-    $(getVariable("imgHat")).attr("src"),
-    $(getVariable("imgLeg")).attr("src"),
-    $(getVariable("imgTorso")).attr("src"),
-    $(getVariable("imgSword")).attr("src"),
-    $(getVariable("imgShield")).attr("src")
+    $(_getVariable("imgHead")).attr("src"),
+    $(_getVariable("imgSpecial")).attr("src"),
+    $(_getVariable("imgHat")).attr("src"),
+    $(_getVariable("imgLeg")).attr("src"),
+    $(_getVariable("imgTorso")).attr("src"),
+    $(_getVariable("imgSword")).attr("src"),
+    $(_getVariable("imgShield")).attr("src")
   ];
 
   // Initial image HTML structure
@@ -62,7 +62,7 @@ $("#button-new-window").on("click", function() {
     // Generate the HTML to display each image
     minifigDisplay += "<img class='the-big-picture' src='" + value + "'>";
 
-    // Add the drop shaodw as well
+    // Add the drop shadow as well
     if (index === (myImages.length - 1)) {
       minifigDisplay += "<img class='the-big-picture' id='img-shadow' src='img/ui/figure/drop-shadow.png'>";
     }

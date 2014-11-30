@@ -11,30 +11,29 @@
 
 
 /**
- * @private
- * @param variable Key to access common variables
- * @return {string}
+ * Provide abstract access to common elements.
+ * @param   {String} elementName Key to access common variables.
+ * @returns {String} jQuery/querySelector* selection.
  */
-function getVariable(elementName) {
+function _getVariable(elementName) {
   "use strict";
   var _variables = {
-    "imgHat"            : "#img-hat",
-    "imgLeg"            : "#img-leg",
-    "imgHead"           : "#img-head",
-    "imgTorso"          : "#img-torso",
-    "imgSword"          : "#img-sword",
-    "buildArea"         : "#area-minifig-built",
-    "imgShield"         : "#img-shield",
-    "imgShadow"         : "#img-shadow",
-    "background"        : "#background",
-    "imgSpecial"        : "#img-special",
-    "buttonResize"      : "#button-resize",
-    "minifigItems"      : "#minifig-items",
-    "areaMinifigParts"  : ".area-minifig-parts",
-    "categoryButtonsTh" : ".category-buttons-th",
-    "categoryButtonsDiv": "#category-buttons-div",
-    "categoryButtonsImg": ".category-buttons-img"
+    imgHat            : "#img-hat",
+    imgLeg            : "#img-leg",
+    imgHead           : "#img-head",
+    imgTorso          : "#img-torso",
+    imgSword          : "#img-sword",
+    buildArea         : "#area-minifig-built",
+    imgShield         : "#img-shield",
+    imgShadow         : "#img-shadow",
+    background        : "#background",
+    imgSpecial        : "#img-special",
+    buttonResize      : "#button-resize",
+    minifigItems      : "#minifig-items",
+    areaMinifigParts  : ".area-minifig-parts",
+    categoryButtonsTh : ".category-buttons-th",
+    categoryButtonsDiv: "#category-buttons-div",
+    categoryButtonsImg: ".category-buttons-img"
     };
-
   return _variables[elementName];
 }
