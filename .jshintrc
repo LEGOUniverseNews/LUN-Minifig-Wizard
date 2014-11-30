@@ -11,6 +11,6 @@
     "document"   : true,
     "window"     : true,
     "Modernizr"  : true,
-    "getVariable": true
+    "_getVariable": true
   }
 }
