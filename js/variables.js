@@ -37,3 +37,6 @@ function _getVariable(elementName) {
     };
   return _variables[elementName];
 }
+
+// Minifig Wizard-specific details
+document.LUN = {};
