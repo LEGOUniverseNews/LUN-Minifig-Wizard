@@ -40,10 +40,11 @@ table { border-style: none; }
 }
 
 /* Button to resize the table */
-#button-resize {
+#btn-resize {
   position: absolute;
   top: 445px;
   left: 550px;
+  cursor: pointer;
 
   -webkit-transition-property: -webkit-transform;
           transition-property: -webkit-transform, -ms-transform, transform;
@@ -84,10 +85,11 @@ table { border-style: none; }
 }
 
 /* New Window button */
-#button-new-window {
+#btn-new-window {
   position: absolute;
   top: 410px;
   left: 260px;
+  cursor: pointer;
 }
 
 /* Available items display */
@@ -111,6 +113,7 @@ table { border-style: none; }
 #category-buttons-div {
   margin-left: 12px;
   padding-top: 15px;
+  cursor: pointer;
   -webkit-transition: margin-left 0.3s ease;
           transition: margin-left 0.3s ease;
 }
@@ -147,6 +150,7 @@ table { border-style: none; }
   height: 65px;
   padding: 3.9px;
   border-radius: 11px;
+  cursor: pointer;
 }
 
 /* Orange background for invdividual part hover and selection */
@@ -171,8 +175,8 @@ table { border-style: none; }
 
 /* Customize perfect-scrollbar */
 .ps-scrollbar-y {
-  width: 9px !important;
   background-color: #B3B3B3 !important;
+  cursor: pointer;
 }
 
 /* Hide the scrollbar rail */

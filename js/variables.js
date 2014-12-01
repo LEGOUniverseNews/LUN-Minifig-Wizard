@@ -28,7 +28,7 @@ function _getVariable(elementName) {
     imgShadow         : "#img-shadow",
     background        : "#background",
     imgSpecial        : "#img-special",
-    buttonResize      : "#button-resize",
+    buttonResize      : "#btn-resize",
     minifigItems      : "#minifig-items",
     areaMinifigParts  : ".area-minifig-parts",
     categoryButtonsTh : ".category-buttons-th",

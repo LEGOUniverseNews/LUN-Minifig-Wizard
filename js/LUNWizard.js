@@ -225,7 +225,7 @@ function changePartImages(part) {
         if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
           // Activate scroll bar
           $buildArea.perfectScrollbar({
-            wheelSpeed: 6.5,
+            wheelSpeed: 1,
             suppressScrollX: true
           });
 
