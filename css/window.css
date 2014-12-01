@@ -42,11 +42,12 @@ table {
 }
 
 /* Gear SVG to open settings panel */
-#gear {
+#btn-gear {
   position: fixed;
   right: 10px;
   bottom: 3px;
   z-index: 2;
+  cursor: pointer;
 
   -webkit-transition-property: -webkit-transform;
           transition-property: -webkit-transform, -ms-transform, transform;
@@ -57,7 +58,7 @@ table {
 }
 
 /* Small movement when gear is hovered over */
-#gear:hover {
+#btn-gear:hover {
   -webkit-transform: translate3d(0, -4px, 0);
       -ms-transform: translate3d(0, -4px, 0);
           transform: translate3d(0, -4px, 0);
@@ -96,10 +97,11 @@ table {
   width: 12px;
   height: 12px;
   border: 1px solid #000;
+  cursor: pointer;
 }
 
 /* Location of image size input box */
-#size-input {
+#input-size {
   position: absolute;
   bottom: 3px;
   left: 55px;

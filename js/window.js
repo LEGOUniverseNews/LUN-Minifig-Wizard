@@ -20,11 +20,11 @@ var docuCode = "<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'>" +
 
 // Area for background-color changing boxes and image size
 // The content is injected by settings.js
-var tableCode = "<div id='gear'><img width='40' height='40' alt='Settings panel toggle button' src='img/ui/Gear.svg' />" +
+var tableCode = "<div id='btn-gear'><img width='40' height='40' alt='Settings panel toggle button' src='img/ui/Gear.svg' />" +
     "</div><div id='settings-panel'>Background Color<table><tr>" +
     "</tr></table><br><span id='size-text'>Size</span><br>" +
-    "<input id='size-input' type='number' placeholder='600' autocomplete='off'>" +
-    "<label id='size-label' for='size-input'>px</label></div>";
+    "<input id='input-size' type='number' min='0' max='600' placeholder='600' autocomplete='off'>" +
+    "<label id='size-label' for='input-size'>px</label></div>";
 
 // JavaScript links
 var scriptCode = "<script src='lib/jquery-2.1.1.min.js'></script>" +
@@ -32,16 +32,13 @@ var scriptCode = "<script src='lib/jquery-2.1.1.min.js'></script>" +
     "<script src='lib/string-format.js'></script>" +
     "<script src='lib/modernizr.custom.13815.js'></script>" +
     "<script src='js/variables.js'></script>" +
-    "<script src='js/LUNWizard.window.min.js'></script>";
+    "<script src='js/LUNWizard.settings.min.js'></script></body></html>";
 
-// Closing HTML
-var endCode = "</body></html>";
 
 /**
- * Open a new window with a larger version
- * of the user's Minifigure
+ * Open a new window with a larger version of the user's Minifigure.
  */
-$("#button-new-window").on("click", function() {
+$("#btn-new-window").on("click", function() {
   "use strict";
 
   // Images that compose the user's minifig
@@ -71,6 +68,6 @@ $("#button-new-window").on("click", function() {
   // Open a new pop up window with the content
   // TODO Replace document.write() with existing page using query strings for image URLs
   var myOwnMinifig = window.open("window.html","LUNMinifigWizard","width=600, height=600");
-  myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode + endCode);
+  myOwnMinifig.document.write(docuCode + minifigDisplay + tableCode + scriptCode);
   myOwnMinifig.document.close();
 });
