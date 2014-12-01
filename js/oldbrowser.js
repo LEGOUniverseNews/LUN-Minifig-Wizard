@@ -12,7 +12,7 @@
 
 /**
  * Check for and stop displaying the Minifig Wizard
- * on old browsers (mainly Internet Explorer)
+ * on old browsers (mainly Internet Explorer).
  */
 $(function() {
   "use strict";
