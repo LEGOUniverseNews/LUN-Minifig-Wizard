@@ -49,7 +49,20 @@ module.exports = function(grunt) {
     htmlhint: {
       html: {
         options: {
+          "attr-lowercase": true,
+          "attr-value-double-quotes": true,
+          "attr-value-not-empty": true,
+          "attr-no-duplication": true,
+          "doctype-first": true,
+          "doctype-html5": true,
+          "tagname-lowercase": true,
           "tag-pair": true,
+          "tag-self-close": false,
+          "spec-char-escape": true,
+          "id-class-value": "dash",
+          "id-unique": true,
+          "src-not-empty": true,
+          "space-tab-mixed-disabled": true
         },
         src: ["index.html"]
       }

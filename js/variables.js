@@ -11,13 +11,20 @@
 
 
 /**
+ * @type {Object}
+ * Minifig Wizard-specific details
+ */
+document.LUN = {};
+
+
+/**
  * Provide abstract access to common elements.
  * @param   {String} elementName Key to access common variables.
  * @returns {String} jQuery/querySelector* selection.
  */
 function _getVariable(elementName) {
   "use strict";
-  var _variables = {
+  var variables = {
     imgHat            : "#img-hat",
     imgLeg            : "#img-leg",
     imgHead           : "#img-head",
@@ -34,9 +41,6 @@ function _getVariable(elementName) {
     categoryButtonsTh : ".category-buttons-th",
     categoryButtonsDiv: "#category-buttons-div",
     categoryButtonsImg: ".category-buttons-img"
-    };
-  return _variables[elementName];
+  };
+  return variables[elementName];
 }
-
-// Minifig Wizard-specific details
-document.LUN = {};
