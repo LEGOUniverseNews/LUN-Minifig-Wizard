@@ -11,56 +11,37 @@
 
 
 (function($) {
-"use strict";
+  "use strict";
   $(function() {
 
-    /**
-     * Initialize color boxes
-     */
-
-    // Color boxes IDs
-    var boxIDList = [
-      "gray-color-box", "white-color-box", "black-color-box",
-      "orange-color-box", "yellow-color-box", "blue-color-box",
-      "green-color-box", "red-color-box"
-    ];
-
-    // Display the color boxes, giving them IDs
-    boxIDList.forEach(function(value, index) {
-      $("tr").append("<td class='color-box'></td>");
-      $("td:nth-child({0})".format(index + 1)).attr("id", value);
-    });
-
-    // Now that the boxes are generated, apply the currently selected border
-    // to the gray box, as it is used on page load
-    $("#gray-color-box").addClass("white-border");
-
+    // Display the minifigure
+    var images = document.LUN.decodeQuery();
+    if (images) {
+      images.forEach(function(value) {
+        $(document.LUN.getVariable("imgShadow")).before("<img class='the-big-picture' src='{0}'>".format(value));
+      });
+    }
 
     /**
      * Settings panel displaying
      */
     // Current location of settings panel
-    var gearBtn   = document.querySelector("#btn-gear"),
-        settPanel = document.querySelector("#settings-panel"),
-        isVisible = false;
+    var $gearBtn   = $("#btn-gear"),
+        isVisible  = false,
+        $settPanel = $("#settings-panel");
 
-    gearBtn.onclick = function() {
+    $gearBtn.on("click", function() {
       // The panel is currently hidden
       if (isVisible) {
         isVisible = false;
-        settPanel.style.visibility = "visible";
-        settPanel.style.webkitTransform = "translate3d(0, -2.188em, 0)";
-        settPanel.style.msTransform = "translate3d(0, -2.188em, 0)";
-        settPanel.style.transform = "translate3d(0, -2.188em, 0)";
+        $settPanel.css("transform", "");
 
         // The panel is currently visible
       } else {
         isVisible = true;
-        settPanel.style.webkitTransform = "";
-        settPanel.style.msTransform = "";
-        settPanel.style.transform = "";
+        $settPanel.css("transform", "translate3d(0, -2.188em, 0)");
       }
-    };
+    });
 
 
     /**
@@ -73,15 +54,16 @@
       // Keep it real
       if (!isNaN(imageSize)) {
 
-          // Clamp the image size if needed
-          if (imageSize > 600) {
-            imageSize = 600;
-          } else if (imageSize < 0) {
-            imageSize = 0;
-          }
+        // Clamp the image size if needed
+        if (imageSize > 600) {
+          imageSize = 600;
+        } else if (imageSize < 0) {
+          imageSize = 0;
+        }
 
         // Resize all images to the new size
         $(".the-big-picture").width(imageSize);
+        $sizeInput.val(imageSize);
       }
     });
 
