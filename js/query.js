@@ -68,7 +68,7 @@
   function _isValid(query) {
     var parts = query.split("=");
     return (_map[parts[0]] !== undefined) &&
-      (/^h(?=a)?(?![b-z])|^l|^a|^t|^s(?:p|h|w)\/\d{1,2}$/gi.test(parts[1]));
+      (/^h(?=a)?(?![b-z])|^a|^e|^l|^t|^s(?:p|h|w)\/\d{1,2}$/gi.test(parts[1]));
   }
 
 
@@ -79,15 +79,12 @@
    */
   function _testQuery(query) {
     // Only relative paths are supported
-    var protos = new RegExp(/(?:h|f)(?:tt?ps?|ile):?/gi);
-
-    // Accept only one structure
-    var format = new RegExp(/^\?h=h\/\d{1,2}(?:&sp=sp\/\d{1,2})?&ha=ha\/\d{1,2}&l=l\/\d{1,2}&t=t\/\d{1,2}&sh=sh\/\d{1,2}&sw=sw\/\d{1,2}$/i);
+    var protos = /(?:h|f)(?:tt?ps?|ile):?/gi;
 
     // No query strings were given,
     // an absolute path was used,
     // or invalid characters were used.
-    if (!format.test(query) || protos.test(query) || query === undefined ||
+    if (query === undefined || protos.test(query) ||
         (!query.substr(1).split("&").every(_isValid))) {
       _throwError("internal");
       return false;
@@ -124,26 +121,30 @@
       return false;
     }
 
-    for (var part in qparts) {
-      if (qparts.hasOwnProperty(part)) {
-        part = qparts[part];
-
+    for (var fold in qparts) {
+      if (qparts.hasOwnProperty(fold)) {
+        var part = qparts[fold];
         // For easier splitting and decoding
         part = "/" + part;
         part = part.split("/");
 
-        // Prefix with root path, get part type, expand to proper path
+        // Prefix with root path
         part[0] = "/img";
-        var fold = part[1].toUpperCase();
-        part[1] = _map[part[1]] + "/full";
 
-        // Special items are stored in a different location
-        if (fold === "SP") {
-          part[1] = part[1].replace(/\/full/, "");
+        // Special and empty items are stored
+        // in a different location than everything else
+        if (part[1] === "e") {
+          part[1] = part[1].replace(/e/, "spark");
+        } else if (fold !== "sp") {
+          part[1] = _map[fold] + "/full";
+        } else if (fold === "sp") {
+          part[1] = _map[fold];
         }
 
         // Add extra zeros to part number as needed
-        if (part[2].length === 2) {
+        if (part[1] === "spark") {
+          part[2] = "empty";
+        } else if (part[2].length === 2) {
           part[2] = "0" + part[2];
         } else if (part[2].length === 1) {
           part[2] = "00" + part[2];
@@ -151,7 +152,10 @@
 
         // Get full image name, merge everything back into a string,
         // add it to array for displaying on page
-        part[2] = _map[fold] + part[2] + ".png";
+        if (part[2] !== "empty") {
+          part[2] = _map[fold.toUpperCase()] + part[2];
+        }
+        part[2] += ".png";
         part = part.join("/");
         images.push(part);
       }
@@ -168,55 +172,49 @@
     // Initialization
     var query  = "",
         number = "",
-        images = [
-          document.querySelector(_getVariable("imgHead")).src,
-          document.querySelector(_getVariable("imgSpecial")).src,
-          document.querySelector(_getVariable("imgHat")).src,
-          document.querySelector(_getVariable("imgLeg")).src,
-          document.querySelector(_getVariable("imgTorso")).src,
-          document.querySelector(_getVariable("imgSword")).src,
-          document.querySelector(_getVariable("imgShield")).src
-        ];
+        images = {
+          heads  : document.querySelector(document.LUN.getVariable("imgHead")).src,
+          hats   : document.querySelector(document.LUN.getVariable("imgHat")).src,
+          legs   : document.querySelector(document.LUN.getVariable("imgLeg")).src,
+          torso  : document.querySelector(document.LUN.getVariable("imgTorso")).src,
+          sword  : document.querySelector(document.LUN.getVariable("imgSword")).src,
+          shield : document.querySelector(document.LUN.getVariable("imgShield")).src,
+          special: document.querySelector(document.LUN.getVariable("imgSpecial")).src
+        };
 
+    for (var value in images) {
+      if (images.hasOwnProperty(value)) {
+        var v = images[value];
+        var isSpark = /-spark/gi.test(v),
+            isEmpty = /empty.png/i.test(v);
 
-    // Check if any "creation spark" images are present
-    for (var hasSpark = 0; hasSpark < images.length; hasSpark += 1) {
-      var value    = images[hasSpark],
-          hasUI    = new RegExp(/\/ui\//i).test(value),
-          hasEmpty = new RegExp(/empty.png/i).test(value);
+        // Do not permit an incomplete minifigure
+        if (isSpark && !isEmpty) {
+          _throwError("spark");
+          return false;
+        }
 
-      // Do not permit an incomplete minifigure
-      if (hasUI && !hasEmpty) {
-        _throwError("spark");
-        return false;
+        // Perform initial sanitizing, split into array
+        var qs = v.replace(window.location.origin, "").replace(/img\/|full\/|.png/g, "").split("/");
 
-        // This part can be left blank
-      } else if (hasUI && hasEmpty) {
-        continue;
+        // Prefix the proper separator, substitute the folder value, remove zeros
+        qs[0] = value !== "heads" ? "&" : "?";
+        qs[1] = /ha|s(?:h|p|w)/i.test(qs[1]) ? _rmap[value] : _rmap[qs[1]];
+        qs[1] += "=";
+        qs[2] = qs[2].replace(/0/g, "");
+
+        // Extract the remaining numbers
+        if (!isNaN(qs[2].substr(-2))) {
+          number = qs[2].substr(-2);
+        } else if (!isNaN(qs[2].substr(-1))){
+          number = qs[2].substr(-1);
+        }
+
+        // Substitute the image name, restore the numbers, merge into one string
+        qs[2] = /empty/.test(qs[2]) ? "e/1" : _rmap[qs[2].replace(number, "")].toLowerCase() + "/" + number;
+        query += qs.join("");
       }
     }
-
-    // Remove unneeded parts of the string
-    images.forEach(function(v, i) {
-      // Perform initial sanitizing, split into array
-      var qs = v.replace(window.location.origin, "").replace(/img\/|full\/|.png/g, "").split("/");
-
-      // Prefix the proper separator, substitute the folder value, remove zeros
-      qs[0] = i === 0 ? "?" : "&";
-      qs[1] = _rmap[qs[1]] + "=";
-      qs[2] = qs[2].replace(/0/g, "");
-
-      // Extract the remaining numbers
-      if (!isNaN(qs[2].substr(-2))) {
-        number = qs[2].substr(-2);
-      } else if (!isNaN(qs[2].substr(-1))){
-        number = qs[2].substr(-1);
-      }
-
-      // Substitute the image name, restore /numbers, merge into one string
-      qs[2] = _rmap[qs[2].replace(number, "")].toLowerCase() + "/" + number;
-      query += qs.join("");
-     });
 
     // Make sure it is valid
     if (!_testQuery(query)) {
