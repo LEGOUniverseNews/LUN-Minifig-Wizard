@@ -18,7 +18,7 @@ document.LUN = {};
 
 
 /**
- * Provide abstract access to common elements.
+ * Provide abstract access to common DOM elements.
  * @param   {String} elementName Key to access common variables.
  * @returns {String} jQuery/querySelector* selection.
  */
@@ -37,6 +37,7 @@ function _getVariable(elementName) {
     imgSpecial        : "#img-special",
     buttonResize      : "#btn-resize",
     minifigItems      : "#minifig-items",
+    buttonNewWindow   : "#btn-new-window",
     areaMinifigParts  : ".area-minifig-parts",
     categoryButtonsTh : ".category-buttons-th",
     categoryButtonsDiv: "#category-buttons-div",

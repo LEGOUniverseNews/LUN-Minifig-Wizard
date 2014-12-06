@@ -20,23 +20,26 @@ var bodyPart,
 
 
 /**
- * Retrieve a jQuery selector for commonly used elements
+ * Retrieve a jQuery selector for commonly used elements.
  */
 var $buildArea,
     $background,
     $buttonResize,
     $minifigItems,
+    $buttonNewWindow,
     $areaMinifigParts,
     $categoryButtonsTh,
     $categoryButtonsDiv,
     $categoryButtonsImg;
 
+// TODO I am pretty sure this is not correct...
 (function() {
   "use strict";
   $buildArea          = $(_getVariable("buildArea"));
   $background         = $(_getVariable("background"));
   $buttonResize       = $(_getVariable("buttonResize"));
   $minifigItems       = $(_getVariable("minifigItems"));
+  $buttonNewWindow    = $(_getVariable("buttonNewWindow"));
   $areaMinifigParts   = $(_getVariable("areaMinifigParts"));
   $categoryButtonsTh  = $(_getVariable("categoryButtonsTh"));
   $categoryButtonsDiv = $(_getVariable("categoryButtonsDiv"));
@@ -45,7 +48,9 @@ var $buildArea,
 
 
 /**
- * Apply orange "bubble" to category image
+ * Apply orange "bubble" to current category image.
+ *
+ * @returns {Boolean} Always returns true.
  */
 function highlightCategory() {
   "use strict";
@@ -53,12 +58,15 @@ function highlightCategory() {
     $categoryButtonsImg.removeClass("bubble active");
     $(this).addClass("bubble active");
   });
+  return true;
 }
 
 
 /**
  * Preserve orange box around selected item
- * (if present) between resizes
+ * (if present) between resizes.
+ *
+ * @returns {Boolean} Always returns true.
  */
 function reapplyBubble(partNumberId) {
   "use strict";
@@ -74,11 +82,31 @@ function reapplyBubble(partNumberId) {
       $(partNumberId).addClass("selected");
     }, 2);
   }
+  return true;
 }
 
 
 /**
- * Change the part image to the selected one
+ * Open a new window with a larger version of the minifig.
+ *
+ * @returns {Boolean} Always returns true.
+ */
+$buttonNewWindow.on("click", function() {
+  "use strict";
+  var qs = document.LUN.encodeQuery();
+
+  // We have a usuable query string
+  if (qs) {
+    window.open("window.html" + qs, "LUNMinifigWizard", "width=600, height=600");
+  }
+  return true;
+});
+
+
+/**
+ * Update the build area with the selected image.
+ *
+ * @returns {Boolean} Always returns true.
  */
 function main(partNumber) {
   "use strict";
@@ -116,16 +144,20 @@ function main(partNumber) {
   // Store the old part number and change to the selected image
   oldPartNumberId = "#{0}".format(partNumber);
   $(imageElementId).attr("src", imagesList[partNumber]);
+  return true;
 }
 
 
 /**
  * Alias changePartImages() function
  * to remove `onclick` attribute in the HTML.
+ *
+ * @returns {Boolean} Always returns true.
  */
 $categoryButtonsImg.on("click", function() {
   "use strict";
   changePartImages($(this).attr("id"));
+  return true;
 });
 
 
@@ -146,7 +178,6 @@ function changePartImages(part) {
 
   // Keep a copy of the old element Id
   oldPartTypeId = "#{0}".format(bodyPart);
-
 
   // Fetch the XML for parsing
   $(function() {
@@ -343,4 +374,5 @@ $(function() {
 
   // Run process to display the available minifig heads upon page load
   changePartImages("Head");
+  return true;
 });
