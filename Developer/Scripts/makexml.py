@@ -1,19 +1,19 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-    LEGO Universe News! Minifig Wizard
+"""LEGO Universe News! Minifig Wizard.
 
-    Created 2013-2014 Triangle717 & rioforce
-    <http://Triangle717.WordPress.com/>
-    <http://rioforce.WordPress.com/>
+Created 2013-2014 Triangle717 & rioforce
+<http://Triangle717.WordPress.com/>
+<http://rioforce.WordPress.com/>
 
-    Licensed under The MIT License
-    <http://opensource.org/licenses/MIT>
+Licensed under The MIT License
+<http://opensource.org/licenses/MIT>
+
 """
 
 from __future__ import print_function
-import sys
 import os
+import sys
 
 # Support Python 2 and 3 input
 # Default to Python 3's input()
@@ -38,7 +38,7 @@ xmlPath = os.path.join("..", "..", "img", "images.xml")
 
 # Special images to remove optional item
 noImageXML = ["<thumb>img/Clear-Selection.png</thumb>",
-              "<image>img/ui/figure/empty.png</image>"]
+              "<image>img/spark/empty.png</image>"]
 
 
 for folder in imageFols:
