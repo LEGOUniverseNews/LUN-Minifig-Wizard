@@ -45,7 +45,7 @@
    * Display an error message related to query string parsing,
    * incomplete minifigure creation, or browser support errors.
    * @param {String}  err The error type.
-   * @returns {Boolean} false.
+   * @returns {Boolean} Always returns false.
    */
   function _throwError(err) {
     var messages = {
@@ -178,10 +178,28 @@
           document.querySelector(_getVariable("imgShield")).src
         ];
 
+
+    // Check if any "creation spark" images are present
+    for (var hasSpark = 0; hasSpark < images.length; hasSpark += 1) {
+      var value    = images[hasSpark],
+          hasUI    = new RegExp(/\/ui\//i).test(value),
+          hasEmpty = new RegExp(/empty.png/i).test(value);
+
+      // Do not permit an incomplete minifigure
+      if (hasUI && !hasEmpty) {
+        _throwError("spark");
+        return false;
+
+        // This part can be left blank
+      } else if (hasUI && hasEmpty) {
+        continue;
+      }
+    }
+
     // Remove unneeded parts of the string
     images.forEach(function(v, i) {
       // Perform initial sanitizing, split into array
-       var qs = v.replace(window.location.origin, "").replace(/img\/|full\/|.png/g, "").split("/");
+      var qs = v.replace(window.location.origin, "").replace(/img\/|full\/|.png/g, "").split("/");
 
       // Prefix the proper separator, substitute the folder value, remove zeros
       qs[0] = i === 0 ? "?" : "&";
