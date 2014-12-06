@@ -22,7 +22,7 @@ document.LUN = {};
  * @param   {String} elementName Key to access common variables.
  * @returns {String} jQuery/querySelector* selection.
  */
-function _getVariable(elementName) {
+document.LUN.getVariable = function (elementName) {
   "use strict";
   var variables = {
     imgHat            : "#img-hat",
@@ -44,4 +44,4 @@ function _getVariable(elementName) {
     categoryButtonsImg: ".category-buttons-img"
   };
   return variables[elementName];
-}
+};

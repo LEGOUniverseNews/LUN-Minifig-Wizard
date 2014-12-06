@@ -35,15 +35,15 @@ var $buildArea,
 // TODO I am pretty sure this is not correct...
 (function() {
   "use strict";
-  $buildArea          = $(_getVariable("buildArea"));
-  $background         = $(_getVariable("background"));
-  $buttonResize       = $(_getVariable("buttonResize"));
-  $minifigItems       = $(_getVariable("minifigItems"));
-  $buttonNewWindow    = $(_getVariable("buttonNewWindow"));
-  $areaMinifigParts   = $(_getVariable("areaMinifigParts"));
-  $categoryButtonsTh  = $(_getVariable("categoryButtonsTh"));
-  $categoryButtonsDiv = $(_getVariable("categoryButtonsDiv"));
-  $categoryButtonsImg = $(_getVariable("categoryButtonsImg"));
+  $buildArea          = $(document.LUN.getVariable("buildArea"));
+  $background         = $(document.LUN.getVariable("background"));
+  $buttonResize       = $(document.LUN.getVariable("buttonResize"));
+  $minifigItems       = $(document.LUN.getVariable("minifigItems"));
+  $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow"));
+  $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts"));
+  $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh"));
+  $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv"));
+  $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
 }());
 
 
@@ -94,7 +94,6 @@ function reapplyBubble(partNumberId) {
 $buttonNewWindow.on("click", function() {
   "use strict";
   var qs = document.LUN.encodeQuery();
-
   // We have a usuable query string
   if (qs) {
     window.open("window.html" + qs, "LUNMinifigWizard", "width=600, height=600");
@@ -116,22 +115,22 @@ function main(partNumber) {
   // Get the proper image id for each part
   switch (bodyPart) {
     case "Torso":
-      imageElementId = _getVariable("imgTorso");
+      imageElementId = document.LUN.getVariable("imgTorso");
       break;
     case "Leg":
-      imageElementId = _getVariable("imgLeg");
+      imageElementId = document.LUN.getVariable("imgLeg");
       break;
     case "Hat":
-      imageElementId = _getVariable("imgHat");
+      imageElementId = document.LUN.getVariable("imgHat");
       break;
     case "Shield":
-      imageElementId = _getVariable("imgShield");
+      imageElementId = document.LUN.getVariable("imgShield");
       break;
     case "Sword":
-      imageElementId = _getVariable("imgSword");
+      imageElementId = document.LUN.getVariable("imgSword");
       break;
     case "Head":
-      imageElementId = _getVariable("imgHead");
+      imageElementId = document.LUN.getVariable("imgHead");
       break;
   }
 
@@ -364,11 +363,11 @@ $(function() {
   // Show/hide jetpack easter egg
   // TODO Make this mobile compatible
   $("#emmet").dblclick(function() {
-    var $specialImg = $(_getVariable("imgSpecial"));
+    var $specialImg = $(document.LUN.getVariable("imgSpecial"));
     if ($specialImg.attr("src").indexOf("empty") > -1)  {
       $specialImg.attr("src", "img/special/Special001.png");
     } else {
-      $specialImg.attr("src", "img/ui/figure/empty.png");
+      $specialImg.attr("src", "img/spark/empty.png");
     }
   });
 
