@@ -22,29 +22,15 @@ var bodyPart,
 /**
  * Retrieve a jQuery selector for commonly used elements.
  */
-var $buildArea,
-    $background,
-    $buttonResize,
-    $minifigItems,
-    $buttonNewWindow,
-    $areaMinifigParts,
-    $categoryButtonsTh,
-    $categoryButtonsDiv,
-    $categoryButtonsImg;
-
-// TODO I am pretty sure this is not correct...
-(function() {
-  "use strict";
-  $buildArea          = $(document.LUN.getVariable("buildArea"));
-  $background         = $(document.LUN.getVariable("background"));
-  $buttonResize       = $(document.LUN.getVariable("buttonResize"));
-  $minifigItems       = $(document.LUN.getVariable("minifigItems"));
-  $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow"));
-  $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts"));
-  $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh"));
-  $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv"));
-  $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
-}());
+  var $buildArea          = $(document.LUN.getVariable("buildArea")),
+      $background         = $(document.LUN.getVariable("background")),
+      $buttonResize       = $(document.LUN.getVariable("buttonResize")),
+      $minifigItems       = $(document.LUN.getVariable("minifigItems")),
+      $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow")),
+      $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts")),
+      $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh")),
+      $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv")),
+      $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
 
 
 /**
@@ -109,29 +95,25 @@ $buttonNewWindow.on("click", function() {
  */
 function main(partNumber) {
   "use strict";
-  var imageElementId;
-  partNumberId = "#{0}".format(partNumber);
+  partNumberId = "#" + partNumber;
 
-  // Get the proper image id for each part
-  switch (bodyPart) {
-    case "Torso":
-      imageElementId = document.LUN.getVariable("imgTorso");
-      break;
-    case "Leg":
-      imageElementId = document.LUN.getVariable("imgLeg");
-      break;
-    case "Hat":
-      imageElementId = document.LUN.getVariable("imgHat");
-      break;
-    case "Shield":
-      imageElementId = document.LUN.getVariable("imgShield");
-      break;
-    case "Sword":
-      imageElementId = document.LUN.getVariable("imgSword");
-      break;
-    case "Head":
-      imageElementId = document.LUN.getVariable("imgHead");
-      break;
+  // Valid image parts
+  var minifigParts = {
+    "Hat"   : document.LUN.getVariable("imgHat"),
+    "Leg"   : document.LUN.getVariable("imgLeg"),
+    "Head"  : document.LUN.getVariable("imgHead"),
+    "Torso" : document.LUN.getVariable("imgTorso"),
+    "Sword" : document.LUN.getVariable("imgSword"),
+    "Shield": document.LUN.getVariable("imgShield"),
+  };
+
+  // Get the ID to the part the user clicked
+  var imageElementId = minifigParts[bodyPart];
+
+  // For some reason, the minifig part is not valid
+  if (imageElementId === undefined) {
+    document.LUN.throwError("internal");
+    return false;
   }
 
   // The user clicked a new part, swap orange background
