@@ -99,12 +99,12 @@ function main(partNumber) {
 
   // Valid image parts
   var minifigParts = {
-    "Hat"   : document.LUN.getVariable("imgHat"),
-    "Leg"   : document.LUN.getVariable("imgLeg"),
-    "Head"  : document.LUN.getVariable("imgHead"),
-    "Torso" : document.LUN.getVariable("imgTorso"),
-    "Sword" : document.LUN.getVariable("imgSword"),
-    "Shield": document.LUN.getVariable("imgShield"),
+    "hat"   : document.LUN.getVariable("imgHat"),
+    "leg"   : document.LUN.getVariable("imgLeg"),
+    "head"  : document.LUN.getVariable("imgHead"),
+    "torso" : document.LUN.getVariable("imgTorso"),
+    "sword" : document.LUN.getVariable("imgSword"),
+    "shield": document.LUN.getVariable("imgShield"),
   };
 
   // Get the ID to the part the user clicked
@@ -123,7 +123,7 @@ function main(partNumber) {
   }
 
   // Store the old part number and change to the selected image
-  oldPartNumberId = "#{0}".format(partNumber);
+  oldPartNumberId = "#" + partNumber;
   $(imageElementId).attr("src", imagesList[partNumber]);
   return true;
 }
@@ -154,11 +154,12 @@ function changePartImages(part) {
   bodyPart = part;
 
   // Construct jQuery ID attribute selector
-  var partTypeId = "#{0}".format(bodyPart);
+  var partTypeId = "#" + bodyPart;
+
   highlightCategory(oldPartTypeId, partTypeId);
 
   // Keep a copy of the old element Id
-  oldPartTypeId = "#{0}".format(bodyPart);
+  oldPartTypeId = "#" + bodyPart;
 
   // Fetch the XML for parsing
   $(function() {
@@ -354,6 +355,6 @@ $(function() {
   });
 
   // Run process to display the available minifig heads upon page load
-  changePartImages("Head");
+  changePartImages("head");
   return true;
 });

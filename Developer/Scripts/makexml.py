@@ -31,7 +31,7 @@ imageList = []
 imageFols = ["hats", "heads", "legs", "torsos", "shield", "sword"]
 
 # All valid XML tag names
-tagNames = ["Hat", "Head", "Leg", "Torso", "Shield", "Sword"]
+tagNames = ["hat", "head", "leg", "torso", "shield", "sword"]
 
 # Location of output XML file
 xmlPath = os.path.join("..", "..", "img", "images.xml")
@@ -126,7 +126,7 @@ continuing.""")
 # Begin the file contents
 with open(xmlPath, "wt") as f:
     f.write("""<?xml version="1.0" encoding="UTF-8"?>
-<Minifigure>""")
+<minifigure>""")
 
 
 # Write Clear Selection image for Hats and Items
@@ -164,7 +164,7 @@ for listIndex in thumbList:
 
 # Finish off the file
 with open(xmlPath, "at") as f:
-    f.write("\n</Minifigure>\n")
+    f.write("\n</minifigure>\n")
 
 # Delete now unneeded lists
 del selector[:]

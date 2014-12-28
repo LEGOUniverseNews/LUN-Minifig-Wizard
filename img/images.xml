@@ -1,539 +1,539 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Minifigure>
-	<Hat>
+<minifigure>
+	<hat>
 		<thumb>img/Clear-Selection.png</thumb>
 		<image>img/spark/empty.png</image>
-	</Hat>
-	<Shield>
+	</hat>
+	<shield>
 		<thumb>img/Clear-Selection.png</thumb>
 		<image>img/spark/empty.png</image>
-	</Shield>
-	<Sword>
+	</shield>
+	<sword>
 		<thumb>img/Clear-Selection.png</thumb>
 		<image>img/spark/empty.png</image>
-	</Sword>
-	<Hat>
+	</sword>
+	<hat>
 		<thumb>img/hats/thumb/Hat001.png</thumb>
 		<image>img/hats/full/Hat001.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat002.png</thumb>
 		<image>img/hats/full/Hat002.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat003.png</thumb>
 		<image>img/hats/full/Hat003.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat004.png</thumb>
 		<image>img/hats/full/Hat004.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat005.png</thumb>
 		<image>img/hats/full/Hat005.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat006.png</thumb>
 		<image>img/hats/full/Hat006.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat007.png</thumb>
 		<image>img/hats/full/Hat007.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat008.png</thumb>
 		<image>img/hats/full/Hat008.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat009.png</thumb>
 		<image>img/hats/full/Hat009.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat010.png</thumb>
 		<image>img/hats/full/Hat010.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat011.png</thumb>
 		<image>img/hats/full/Hat011.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat012.png</thumb>
 		<image>img/hats/full/Hat012.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat013.png</thumb>
 		<image>img/hats/full/Hat013.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat014.png</thumb>
 		<image>img/hats/full/Hat014.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat015.png</thumb>
 		<image>img/hats/full/Hat015.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat016.png</thumb>
 		<image>img/hats/full/Hat016.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat017.png</thumb>
 		<image>img/hats/full/Hat017.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat018.png</thumb>
 		<image>img/hats/full/Hat018.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat019.png</thumb>
 		<image>img/hats/full/Hat019.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat020.png</thumb>
 		<image>img/hats/full/Hat020.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat021.png</thumb>
 		<image>img/hats/full/Hat021.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat022.png</thumb>
 		<image>img/hats/full/Hat022.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat023.png</thumb>
 		<image>img/hats/full/Hat023.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat024.png</thumb>
 		<image>img/hats/full/Hat024.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat025.png</thumb>
 		<image>img/hats/full/Hat025.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat026.png</thumb>
 		<image>img/hats/full/Hat026.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat027.png</thumb>
 		<image>img/hats/full/Hat027.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat028.png</thumb>
 		<image>img/hats/full/Hat028.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat029.png</thumb>
 		<image>img/hats/full/Hat029.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat030.png</thumb>
 		<image>img/hats/full/Hat030.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat031.png</thumb>
 		<image>img/hats/full/Hat031.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat032.png</thumb>
 		<image>img/hats/full/Hat032.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat033.png</thumb>
 		<image>img/hats/full/Hat033.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat034.png</thumb>
 		<image>img/hats/full/Hat034.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat035.png</thumb>
 		<image>img/hats/full/Hat035.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat036.png</thumb>
 		<image>img/hats/full/Hat036.png</image>
-	</Hat>
-	<Hat>
+	</hat>
+	<hat>
 		<thumb>img/hats/thumb/Hat037.png</thumb>
 		<image>img/hats/full/Hat037.png</image>
-	</Hat>
-	<Head>
+	</hat>
+	<head>
 		<thumb>img/heads/thumb/Head001.png</thumb>
 		<image>img/heads/full/Head001.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head002.png</thumb>
 		<image>img/heads/full/Head002.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head003.png</thumb>
 		<image>img/heads/full/Head003.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head004.png</thumb>
 		<image>img/heads/full/Head004.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head005.png</thumb>
 		<image>img/heads/full/Head005.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head006.png</thumb>
 		<image>img/heads/full/Head006.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head007.png</thumb>
 		<image>img/heads/full/Head007.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head008.png</thumb>
 		<image>img/heads/full/Head008.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head009.png</thumb>
 		<image>img/heads/full/Head009.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head010.png</thumb>
 		<image>img/heads/full/Head010.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head011.png</thumb>
 		<image>img/heads/full/Head011.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head012.png</thumb>
 		<image>img/heads/full/Head012.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head013.png</thumb>
 		<image>img/heads/full/Head013.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head014.png</thumb>
 		<image>img/heads/full/Head014.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head015.png</thumb>
 		<image>img/heads/full/Head015.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head016.png</thumb>
 		<image>img/heads/full/Head016.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head017.png</thumb>
 		<image>img/heads/full/Head017.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head018.png</thumb>
 		<image>img/heads/full/Head018.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head019.png</thumb>
 		<image>img/heads/full/Head019.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head020.png</thumb>
 		<image>img/heads/full/Head020.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head021.png</thumb>
 		<image>img/heads/full/Head021.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head022.png</thumb>
 		<image>img/heads/full/Head022.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head023.png</thumb>
 		<image>img/heads/full/Head023.png</image>
-	</Head>
-	<Head>
+	</head>
+	<head>
 		<thumb>img/heads/thumb/Head024.png</thumb>
 		<image>img/heads/full/Head024.png</image>
-	</Head>
-	<Leg>
+	</head>
+	<leg>
 		<thumb>img/legs/thumb/Legs001.png</thumb>
 		<image>img/legs/full/Legs001.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs002.png</thumb>
 		<image>img/legs/full/Legs002.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs003.png</thumb>
 		<image>img/legs/full/Legs003.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs004.png</thumb>
 		<image>img/legs/full/Legs004.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs005.png</thumb>
 		<image>img/legs/full/Legs005.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs006.png</thumb>
 		<image>img/legs/full/Legs006.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs007.png</thumb>
 		<image>img/legs/full/Legs007.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs008.png</thumb>
 		<image>img/legs/full/Legs008.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs009.png</thumb>
 		<image>img/legs/full/Legs009.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs010.png</thumb>
 		<image>img/legs/full/Legs010.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs011.png</thumb>
 		<image>img/legs/full/Legs011.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs012.png</thumb>
 		<image>img/legs/full/Legs012.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs013.png</thumb>
 		<image>img/legs/full/Legs013.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs014.png</thumb>
 		<image>img/legs/full/Legs014.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs015.png</thumb>
 		<image>img/legs/full/Legs015.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs016.png</thumb>
 		<image>img/legs/full/Legs016.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs017.png</thumb>
 		<image>img/legs/full/Legs017.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs018.png</thumb>
 		<image>img/legs/full/Legs018.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs019.png</thumb>
 		<image>img/legs/full/Legs019.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs020.png</thumb>
 		<image>img/legs/full/Legs020.png</image>
-	</Leg>
-	<Leg>
+	</leg>
+	<leg>
 		<thumb>img/legs/thumb/Legs021.png</thumb>
 		<image>img/legs/full/Legs021.png</image>
-	</Leg>
-	<Torso>
+	</leg>
+	<torso>
 		<thumb>img/torsos/thumb/Torso001.png</thumb>
 		<image>img/torsos/full/Torso001.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso002.png</thumb>
 		<image>img/torsos/full/Torso002.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso003.png</thumb>
 		<image>img/torsos/full/Torso003.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso004.png</thumb>
 		<image>img/torsos/full/Torso004.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso005.png</thumb>
 		<image>img/torsos/full/Torso005.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso006.png</thumb>
 		<image>img/torsos/full/Torso006.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso007.png</thumb>
 		<image>img/torsos/full/Torso007.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso008.png</thumb>
 		<image>img/torsos/full/Torso008.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso009.png</thumb>
 		<image>img/torsos/full/Torso009.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso010.png</thumb>
 		<image>img/torsos/full/Torso010.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso011.png</thumb>
 		<image>img/torsos/full/Torso011.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso012.png</thumb>
 		<image>img/torsos/full/Torso012.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso013.png</thumb>
 		<image>img/torsos/full/Torso013.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso014.png</thumb>
 		<image>img/torsos/full/Torso014.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso015.png</thumb>
 		<image>img/torsos/full/Torso015.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso016.png</thumb>
 		<image>img/torsos/full/Torso016.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso017.png</thumb>
 		<image>img/torsos/full/Torso017.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso018.png</thumb>
 		<image>img/torsos/full/Torso018.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso019.png</thumb>
 		<image>img/torsos/full/Torso019.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso020.png</thumb>
 		<image>img/torsos/full/Torso020.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso021.png</thumb>
 		<image>img/torsos/full/Torso021.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso022.png</thumb>
 		<image>img/torsos/full/Torso022.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso023.png</thumb>
 		<image>img/torsos/full/Torso023.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso024.png</thumb>
 		<image>img/torsos/full/Torso024.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso025.png</thumb>
 		<image>img/torsos/full/Torso025.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso026.png</thumb>
 		<image>img/torsos/full/Torso026.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso027.png</thumb>
 		<image>img/torsos/full/Torso027.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso028.png</thumb>
 		<image>img/torsos/full/Torso028.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso029.png</thumb>
 		<image>img/torsos/full/Torso029.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso030.png</thumb>
 		<image>img/torsos/full/Torso030.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso031.png</thumb>
 		<image>img/torsos/full/Torso031.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso032.png</thumb>
 		<image>img/torsos/full/Torso032.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso033.png</thumb>
 		<image>img/torsos/full/Torso033.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso034.png</thumb>
 		<image>img/torsos/full/Torso034.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso035.png</thumb>
 		<image>img/torsos/full/Torso035.png</image>
-	</Torso>
-	<Torso>
+	</torso>
+	<torso>
 		<thumb>img/torsos/thumb/Torso036.png</thumb>
 		<image>img/torsos/full/Torso036.png</image>
-	</Torso>
-	<Shield>
+	</torso>
+	<shield>
 		<thumb>img/shield/thumb/Shield001.png</thumb>
 		<image>img/shield/full/Shield001.png</image>
-	</Shield>
-	<Shield>
+	</shield>
+	<shield>
 		<thumb>img/shield/thumb/Shield002.png</thumb>
 		<image>img/shield/full/Shield002.png</image>
-	</Shield>
-	<Shield>
+	</shield>
+	<shield>
 		<thumb>img/shield/thumb/Shield003.png</thumb>
 		<image>img/shield/full/Shield003.png</image>
-	</Shield>
-	<Shield>
+	</shield>
+	<shield>
 		<thumb>img/shield/thumb/Shield004.png</thumb>
 		<image>img/shield/full/Shield004.png</image>
-	</Shield>
-	<Shield>
+	</shield>
+	<shield>
 		<thumb>img/shield/thumb/Shield005.png</thumb>
 		<image>img/shield/full/Shield005.png</image>
-	</Shield>
-	<Sword>
+	</shield>
+	<sword>
 		<thumb>img/sword/thumb/Sword001.png</thumb>
 		<image>img/sword/full/Sword001.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword002.png</thumb>
 		<image>img/sword/full/Sword002.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword003.png</thumb>
 		<image>img/sword/full/Sword003.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword004.png</thumb>
 		<image>img/sword/full/Sword004.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword005.png</thumb>
 		<image>img/sword/full/Sword005.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword006.png</thumb>
 		<image>img/sword/full/Sword006.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword007.png</thumb>
 		<image>img/sword/full/Sword007.png</image>
-	</Sword>
-	<Sword>
+	</sword>
+	<sword>
 		<thumb>img/sword/thumb/Sword008.png</thumb>
 		<image>img/sword/full/Sword008.png</image>
-	</Sword>
-</Minifigure>
+	</sword>
+</minifigure>
