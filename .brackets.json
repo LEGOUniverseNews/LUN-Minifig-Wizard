@@ -1,4 +1,4 @@
 {
-  "linting.prefer": ["JSHint", "JSCS"],
+  "linting.prefer": ["HTMLHint", "CSSLint", "JSHint", "JSCS", "JSONLint"],
   "linting.usePreferredOnly": true
 }
