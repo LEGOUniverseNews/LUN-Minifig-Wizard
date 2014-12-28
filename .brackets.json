@@ -1,4 +1,13 @@
 {
-  "linting.prefer": ["HTMLHint", "CSSLint", "JSHint", "JSCS", "JSONLint"],
-  "linting.usePreferredOnly": true
+    "spaceUnits": 2,
+    "useTabChar": false,
+    "linting.enabled": true,
+    "linting.usePreferredOnly": true,
+    "linting.prefer": [
+        "HTMLHint",
+        "CSSLint",
+        "JSHint",
+        "JSCS",
+        "JSONLint"
+    ]
 }
