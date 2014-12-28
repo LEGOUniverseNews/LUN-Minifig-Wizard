@@ -11,27 +11,33 @@
 
 
 (function($) {
+  "use strict";
   // Global variables for various stuff
-  var bodyPart,
-      partNumberId,
+  var partNumberId,
       oldPartTypeId,
-      oldPartNumberId,
-      rowSize    = 4,
-      imagesList = [];
+      oldPartNumberId;
 
 
   /**
-   * Retrieve a jQuery selector for commonly used elements.
+   * @type {Object}
    */
-    var $buildArea          = $(document.LUN.getVariable("buildArea")),
-        $background         = $(document.LUN.getVariable("background")),
-        $buttonResize       = $(document.LUN.getVariable("buttonResize")),
-        $minifigItems       = $(document.LUN.getVariable("minifigItems")),
-        $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow")),
-        $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts")),
-        $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh")),
-        $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv")),
-        $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
+  var layoutDetails = {
+    size: 4,
+    curPart: "",
+    curImages: []
+  };
+
+
+  // Retrieve a jQuery selector for commonly used elements
+  var $buildArea          = $(document.LUN.getVariable("buildArea")),
+      $background         = $(document.LUN.getVariable("background")),
+      $buttonResize       = $(document.LUN.getVariable("buttonResize")),
+      $minifigItems       = $(document.LUN.getVariable("minifigItems")),
+      $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow")),
+      $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts")),
+      $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh")),
+      $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv")),
+      $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
 
 
   /**
@@ -40,7 +46,6 @@
    * @returns {Boolean} Always returns true.
    */
   function highlightCategory() {
-    "use strict";
     $categoryButtonsImg.on("click", function() {
       $categoryButtonsImg.removeClass("bubble active");
       $(this).addClass("bubble active");
@@ -56,8 +61,6 @@
    * @returns {Boolean} Always returns true.
    */
   function reapplyBubble(partNumberId) {
-    "use strict";
-
     // Only perform the class changes if an item is selected
     if (partNumberId !== undefined) {
       // Remove the orange bubble from th selected part
@@ -79,7 +82,6 @@
    * @returns {Boolean} Always returns true.
    */
   $buttonNewWindow.on("click", function() {
-    "use strict";
     var qs = document.LUN.encodeQuery();
     // We have a usuable query string
     if (qs) {
@@ -95,7 +97,6 @@
    * @returns {Boolean} Always returns true.
    */
   $minifigItems.on("click", function(e) {
-    "use strict";
     // Respond to user clicks
     var partNumber;
     if (e.target.localName === "img") {
@@ -120,7 +121,7 @@
     };
 
     // Get the ID to the part the user clicked
-    var imageElementId = minifigParts[bodyPart];
+    var imageElementId = minifigParts[layoutDetails.curPart];
 
     // For some reason, the minifig part is not valid
     if (imageElementId === undefined) {
@@ -136,7 +137,7 @@
 
     // Store the old part number and change to the selected image
     oldPartNumberId = "#" + partNumber;
-    $(imageElementId).attr("src", imagesList[partNumber]);
+    $(imageElementId).attr("src", layoutDetails.curImages[partNumber]);
     return true;
   });
 
@@ -148,7 +149,6 @@
    * @returns {Boolean} Always returns true.
    */
   $categoryButtonsImg.on("click", function() {
-    "use strict";
     changePartImages($(this).attr("id"));
     return true;
   });
@@ -160,18 +160,16 @@
    * specified by the part parameter.
    */
   function changePartImages(part) {
-    "use strict";
-
     // Update global variable with chosen part
-    bodyPart = part;
+    layoutDetails.curPart = part;
 
     // Construct jQuery ID attribute selector
-    var partTypeId = "#" + bodyPart;
+    var partTypeId = "#" + part;
 
     highlightCategory(oldPartTypeId, partTypeId);
 
     // Keep a copy of the old element Id
-    oldPartTypeId = "#" + bodyPart;
+    oldPartTypeId = "#" + part;
 
     // Fetch the XML for parsing
     $(function() {
@@ -191,23 +189,23 @@
 
           // Clear any previous images
           $minifigItems.empty();
-          if (imagesList.length > 0) {
-              imagesList.splice(0, imagesList.length);
+          if (layoutDetails.curImages.length > 0) {
+            layoutDetails.curImages = [];
           }
 
           // Store the URL to each full size image
-          $(xml).find(bodyPart).each(function() {
+          $(xml).find(part).each(function() {
             fullImgLink = $(this).find("image").text();
-            imagesList.push(fullImgLink);
+            layoutDetails.curImages.push(fullImgLink);
           });
 
           // Get the total number of images for this part
-          $(xml).find(bodyPart).each(function() {
+          $(xml).find(part).each(function() {
             numOfImages += 1;
           });
 
           // Go through all the images, adding them to the table
-          $(xml).find(bodyPart).each(function() {
+          $(xml).find(part).each(function() {
             partNumber += 1;
 
             // Bring it back down to work with array indexes
@@ -216,7 +214,7 @@
 
             // Wrap the URL in an image tag, wrap that in a link, add it to the table
             tableString += "<a id='{0}'><img alt='{1} #{2}' width='64' height='64' src='{3}'></a>".format(
-              index, bodyPart, partNumber, imgLink);
+              index, part, partNumber, imgLink);
 
 
             // Check if
@@ -225,13 +223,13 @@
             // c. we are not at the start of the images
             // If all this is true, then make a new table row.
 
-            //FUTURE TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
-            if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
+            // TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
+            if (partNumber !== numOfImages && (partNumber % layoutDetails.size) === 0 && partNumber !== 0) {
               tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
             } else {
 
-               // Check if we have not run through all the images.
-               // if it is not, start a new table column
+              // Check if we have not run through all the images.
+              // if it is not, start a new table column
               if (partNumber !== numOfImages) {
                 tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
               } else {
@@ -245,7 +243,7 @@
           $minifigItems.html(tableString);
 
           // Display the scroll bar when needed for both layout sizes
-          if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
+          if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
             // Activate scroll bar
             $buildArea.perfectScrollbar({
               wheelSpeed: 1,
@@ -255,7 +253,7 @@
             // Update the scrollbar so it does not change sizes on us
             $buildArea.perfectScrollbar("update");
 
-          // The scroll bar is not needed, destroy it
+            // The scroll bar is not needed, destroy it
           } else {
             $buildArea.perfectScrollbar("destroy");
           }
@@ -269,12 +267,10 @@
    * Resizes the table between small and large display
    */
   $buttonResize.on("click", function() {
-    "use strict";
-
     // We are currently using the small display
-    if (rowSize === 4) {
+    if (layoutDetails.size === 4) {
       // Change the number of items in a row to 6
-      rowSize = 6;
+      layoutDetails.size = 6;
 
       // Run animations to in/decrease the size/locations of whatever we need
       // In order in which they run for both enlarge and decrease:
@@ -316,7 +312,7 @@
       // We are currently using the larger size
     } else {
       // Set the number of items in a row to 4
-      rowSize = 4;
+      layoutDetails.size = 4;
 
       // CSS transitions are not supported, fall back to jQuery animations
       if (!Modernizr.csstransitions) {
@@ -344,7 +340,7 @@
     }
 
     // Reconstruct the table using the desired size
-    changePartImages(bodyPart);
+    changePartImages(layoutDetails.curPart);
 
     // Reapply the orange selection bubble
     reapplyBubble(partNumberId);
@@ -352,7 +348,6 @@
 
 
   $(function() {
-    "use strict";
     // Show/hide jetpack easter egg
     // TODO Make this mobile compatible
     $("#emmet").dblclick(function() {
