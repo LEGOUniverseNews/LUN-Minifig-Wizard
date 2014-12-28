@@ -93,8 +93,19 @@ $buttonNewWindow.on("click", function() {
  *
  * @returns {Boolean} Always returns true.
  */
-function main(partNumber) {
+$minifigItems.on("click", function(e) {
   "use strict";
+  // Respond to user clicks
+  var partNumber;
+  if (e.target.localName === "img") {
+    partNumber = $(e.target).parent().attr("id");
+  } else if (e.target.localName === "a") {
+    partNumber = $(e.target).attr("id");
+  } else {
+    return false;
+  }
+
+  // Get an ID selector
   partNumberId = "#" + partNumber;
 
   // Valid image parts
@@ -126,7 +137,7 @@ function main(partNumber) {
   oldPartNumberId = "#" + partNumber;
   $(imageElementId).attr("src", imagesList[partNumber]);
   return true;
-}
+});
 
 
 /**
@@ -203,10 +214,8 @@ function changePartImages(part) {
           imgLink = $(this).find("thumb").text();
 
           // Wrap the URL in an image tag, wrap that in a link, add it to the table
-          /* jshint ignore:start */
-          tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
+          tableString += "<a id='{0}'><img alt='{1} #{2}' width='64' height='64' src='{3}'></a>".format(
             index, bodyPart, partNumber, imgLink);
-          /* jshint ignore:end */
 
 
           // Check if
@@ -215,7 +224,7 @@ function changePartImages(part) {
           // c. we are not at the start of the images
           // If all this is true, then make a new table row.
 
-          //FUTURE FIXME I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
+          //FUTURE TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
           if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
             tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
           } else {

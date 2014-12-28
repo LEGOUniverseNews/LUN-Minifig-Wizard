@@ -20,9 +20,9 @@ document.LUN = {};
 /**
  * Provide abstract access to common DOM elements.
  * @param   {String} elementName Key to access common variables.
- * @returns {String} jQuery/querySelector* selection.
+ * @returns {String} jQuery/querySelector* compatible selector.
  */
-document.LUN.getVariable = function (elementName) {
+function _getVariable(elementName) {
   "use strict";
   var variables = {
     imgHat            : "#img-hat",
@@ -45,3 +45,6 @@ document.LUN.getVariable = function (elementName) {
   };
   return variables[elementName];
 };
+
+// Public exports
+document.LUN.getVariable = _getVariable;

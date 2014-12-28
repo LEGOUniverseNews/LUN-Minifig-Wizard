@@ -128,10 +128,7 @@ module.exports = function(grunt) {
 
     watch: {
       files: ["Gruntfile.js", "<%= cssFiles %>", "<%= jsFiles %>", "*.html"],
-      tasks: ["build"],
-      options: {
-        livereload: true
-      }
+      tasks: ["build"]
     }
   });
 

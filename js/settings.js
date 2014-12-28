@@ -13,7 +13,6 @@
 (function($) {
   "use strict";
   $(function() {
-
     // Display the minifigure
     var images = document.LUN.decodeQuery();
     if (images) {
