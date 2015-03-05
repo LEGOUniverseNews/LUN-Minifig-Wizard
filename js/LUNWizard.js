@@ -101,14 +101,10 @@
    */
   $minifigItems.on("click", function(e) {
     // Respond to user clicks
-    var partNumber;
-    if (e.target.localName === "img") {
-      partNumber = $(e.target).parent().attr("id");
-    } else if (e.target.localName === "a") {
-      partNumber = $(e.target).attr("id");
-    } else {
+    if (e.target.localName.toLowerCase() !== "img") {
       return false;
     }
+    var partNumber = $(e.target).parent().attr("id");
 
     // Get an ID selector
     partNumberId = "#" + partNumber;
@@ -158,7 +154,7 @@
 
 
   /**
-   * Parse the XML file for image links.
+   * Parse the JSON file for image links.
    * Update the table with the proper images as
    * specified by the part parameter.
    */
@@ -174,21 +170,17 @@
     // Keep a copy of the old element Id
     oldPartTypeId = "#" + part;
 
-    // Fetch the XML for parsing
+    // Fetch the JSON for parsing
     $(function() {
       $.ajax({
         type: "GET",
         cache: true,
-        url: "img/images.xml",
-        dataType: "xml",
+        url: "img/images.json",
+        dataType: "json",
+
         // Now begin using that data on successful download
-        success: function(xml) {
-          var imgLink,
-              fullImgLink,
-              index       = 0,
-              partNumber  = 0,
-              numOfImages = 0,
-              tableString = "<tr><td class='selector' id='0'>";
+        success: function(json) {
+          var tableString = "<tr><td class='selector' id='0'>";
 
           // Clear any previous images
           $minifigItems.empty();
@@ -196,29 +188,22 @@
             layoutDetails.curImages = [];
           }
 
-          // Store the URL to each full size image
-          $(xml).find(part).each(function() {
-            fullImgLink = $(this).find("image").text();
-            layoutDetails.curImages.push(fullImgLink);
-          });
-
           // Get the total number of images for this part
-          $(xml).find(part).each(function() {
-            numOfImages += 1;
-          });
+          var numOfImages = json[part].length - 1;
 
-          // Go through all the images, adding them to the table
-          $(xml).find(part).each(function() {
-            partNumber += 1;
+          // Run through all the images
+          $.each(json[part], function(index, image) {
 
-            // Bring it back down to work with array indexes
-            index = partNumber - 1;
-            imgLink = $(this).find("thumb").text();
+            // Get a part number,
+            // get the thumbnail link,
+            // store the URL to each full size image
+            var partNumber = index + 1,
+                thumbLink  = image.thumbnail;
+            layoutDetails.curImages.push(image.fullsize);
 
             // Wrap the URL in an image tag, wrap that in a link, add it to the table
-            tableString += "<a id='{0}'><img alt='{1} #{2}' width='64' height='64' src='{3}'></a>".format(
-              index, part, partNumber, imgLink);
-
+            tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
+              index, part, partNumber, thumbLink);
 
             // Check if
             // a. we have not run through all the images
@@ -242,7 +227,7 @@
             }
           });
 
-          // Finally, display the table with the images
+          // Display the table with the images
           $minifigItems.html(tableString);
 
           // Display the scroll bar when needed for both layout sizes
