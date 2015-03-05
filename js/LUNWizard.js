@@ -13,10 +13,13 @@
 (function($) {
   "use strict";
   // Global variables for various stuff
+  // TODO Remove these if possible
   var partNumberId,
       oldPartTypeId,
       oldPartNumberId;
 
+  // Restore prototype extending behavior of string-format
+  format.extend(String.prototype);
 
   /**
    * @type {Object}
