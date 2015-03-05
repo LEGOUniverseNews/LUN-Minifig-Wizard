@@ -329,7 +329,7 @@
 
       } else {
         // For browsers that do support CSS transitions, trigger them
-        window.$buttonResize.css("transform", "");
+        $buttonResize.css("transform", "");
         $areaMinifigParts.css("width", "");
         $background.css("width", "");
         $categoryButtonsDiv.css("margin-left", "");
