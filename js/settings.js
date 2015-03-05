@@ -17,7 +17,7 @@
     var images = document.LUN.decodeQuery();
     if (images) {
       images.forEach(function(value) {
-        $(document.LUN.getVariable("imgShadow")).before("<img class='the-big-picture' src='{0}'>".format(value));
+        $(document.LUN.getVariable("imgShadow")).before("<img class='the-big-picture' src='" + value + "'>");
       });
     }
 
