@@ -44,7 +44,7 @@ function _getVariable(elementName) {
     categoryButtonsImg: ".category-buttons-img"
   };
   return variables[elementName];
-};
+}
 
 // Public exports
 document.LUN.getVariable = _getVariable;
