@@ -102,7 +102,13 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: "<%= banner %>",
-        compress: true,
+        compress: {
+          "booleans": true,
+          "unused": true,
+          "dead_code": true,
+          "sequences": true,
+          "warnings": true
+        },
         report: "min",
         sourceMap: true,
         mangle: true
