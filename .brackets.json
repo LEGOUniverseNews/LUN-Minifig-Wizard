@@ -1,6 +1,12 @@
 {
     "spaceUnits": 2,
     "useTabChar": false,
+    "language": {
+        "python": {
+            "spaceUnits": 4,
+            "useTabChar": false
+        }
+    },
     "linting.enabled": true,
     "linting.usePreferredOnly": true,
     "linting.prefer": [
