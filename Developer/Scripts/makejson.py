@@ -22,13 +22,10 @@ get_input = input
 
 # If this is Python 2, use raw_input()
 if sys.version_info[:2] <= (2, 7):
-    get_input = raw_input
+    get_input = raw_input  # noqa
 
 # Folder names images are stored in
 imageFols = ["hats", "heads", "legs", "torsos", "shield", "sword"]
-
-# JSON object names
-# objectNames = ["hat", "head", "leg", "torso", "shield", "sword"]
 
 # Location of output JSON file
 jsonFile = os.path.join("..", "..", "img", "images.json")
@@ -65,7 +62,7 @@ def _convertFolderNameToJSONName(name):
 
 def _makeJSONBase():
     obj = {}
-    for folder in imageFols:
+    for folder in imageFols:  # noqa
         obj[_convertFolderNameToJSONName(folder)] = []
     return obj
 
@@ -75,6 +72,10 @@ newImages = _makeJSONBase()
 for folder in imageFols:
     # Get the proper object name
     objectName = _convertFolderNameToJSONName(folder)
+
+    # Add clear selection option to required items
+    if objectName in ("hat", "sword", "shield"):
+        newImages[objectName].append(noImageJSON)
 
     # Craw every full-size image folder
     for root, dirnames, filenames in os.walk(
@@ -103,14 +104,6 @@ for folder in imageFols:
 # Write the JSON
 with open(jsonFile, "wt", encoding="utf_8") as f:
     json.dump(newImages, f, sort_keys=True)
-
-# Write Clear Selection image for Hats and Items
-# for dividingPart in (objectNames[0], objectNames[4], objectNames[5]):
-#    with open(jsonFile, "at") as f:
-#        f.write("\n\t<{0}>".format(dividingPart))
-#        f.write("\n\t\t{0}".format(noImageXML[0]))
-#        f.write("\n\t\t{0}".format(noImageXML[1]))
-#        f.write("\n\t</{0}>".format(dividingPart))
 
 # Delete now unneeded lists
 del newImages
