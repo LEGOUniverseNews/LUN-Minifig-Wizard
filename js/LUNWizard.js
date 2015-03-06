@@ -162,82 +162,80 @@
     layoutDetails.curPart = partName;
 
     // Fetch the JSON for parsing
-    $(function() {
-      $.ajax({
-        type: "GET",
-        cache: true,
-        url: "img/images.json",
-        dataType: "json",
+    $.ajax({
+      type: "GET",
+      cache: true,
+      url: "img/images.json",
+      dataType: "json",
 
-        // Now begin using that data on successful download
-        success: function(json) {
-          var tableString = "<tr><td class='selector' id='0'>";
+      // Now begin using that data on successful download
+      success: function(json) {
+        var tableString = "<tr><td class='selector' id='0'>";
 
-          // Clear any previous images
-          $minifigItems.empty();
-          if (layoutDetails.curImages.length > 0) {
-            layoutDetails.curImages = [];
-          }
+        // Clear any previous images
+        $minifigItems.empty();
+        if (layoutDetails.curImages.length > 0) {
+          layoutDetails.curImages = [];
+        }
 
-          // Get the total number of images for this part
-          var numOfImages = json[partName].length - 1;
+        // Get the total number of images for this part
+        var numOfImages = json[partName].length - 1;
 
-          // Run through all the images
-          $.each(json[partName], function(index, image) {
+        // Run through all the images
+        $.each(json[partName], function(index, image) {
 
-            // Get a part number,
-            // get the thumbnail link,
-            // store the URL to each full size image
-            var partNumber = index + 1,
-                thumbLink  = image.thumbnail;
-            layoutDetails.curImages.push(image.fullsize);
+          // Get a part number,
+          // get the thumbnail link,
+          // store the URL to each full size image
+          var partNumber = index + 1,
+              thumbLink  = image.thumbnail;
+          layoutDetails.curImages.push(image.fullsize);
 
-            // Wrap the URL in an image tag, wrap that in a link, add it to the table
-            tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
-              index, capitalFirst(partName), partNumber, thumbLink);
+          // Wrap the URL in an image tag, wrap that in a link, add it to the table
+          tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
+            index, capitalFirst(partName), partNumber, thumbLink);
 
-            // Check if
-            // a. we have not run through all the images
-            // b. the index is a multiple of the current row size,
-            // c. we are not at the start of the images
-            // If all this is true, then make a new table row.
+          // Check if
+          // a. we have not run through all the images
+          // b. the index is a multiple of the current row size,
+          // c. we are not at the start of the images
+          // If all this is true, then make a new table row.
 
-            // TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
-            if (partNumber !== numOfImages && (partNumber % layoutDetails.size) === 0 && partNumber !== 0) {
-              tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
+          // TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
+          if (partNumber !== numOfImages && (partNumber % layoutDetails.size) === 0 && partNumber !== 0) {
+            tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
 
+          } else {
+            // Check if we have not run through all the images.
+            // if it is not, start a new table column
+            if (partNumber !== numOfImages) {
+              tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
             } else {
-              // Check if we have not run through all the images.
-              // if it is not, start a new table column
-              if (partNumber !== numOfImages) {
-                tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
-              } else {
-                // Otherwise, close the table column without making a new one
-                tableString += "</td>";
-              }
+              // Otherwise, close the table column without making a new one
+              tableString += "</td>";
             }
+          }
+        });
+
+        // Display the table with the images
+        $minifigItems.html(tableString);
+
+        // Display the scroll bar when needed for both layout sizes
+        if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
+          // Activate scroll bar
+          $buildArea.perfectScrollbar({
+            wheelSpeed: 1,
+            suppressScrollX: true
           });
 
-          // Display the table with the images
-          $minifigItems.html(tableString);
+          // Update the scrollbar so it does not change sizes on us
+          $buildArea.perfectScrollbar("update");
 
-          // Display the scroll bar when needed for both layout sizes
-          if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
-            // Activate scroll bar
-            $buildArea.perfectScrollbar({
-              wheelSpeed: 1,
-              suppressScrollX: true
-            });
-
-            // Update the scrollbar so it does not change sizes on us
-            $buildArea.perfectScrollbar("update");
-
-            // The scroll bar is not needed, destroy it
-          } else {
-            $buildArea.perfectScrollbar("destroy");
-          }
+          // The scroll bar is not needed, destroy it
+        } else {
+          $buildArea.perfectScrollbar("destroy");
         }
-      });
+      }
     });
   }
 
