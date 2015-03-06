@@ -124,9 +124,10 @@
     }
 
     // The user clicked a new part, swap orange background
-    if (oldPartNumberId !== partNumberId) {
+    var $newPart = $(partNumberId);
+    if (!$newPart.hasClass("selected")) {
       $(oldPartNumberId).removeClass("selected");
-      $(partNumberId).addClass("selected");
+      $newPart.addClass("selected");
     }
 
     // Store the old part number and change to the selected image
@@ -328,7 +329,7 @@
   $(function() {
     // Show/hide jetpack easter egg
     // TODO Make this mobile compatible
-    $("#emmet").dblclick(function() {
+    $("#emmet").on("dblclick", function() {
       var $specialImg = $(document.LUN.getVariable("imgSpecial"));
       if ($specialImg.attr("src").indexOf("empty") > -1)  {
         $specialImg.attr("src", "img/special/Special001.png");
