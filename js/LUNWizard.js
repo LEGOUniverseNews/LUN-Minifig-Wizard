@@ -14,8 +14,7 @@
   "use strict";
   // Global variables for various stuff
   // TODO Remove these as much as possible
-  var partNumberId,
-      oldPartNumberId;
+  var oldPartNumberId;
 
   // Restore prototype extending behavior of string-format
   format.extend(String.prototype);
@@ -25,8 +24,9 @@
    */
   var layoutDetails = {
     size: 4,
-    curPart: "",
-    curImages: []
+    curImages: [],
+    curPartID: null,
+    curPartName: ""
   };
 
 
@@ -53,20 +53,18 @@
 
 
   /**
-   * Preserve orange box around selected item
-   * (if present) between resizes.
+   * Preserve orange box around selected part (if any) between resizes.
    * @param {String} partID
    * @returns {Boolean} Always returns true.
    */
   function reapplyBubble(partID) {
-    // Only perform the class changes if an item is selected
-    if (partID !== undefined) {
-      // Remove the orange bubble from th selected part
+    // Only perform the class changes if an item was selected
+    if (partID) {
       var $partID = $(partID);
-      $partID.removeClass("selected");
 
       // 2 milliseconds (and no sooner!) later, reapply the bubble
       // The timeout is required so jQuery has time to remove the class
+      // TODO This broke in commit when the ID was moved to the global object
       window.setTimeout(function() {
         $partID.addClass("selected");
       }, 2);
@@ -91,7 +89,6 @@
 
   /**
    * Update the build area with the selected image.
-   *
    * @returns {Boolean} Always returns true.
    */
   $minifigItems.on("click", function(e) {
@@ -102,7 +99,7 @@
     var partNumber = $(e.target).parent().attr("id");
 
     // Get an ID selector
-    partNumberId = "#" + partNumber;
+    layoutDetails.curPartID = "#" + partNumber;
 
     // Valid image parts
     var minifigParts = {
@@ -115,16 +112,16 @@
     };
 
     // Get the ID to the part the user clicked
-    var imageElementId = minifigParts[layoutDetails.curPart];
+    var buildAreaID = minifigParts[layoutDetails.curPartName];
 
     // For some reason, the minifig part is not valid
-    if (imageElementId === undefined) {
+    if (buildAreaID === undefined) {
       document.LUN.throwError("internal");
       return false;
     }
 
     // The user clicked a new part, swap orange background
-    var $newPart = $(partNumberId);
+    var $newPart = $(layoutDetails.curPartID);
     if (!$newPart.hasClass("selected")) {
       $(oldPartNumberId).removeClass("selected");
       $newPart.addClass("selected");
@@ -132,7 +129,8 @@
 
     // Store the old part number and change to the selected image
     oldPartNumberId = "#" + partNumber;
-    $(imageElementId).attr("src", layoutDetails.curImages[partNumber]);
+    var curImageIndex = parseInt(partNumber.substr(partNumber.indexOf("-") + 1), 10);
+    $(buildAreaID).attr("src", layoutDetails.curImages[curImageIndex]);
     return true;
   });
 
@@ -158,7 +156,7 @@
    */
   function changePartImages(partName) {
     // Update global variable with chosen part
-    layoutDetails.curPart = partName;
+    layoutDetails.curPartName = partName;
 
     // Fetch the JSON for parsing
     $.ajax({
@@ -169,7 +167,7 @@
 
       // Now begin using that data on successful download
       success: function(json) {
-        var tableString = "<tr><td class='selector' id='0'>";
+        var tableString = "<tr><td class='selector' id='" + partName + "-0'>";
 
         // Clear any previous images
         $minifigItems.empty();
@@ -200,15 +198,15 @@
           // c. we are not at the start of the images
           // If all this is true, then make a new table row.
 
-          // TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
-          if (partNumber !== numOfImages && (partNumber % layoutDetails.size) === 0 && partNumber !== 0) {
-            tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
+          // TODO I know this can be MAJORLY fixed
+          if (index !== numOfImages && (index % layoutDetails.size) === 0 && index !== 0) {
+            tableString += "</td></tr><tr><td class='selector' id='" + partName + "-" + partNumber +"'>";
 
           } else {
             // Check if we have not run through all the images.
             // if it is not, start a new table column
             if (partNumber !== numOfImages) {
-              tableString += "</td><td class='selector' id='{0}'>".format(partNumber);
+              tableString += "</td><td class='selector' id='" + partName + "-" + partNumber +"'>";
             } else {
               // Otherwise, close the table column without making a new one
               tableString += "</td>";
@@ -316,10 +314,10 @@
     }
 
     // Reconstruct the table using the desired size
-    changePartImages(layoutDetails.curPart);
+    changePartImages(layoutDetails.curPartName);
 
     // Reapply the orange selection bubble
-    reapplyBubble(partNumberId);
+    reapplyBubble(layoutDetails.curPartID);
   });
 
 
