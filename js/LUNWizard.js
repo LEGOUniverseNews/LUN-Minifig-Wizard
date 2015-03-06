@@ -13,9 +13,8 @@
 (function($) {
   "use strict";
   // Global variables for various stuff
-  // TODO Remove these if possible
+  // TODO Remove these as much as possible
   var partNumberId,
-      oldPartTypeId,
       oldPartNumberId;
 
   // Restore prototype extending behavior of string-format
@@ -50,19 +49,6 @@
    */
   function capitalFirst(text) {
     return text.charAt(0).toUpperCase() + text.substr(1);
-  }
-
-  /**
-   * Apply orange "bubble" to current category image.
-   *
-   * @returns {Boolean} Always returns true.
-   */
-  function highlightCategory() {
-    $categoryButtonsImg.on("click", function() {
-      $categoryButtonsImg.removeClass("bubble active");
-      $(this).addClass("bubble active");
-    });
-    return true;
   }
 
 
@@ -152,11 +138,14 @@
 
   /**
    * Alias changePartImages() function
-   * to remove `onclick` attribute in the HTML.
+   * to remove `onclick` attribute in the HTML,
+   * and apply orange "bubble" to the current category image.
    *
    * @returns {Boolean} Always returns true.
    */
   $categoryButtonsImg.on("click", function() {
+    $categoryButtonsImg.removeClass("bubble active");
+    $(this).addClass("bubble active");
     changePartImages($(this).attr("id"));
     return true;
   });
@@ -167,17 +156,9 @@
    * Update the table with the proper images as
    * specified by the part parameter.
    */
-  function changePartImages(part) {
+  function changePartImages(partName) {
     // Update global variable with chosen part
-    layoutDetails.curPart = part;
-
-    // Construct jQuery ID attribute selector
-    var partTypeId = "#" + part;
-
-    highlightCategory(oldPartTypeId, partTypeId);
-
-    // Keep a copy of the old element Id
-    oldPartTypeId = "#" + part;
+    layoutDetails.curPart = partName;
 
     // Fetch the JSON for parsing
     $(function() {
@@ -198,10 +179,10 @@
           }
 
           // Get the total number of images for this part
-          var numOfImages = json[part].length - 1;
+          var numOfImages = json[partName].length - 1;
 
           // Run through all the images
-          $.each(json[part], function(index, image) {
+          $.each(json[partName], function(index, image) {
 
             // Get a part number,
             // get the thumbnail link,
@@ -212,7 +193,7 @@
 
             // Wrap the URL in an image tag, wrap that in a link, add it to the table
             tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
-              index, capitalFirst(part), partNumber, thumbLink);
+              index, capitalFirst(partName), partNumber, thumbLink);
 
             // Check if
             // a. we have not run through all the images
@@ -223,8 +204,8 @@
             // TODO I know this can be MAJORLY cleaned up ($.each() or Array.forEach)
             if (partNumber !== numOfImages && (partNumber % layoutDetails.size) === 0 && partNumber !== 0) {
               tableString += "</td></tr><tr><td class='selector' id='{0}'>".format(partNumber);
-            } else {
 
+            } else {
               // Check if we have not run through all the images.
               // if it is not, start a new table column
               if (partNumber !== numOfImages) {
