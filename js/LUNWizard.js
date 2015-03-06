@@ -44,6 +44,15 @@
 
 
   /**
+   * Capitalize the first letter of the given text.
+   * @param {String} text
+   * @returns {String}
+   */
+  function capitalFirst(text) {
+    return text.charAt(0).toUpperCase() + text.substr(1);
+  }
+
+  /**
    * Apply orange "bubble" to current category image.
    *
    * @returns {Boolean} Always returns true.
@@ -203,7 +212,7 @@
 
             // Wrap the URL in an image tag, wrap that in a link, add it to the table
             tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
-              index, part, partNumber, thumbLink);
+              index, capitalFirst(part), partNumber, thumbLink);
 
             // Check if
             // a. we have not run through all the images
