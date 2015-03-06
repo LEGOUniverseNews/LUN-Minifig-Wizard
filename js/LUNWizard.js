@@ -55,19 +55,20 @@
   /**
    * Preserve orange box around selected item
    * (if present) between resizes.
-   *
+   * @param {String} partID
    * @returns {Boolean} Always returns true.
    */
-  function reapplyBubble(partNumberId) {
+  function reapplyBubble(partID) {
     // Only perform the class changes if an item is selected
-    if (partNumberId !== undefined) {
+    if (partID !== undefined) {
       // Remove the orange bubble from th selected part
-      $(partNumberId).removeClass("selected");
+      var $partID = $(partID);
+      $partID.removeClass("selected");
 
       // 2 milliseconds (and no sooner!) later, reapply the bubble
       // The timeout is required so jQuery has time to remove the class
       window.setTimeout(function() {
-        $(partNumberId).addClass("selected");
+        $partID.addClass("selected");
       }, 2);
     }
     return true;
@@ -76,7 +77,6 @@
 
   /**
    * Open a new window with a larger version of the minifig.
-   *
    * @returns {Boolean} Always returns true.
    */
   $buttonNewWindow.on("click", function() {
@@ -141,7 +141,6 @@
    * Alias changePartImages() function
    * to remove `onclick` attribute in the HTML,
    * and apply orange "bubble" to the current category image.
-   *
    * @returns {Boolean} Always returns true.
    */
   $categoryButtonsImg.on("click", function() {
@@ -241,7 +240,7 @@
 
 
   /**
-   * Resizes the table between small and large display
+   * Resizes the table between small and large display.
    */
   $buttonResize.on("click", function() {
     // We are currently using the small display
