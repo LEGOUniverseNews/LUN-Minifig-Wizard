@@ -64,7 +64,8 @@
 
       // 2 milliseconds (and no sooner!) later, reapply the bubble
       // The timeout is required so jQuery has time to remove the class
-      // TODO This broke in commit when the ID was moved to the global object
+      // TODO This broke in commit 69b9e35c7be66f3725750cded503040d927083f8
+      // when the ID was moved to the global object
       window.setTimeout(function() {
         $partID.addClass("selected");
       }, 2);
