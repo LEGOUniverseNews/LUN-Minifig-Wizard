@@ -5,6 +5,9 @@
 localhost.py
 *.map
 
+Testing/
+lib/
+
 #############
 ## Windows
 #############
