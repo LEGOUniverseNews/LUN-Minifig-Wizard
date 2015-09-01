@@ -1,7 +1,7 @@
 /*
  * LEGO Universe News! Minifig Wizard
  *
- * Created 2013-2014 Triangle717 & rioforce
+ * Created 2013-2015 Triangle717 & rioforce
  * <http://Triangle717.WordPress.com/>
  * <http://rioforce.WordPress.com/>
  *
@@ -62,13 +62,10 @@
     if (partID) {
       var $partID = $(partID);
 
-      // 2 milliseconds (and no sooner!) later, reapply the bubble
-      // The timeout is required so jQuery has time to remove the class
+      // Reapply the bubble
       // TODO This broke in commit 69b9e35c7be66f3725750cded503040d927083f8
       // when the ID was moved to the global object
-      window.setTimeout(function() {
-        $partID.addClass("selected");
-      }, 2);
+      $partID.addClass("selected");
     }
     return true;
   }

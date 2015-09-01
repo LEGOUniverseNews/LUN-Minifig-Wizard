@@ -1,7 +1,7 @@
 /**
  * LEGO Universe News! Minifig Wizard
  *
- * Created 2013-2014 Triangle717 & rioforce
+ * Created 2013-2015 Triangle717 & rioforce
  * <http://Triangle717.WordPress.com/>
  * <http://rioforce.WordPress.com/>
  *

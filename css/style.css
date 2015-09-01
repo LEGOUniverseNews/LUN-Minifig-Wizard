@@ -1,7 +1,7 @@
 /*
  * LEGO Universe News! Minifig Wizard
  *
- * Created 2013-2014 Triangle717 & rioforce
+ * Created 2013-2015 Triangle717 & rioforce
  * <http://Triangle717.WordPress.com/>
  * <http://rioforce.WordPress.com/>
  *
@@ -75,8 +75,7 @@ table { border-style: none; }
 
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  -webkit-box-shadow: 1px 1px 10px #8c8c8c inset;
-          box-shadow: 1px 1px 10px #8c8c8c inset;
+  box-shadow: 1px 1px 10px #8c8c8c inset;
 
   /* Older browsers will not render the orange gradient */
   background-color: #ff8409;
@@ -102,9 +101,7 @@ table { border-style: none; }
   background-color: #000000;
   background-image: -webkit-linear-gradient(#252525, #000000);
   background-image:         linear-gradient(#252525, #000000);
-
-  -webkit-box-shadow: 1px 1px 10px #8c8c8c;
-          box-shadow: 1px 1px 10px #8c8c8c;
+  box-shadow: 1px 1px 10px #8c8c8c;
   -webkit-transition: width 0.3s ease;
           transition: width 0.3s ease;
 }
