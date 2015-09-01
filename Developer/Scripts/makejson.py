@@ -60,8 +60,21 @@ def _convertFolderNameToJSONName(name):
         raise SystemExit(1)
 
 
+def _getWizardVersion():
+    try:
+        with open("../../package.json", "rt") as f:
+            package = json.load(f)
+        return package["version"]
+    except ValueError:
+        return None
+
+
 def _makeJSONBase():
     obj = {}
+    version = _getWizardVersion()
+    if version is not None:
+        obj["version"] = version
+
     for folder in imageFols:  # noqa
         obj[_convertFolderNameToJSONName(folder)] = []
     return obj
