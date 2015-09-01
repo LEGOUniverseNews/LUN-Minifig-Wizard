@@ -144,6 +144,83 @@
   });
 
 
+  function buildImageTable(json, partName) {
+    // Clear any previous images
+    $minifigItems.empty();
+    if (layoutDetails.curImages.length > 0) {
+      layoutDetails.curImages = [];
+    }
+
+    // Get the total number of images for this part
+    var numOfImages = json[partName].length - 1,
+        tableString = ["<tr><td class='selector' id='", partName, "-0'>"];
+
+    // Run through all the images
+    $.each(json[partName], function(index, image) {
+
+      // Get a part number,
+      // get the thumbnail link,
+      // store the URL to each full size image
+      var partNumber = index + 1,
+          thumbLink  = image.thumbnail;
+      layoutDetails.curImages.push(image.fullsize);
+
+      // Wrap the URL in an image tag, wrap that in a link, add it to the table
+      tableString.push("<img alt='", capitalFirst(partName), " #", index,
+                       "' width='64' height='64' src='", thumbLink, "'>");
+
+      // Check if
+      // a. we have not run through all the images
+      // b. the index is a multiple of the current row size,
+      // c. we are not at the start of the images
+      // If all this is true, then make a new table row.
+
+      // TODO I know this can be MAJORLY fixed
+      if (index !== numOfImages && (index % layoutDetails.size) === 0 && index !== 0) {
+        tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
+
+      } else {
+        // Check if we have not run through all the images.
+        // if it is not, start a new table column
+        if (index !== numOfImages) {
+          tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
+        } else {
+          // Otherwise, close the table column without making a new one
+          tableString.push("</td>");
+        }
+      }
+    });
+
+    // Display the table with the images
+    $minifigItems.html(tableString.join("").replace(/'/g, "\""));
+
+    // Display the scroll bar when needed for both layout sizes
+    if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
+      // Activate scroll bar
+      $buildArea.perfectScrollbar({
+        wheelSpeed: 1,
+        suppressScrollX: true
+      });
+
+      // Update the scrollbar so it does not change sizes on us
+      $buildArea.perfectScrollbar("update");
+
+      // The scroll bar is not needed, destroy it
+    } else {
+      $buildArea.perfectScrollbar("destroy");
+    }
+  }
+
+
+  function getImagesJSON() {
+    return $.ajax({
+      type: "GET",
+      cache: true,
+      url: "img/images.json",
+      dataType: "json"
+    });
+  }
+
   /**
    * Parse the JSON file for image links.
    * Update the table with the proper images as
@@ -153,82 +230,31 @@
     // Update global variable with chosen part
     layoutDetails.curPartName = partName;
 
-    // Fetch the JSON for parsing
-    $.ajax({
-      type: "GET",
-      cache: true,
-      url: "img/images.json",
-      dataType: "json",
+    // The JSON has been previously stored
+    if (window.sessionStorage.hasOwnProperty("images")) {
+      var json = JSON.parse(window.sessionStorage.getItem("images"));
 
-      // Now begin using that data on successful download
-      success: function(json) {
-        var tableString = ["<tr><td class='selector' id='", partName, "-0'>"];
+      // We have the same version, reuse the cache
+      if (document.LUN.version === json.version) {
+        console.log("Same version");
+        buildImageTable(json, layoutDetails.curPartName);
 
-        // Clear any previous images
-        $minifigItems.empty();
-        if (layoutDetails.curImages.length > 0) {
-          layoutDetails.curImages = [];
-        }
-
-        // Get the total number of images for this part
-        var numOfImages = json[partName].length - 1;
-
-        // Run through all the images
-        $.each(json[partName], function(index, image) {
-
-          // Get a part number,
-          // get the thumbnail link,
-          // store the URL to each full size image
-          var partNumber = index + 1,
-              thumbLink  = image.thumbnail;
-          layoutDetails.curImages.push(image.fullsize);
-
-          // Wrap the URL in an image tag, wrap that in a link, add it to the table
-          tableString.push("<img alt='", capitalFirst(partName), " #", index,
-                           "' width='64' height='64' src='", thumbLink, "'>");
-
-          // Check if
-          // a. we have not run through all the images
-          // b. the index is a multiple of the current row size,
-          // c. we are not at the start of the images
-          // If all this is true, then make a new table row.
-
-          // TODO I know this can be MAJORLY fixed
-          if (index !== numOfImages && (index % layoutDetails.size) === 0 && index !== 0) {
-            tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
-
-          } else {
-            // Check if we have not run through all the images.
-            // if it is not, start a new table column
-            if (index !== numOfImages) {
-              tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
-            } else {
-              // Otherwise, close the table column without making a new one
-              tableString.push("</td>");
-            }
-          }
+      } else if (document.LUN.version > json.version) {
+        getImagesJSON().success(function(json) {
+          console.log("Need newer version");
+          window.sessionStorage.setItem("images", JSON.stringify(json));
+          buildImageTable(json, layoutDetails.curPartName);
         });
-
-        // Display the table with the images
-        $minifigItems.html(tableString.join("").replace(/'/g, "\""));
-
-        // Display the scroll bar when needed for both layout sizes
-        if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
-          // Activate scroll bar
-          $buildArea.perfectScrollbar({
-            wheelSpeed: 1,
-            suppressScrollX: true
-          });
-
-          // Update the scrollbar so it does not change sizes on us
-          $buildArea.perfectScrollbar("update");
-
-          // The scroll bar is not needed, destroy it
-        } else {
-          $buildArea.perfectScrollbar("destroy");
-        }
       }
-    });
+
+      // The JSON has never been stored
+    } else {
+      getImagesJSON().success(function(json) {
+        console.log("Needs JSON");
+        window.sessionStorage.setItem("images", JSON.stringify(json));
+        buildImageTable(json, layoutDetails.curPartName);
+      });
+    }
   }
 
 
