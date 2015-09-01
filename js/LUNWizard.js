@@ -131,19 +131,10 @@
 
 
   /**
-   * Alias changePartImages function
-   * to remove `onclick` attribute in the HTML,
-   * and apply orange "bubble" to the current category image.
-   * @returns {Boolean} Always returns true.
+   * Build the images table.
+   * @param {Object} json The JSON to build the table with.
+   * @param {String} partName The part category to build.
    */
-  $categoryButtonsImg.on("click", function() {
-    $categoryButtonsImg.removeClass("bubble active");
-    $(this).addClass("bubble active");
-    changePartImages($(this).attr("id"));
-    return true;
-  });
-
-
   function buildImageTable(json, partName) {
     // Clear any previous images
     $minifigItems.empty();
@@ -212,6 +203,10 @@
   }
 
 
+  /**
+   * Get the images JSON.
+   * @returns {Object} jQuery AJAX object.
+   */
   function getImagesJSON() {
     return $.ajax({
       type: "GET",
@@ -221,10 +216,11 @@
     });
   }
 
+
   /**
-   * Parse the JSON file for image links.
-   * Update the table with the proper images as
-   * specified by the part parameter.
+   * Entry function to update the image table.
+   * Also controls JSON storage and retrieval.
+   * @param {String} partName The part category to build.
    */
   function changePartImages(partName) {
     // Update global variable with chosen part
@@ -236,12 +232,10 @@
 
       // We have the same version, reuse the cache
       if (document.LUN.version === json.version) {
-        console.log("Same version");
         buildImageTable(json, layoutDetails.curPartName);
 
       } else if (document.LUN.version > json.version) {
         getImagesJSON().success(function(json) {
-          console.log("Need newer version");
           window.sessionStorage.setItem("images", JSON.stringify(json));
           buildImageTable(json, layoutDetails.curPartName);
         });
@@ -250,12 +244,24 @@
       // The JSON has never been stored
     } else {
       getImagesJSON().success(function(json) {
-        console.log("Needs JSON");
         window.sessionStorage.setItem("images", JSON.stringify(json));
         buildImageTable(json, layoutDetails.curPartName);
       });
     }
   }
+
+  /**
+   * Alias changePartImages function
+   * to remove `onclick` attribute in the HTML,
+   * and apply orange "bubble" to the current category image.
+   * @returns {Boolean} Always returns true.
+   */
+  $categoryButtonsImg.on("click", function() {
+    $categoryButtonsImg.removeClass("bubble active");
+    $(this).addClass("bubble active");
+    changePartImages($(this).attr("id"));
+    return true;
+  });
 
 
   /**
