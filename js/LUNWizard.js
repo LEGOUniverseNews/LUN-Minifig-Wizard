@@ -131,7 +131,7 @@
 
 
   /**
-   * Alias changePartImages() function
+   * Alias changePartImages function
    * to remove `onclick` attribute in the HTML,
    * and apply orange "bubble" to the current category image.
    * @returns {Boolean} Always returns true.
@@ -162,7 +162,7 @@
 
       // Now begin using that data on successful download
       success: function(json) {
-        var tableString = "<tr><td class='selector' id='" + partName + "-0'>";
+        var tableString = ["<tr><td class='selector' id='", partName, "-0'>"];
 
         // Clear any previous images
         $minifigItems.empty();
@@ -184,8 +184,8 @@
           layoutDetails.curImages.push(image.fullsize);
 
           // Wrap the URL in an image tag, wrap that in a link, add it to the table
-          tableString += "<img alt='" + index + "#" + capitalFirst(partName) +
-                         "' width='64' height='64' src='" + thumbLink + "'>";
+          tableString.push("<img alt='", capitalFirst(partName), " #", index,
+                           "' width='64' height='64' src='", thumbLink, "'>");
 
           // Check if
           // a. we have not run through all the images
@@ -195,22 +195,22 @@
 
           // TODO I know this can be MAJORLY fixed
           if (index !== numOfImages && (index % layoutDetails.size) === 0 && index !== 0) {
-            tableString += "</td></tr><tr><td class='selector' id='" + partName + "-" + partNumber +"'>";
+            tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
 
           } else {
             // Check if we have not run through all the images.
             // if it is not, start a new table column
             if (partNumber !== numOfImages) {
-              tableString += "</td><td class='selector' id='" + partName + "-" + partNumber +"'>";
+              tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
             } else {
               // Otherwise, close the table column without making a new one
-              tableString += "</td>";
+              tableString.push("</td>");
             }
           }
         });
 
         // Display the table with the images
-        $minifigItems.html(tableString);
+        $minifigItems.html(tableString.join("").replace(/'/g, "\""));
 
         // Display the scroll bar when needed for both layout sizes
         if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
