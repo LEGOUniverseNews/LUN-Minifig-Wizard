@@ -16,9 +16,6 @@
   // TODO Remove these as much as possible
   var oldPartNumberId;
 
-  // Restore prototype extending behavior of string-format
-  format.extend(String.prototype);
-
   /**
    * @type {Object}
    */
@@ -187,8 +184,8 @@
           layoutDetails.curImages.push(image.fullsize);
 
           // Wrap the URL in an image tag, wrap that in a link, add it to the table
-          tableString += "<img alt='{1} #{2}' width='64' height='64' src='{3}'>".format(
-            index, capitalFirst(partName), partNumber, thumbLink);
+          tableString += "<img alt='" + index + "#" + capitalFirst(partName) +
+                         "' width='64' height='64' src='" + thumbLink + "'>";
 
           // Check if
           // a. we have not run through all the images

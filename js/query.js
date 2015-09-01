@@ -50,11 +50,12 @@
   function _throwError(err) {
     var messages = {
       spark: "You need to finish creating your minifigure!",
-      notfound: "Minifigure part 404 was not found!",
-      internal: "An internal error has occurred (500).",
+      notfound: "That Minifigure part was not found!",
+      internal: "An internal error has occurred"
     };
 
 //    document.querySelector(".message-error").innerHTML = messages[err];
+    console.log(messages[err]);
     return false;
   }
 

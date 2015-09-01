@@ -29,7 +29,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: "node_modules/",
-            src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
+            src: ["jquery.browser/dist/*.min.js"],
             dest: "lib/",
             flatten: true,
             filter: "isFile"

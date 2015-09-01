@@ -21,7 +21,6 @@ The **_LEGO Universe News!_ Minifig Wizard** was created using these fine progra
 * [jquery.browser](https://github.com/gabceb/jquery-browser-plugin/)
 * [Modernizr](http://modernizr.com/)
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar/)
-* [String::format](https://github.com/davidchambers/string-format/)
 
 ## Reporting an Issue ##
 
