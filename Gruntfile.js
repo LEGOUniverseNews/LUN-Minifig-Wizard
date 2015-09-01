@@ -110,7 +110,6 @@ module.exports = function(grunt) {
           "warnings": true
         },
         report: "min",
-        sourceMap: true,
         mangle: true
       },
       my_target: {
