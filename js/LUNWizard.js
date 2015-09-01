@@ -318,8 +318,7 @@
 
   $(function() {
     // Show/hide jetpack easter egg
-    // TODO Make this mobile compatible
-    $("#emmet").on("dblclick", function() {
+    $("#emmet").on("click", function() {
       var $specialImg = $(document.LUN.getVariable("imgSpecial"));
       if ($specialImg.attr("src").indexOf("empty") > -1)  {
         $specialImg.attr("src", "img/special/Special001.png");
