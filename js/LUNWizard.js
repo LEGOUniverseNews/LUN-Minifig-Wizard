@@ -200,7 +200,7 @@
           } else {
             // Check if we have not run through all the images.
             // if it is not, start a new table column
-            if (partNumber !== numOfImages) {
+            if (index !== numOfImages) {
               tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
             } else {
               // Otherwise, close the table column without making a new one
