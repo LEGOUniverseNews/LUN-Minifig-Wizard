@@ -167,7 +167,7 @@
       // If all this is true, then make a new table row.
 
       // TODO I know this can be MAJORLY fixed
-      if (index !== numOfImages && (index % layoutDetails.size) === 0 && index !== 0) {
+      if (index !== numOfImages && (partNumber % layoutDetails.size) === 0 && index !== 0) {
         tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
 
       } else {
