@@ -129,8 +129,8 @@
         part = "/" + part;
         part = part.split("/");
 
-        // Prefix with root path
-        part[0] = "/img";
+        // Prefix with path
+        part[0] = window.location.pathname.split("/")[0] + "img";
 
         // Special and empty items are stored
         // in a different location than everything else
@@ -196,7 +196,12 @@
         }
 
         // Perform initial sanitizing, split into array
-        var qs = v.replace(window.location.origin, "").replace(/img\/|full\/|.png/g, "").split("/");
+        var qs = v.replace(window.location.origin, "");
+        // If we are not running from the domain root, remove the subpath
+        if (window.location.pathname !== "/") {
+          qs = qs.replace(window.location.pathname, "/");
+        }
+        qs = qs.replace(/img\/|full\/|.png/g, "").split("/");
 
         // Prefix the proper separator, substitute the folder value, remove zeros
         qs[0] = value !== "heads" ? "&" : "?";
