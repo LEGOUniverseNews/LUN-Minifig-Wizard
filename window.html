@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title>LEGO Universe News! Minifig Wizard</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nunito:400">
+  <link rel="stylesheet" href="css/LUNWizard.window.min.css">
+</head>
+
+<body>
+<!--  <div class="message-error"></div>-->
+  <div id="final-images">
+    <img class="the-big-picture" id="img-shadow" src="img/spark/drop-shadow.png" />
+  </div>
+
+  <div id="btn-gear">
+    <img width="40" height="40" alt="Settings panel toggle button" src="img/ui/Gear.svg" />
+  </div>
+
+  <div id="settings-panel">
+    Background Color
+    <table>
+      <tr>
+        <td class="color-box white-border" id="gray-color-box"></td>
+        <td class="color-box" id="white-color-box" ></td>
+        <td class="color-box" id="black-color-box"></td>
+        <td class="color-box" id="orange-color-box"></td>
+        <td class="color-box" id="yellow-color-box"></td>
+        <td class="color-box" id="blue-color-box"></td>
+        <td class="color-box" id="green-color-box"></td>
+        <td class="color-box" id="red-color-box"></td>
+      </tr>
+    </table><br>
+    <span id="size-text">Size</span><br>
+      <input type="number" id="input-size" min="0" max="600" placeholder="600" autocomplete="off">
+      <label id="size-label" for="size-input">px</label>
+  </div>
+
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="lib/modernizr.custom.13815.js"></script>
+  <script src="js/LUNWizard.general.min.js"></script>
+  <script src="js/LUNWizard.settings.min.js"></script>
+</body>
+</html>

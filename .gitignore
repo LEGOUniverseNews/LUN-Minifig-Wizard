@@ -2,6 +2,12 @@
 *.blend1
 *.blend2
 
+localhost.py
+*.map
+
+Testing/
+lib/
+
 #############
 ## Windows
 #############

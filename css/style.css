@@ -1,7 +1,7 @@
 /*
  * LEGO Universe News! Minifig Wizard
  *
- * Created 2013-2014 Triangle717 & rioforce
+ * Created 2013-2015 Triangle717 & rioforce
  * <http://Triangle717.WordPress.com/>
  * <http://rioforce.WordPress.com/>
  *
@@ -10,11 +10,11 @@
  */
 
 
-/* Fill entire screen, bg color, font settings */
 html {
   width: 100%;
   height: 100%;
-  color: white;
+  min-width: 320px;
+  color: #fff;
   font-family: sans-serif;
   background-color: #d0d0d0;
 }
@@ -30,28 +30,28 @@ html {
 table { border-style: none; }
 
 /* Align all the elements into their proper location */
-.my-tables {
+.area-minifig-parts {
   position: absolute;
   top: 15px;
   left: 350px;
   width: 315px;
-  -webkit-transition: width .3s ease;
-          transition: width .3s ease;
+  -webkit-transition: width 0.3s ease;
+          transition: width 0.3s ease;
 }
 
 /* Button to resize the table */
-#resize-button {
+#btn-resize {
   position: absolute;
   top: 445px;
   left: 550px;
+  cursor: pointer;
 
   -webkit-transition-property: -webkit-transform;
-  -webkit-transition-duration: .3s;
+          transition-property: -webkit-transform, -ms-transform, transform;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
   -webkit-transition-timing-function: ease;
-
-  transition-property: -webkit-transform, -ms-transform, transform;
-  transition-duration: .3s;
-  transition-timing-function: ease;
+          transition-timing-function: ease;
 }
 
 /* Move drop shadow behind minifigure in main display */
@@ -66,57 +66,53 @@ table { border-style: none; }
 
 /* User-made minifigure display */
 #my-sigfig-display {
-  /* Image positioning */
   position: absolute;
   top: 45px;
   left: 40px;
   z-index: -1;
-
-  /* Background */
   width: 312px;
   height: 360px;
-
-  /* Older browsers will not render the gradient */
-  background: #ff8409;
-
-  /* Orange background gradient */
-  background: -webkit-linear-gradient(to right, #ff8409, #d76b00);
-          background: linear-gradient(to right, #ff8409, #d76b00);
 
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   box-shadow: 1px 1px 10px #8c8c8c inset;
+
+  /* Older browsers will not render the orange gradient */
+  background-color: #ff8409;
+  background-image: -webkit-linear-gradient(to right, #ff8409, #d76b00);
+  background-image:         linear-gradient(to right, #ff8409, #d76b00);
 }
 
 /* New Window button */
-#bigger-picture {
+#btn-new-window {
   position: absolute;
   top: 410px;
   left: 260px;
+  cursor: pointer;
 }
 
 /* Available items display */
 #background {
   width: 320px;
   height: 425px;
-
-  /* Older browsers will not render the gradient */
-  background: #000000;
-  background: -webkit-linear-gradient(#252525, #000000);
-          background: linear-gradient(#252525, #000000);
-
   border-radius: 30px;
+
+  /* Older browsers will not render the orange gradient */
+  background-color: #000000;
+  background-image: -webkit-linear-gradient(#252525, #000000);
+  background-image:         linear-gradient(#252525, #000000);
   box-shadow: 1px 1px 10px #8c8c8c;
-  -webkit-transition: width .3s ease;
-          transition: width .3s ease;
+  -webkit-transition: width 0.3s ease;
+          transition: width 0.3s ease;
 }
 
 /* Buttons to view the different body parts */
 #category-buttons-div {
   margin-left: 12px;
   padding-top: 15px;
-  -webkit-transition: margin-left .3s ease;
-          transition: margin-left .3s ease;
+  cursor: pointer;
+  -webkit-transition: margin-left 0.3s ease;
+          transition: margin-left 0.3s ease;
 }
 
 /* Separate the category buttons a bit */
@@ -125,22 +121,21 @@ table { border-style: none; }
   padding-right: 0;
 
   -webkit-transition-property: padding-left, padding-right;
-  -webkit-transition-duration: .1s;
+          transition-property: padding-left, padding-right;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
   -webkit-transition-timing-function: ease;
-
-  transition-property: padding-left, padding-right;
-  transition-duration: .1s;
-  transition-timing-function: ease;
+          transition-timing-function: ease;
 }
 
 /* Background for the images */
-#content {
+#area-minifig-built {
   margin-top: -15px;
   width: 300px;
   height: 315px;
   overflow: hidden;
-  -webkit-transition: width .2s ease;
-          transition: width .2s ease;
+  -webkit-transition: width 0.2s ease;
+          transition: width 0.2s ease;
 }
 
 /* Even spacing around the table */
@@ -152,13 +147,16 @@ table { border-style: none; }
   height: 65px;
   padding: 3.9px;
   border-radius: 11px;
+  cursor: pointer;
 }
 
 /* Orange background for invdividual part hover and selection */
-.selector:hover, .selected { background-color: #ffa500; }
+.selector:hover,
+.selected { background-color: #ffa500; }
 
 /* Orange background for category part hover and selection */
-.bubble {
+.bubble,
+.category-buttons-img:hover {
   background-color: #ffa500;
   border-radius: 50%;
 }
@@ -174,13 +172,13 @@ table { border-style: none; }
 
 /* Customize perfect-scrollbar */
 .ps-scrollbar-y {
-  width: 9px !important;
   background-color: #B3B3B3 !important;
+  cursor: pointer;
 }
 
 /* Hide the scrollbar rail */
 .ps-scrollbar-y-rail {
   top: 75px !important;
   right: -2px !important;
-  background-color: rgba(0,0,0,0) !important;
+  background-color: transparent !important;
 }

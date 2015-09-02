@@ -1,9 +1,7 @@
 # Developing #
-
 If you would like to contribute to the **_LEGO Universe News!_ Minifig Wizard**, you will want to read this.
 
 ### Getting Started ###
-
 * Fork the repository by clicking ![the Fork button.](http://i81.servimg.com/u/f81/16/33/06/11/forkme12.png)
 * Clone the fork onto your computer by running [`git clone https://github.com/yourusername/LUN-Minifig-Wizard.git`](#) or from your GUI frontend.
 * Install [node.js](http://nodejs.org/) and run `npm install` to install all dependencies.
@@ -17,17 +15,9 @@ submit a [Pull Request](https://github.com/LEGOUniverseNews/LUN-Minifig-Wizard/p
 # Editing #
 
 ## Code ##
-
-* You are **strongly** encouraged to use one of the following while developing to ensure `images.xml` is parsed.
-Mozilla Firefox (both Desktop and Mobile) is the only web browser that supports parsing an XML file over an non-HTTP connection.
-
-    * [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)
-    * [Brackets](http://brackets.io/)
-    * a localhost server
-
 * The HTML5 spec should be followed at all times, though heavy use of CSS3 is currently not suggested. Follow the formatting already in the scripts.
 * Make sure your code is valid! Run `grunt lint` to ensure your code is valid. Also use the [W3C HTML5 Validator](http://validator.w3.org) and the [W3C CSS Validator](http://jigsaw.w3.org/css-validator/) as a final test. (**Hint:** a full list of all tasks, including minifying the code, run `grunt default`).
-* `Developer/Scripts/makexml.py` is used to generate a new `img/images.xml` file, which lists all the available images for use. This should be run every time images are added/updated.
+* `Developer/Scripts/makejson.py` is used to generate a new `img/images.json` file, which lists all the available images for use. This should be run every time images are added/updated.
 It is written in [Python](http://python.org) and requires a Python interpreter to run. While Python 2.7 backward-compatibility is present, support for that version is limited. It is recommended to use a Python 3.3+ interpreter.
 
 ## Images ##

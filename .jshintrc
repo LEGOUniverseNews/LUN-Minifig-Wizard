@@ -1,13 +1,16 @@
 {
-  "indent":     2,
-  "jquery":     true,
-  "maxlen":     125,
-  "quotmark":   "double",
-  "strict":     true,
-  "undef":      true,
-  "unused":     true,
+  "indent"       : 2,
+  "maxlen"       : 125,
+  "jquery"       : true,
+  "node"         : true,
+  "quotmark"     : "double",
+  "strict"       : true,
+  "undef"        : true,
+  "unused"       : true,
   "globals": {
-    "document": true,
-    "window":   true
+    "format"     : true,
+    "document"   : true,
+    "window"     : true,
+    "Modernizr"  : true
   }
 }

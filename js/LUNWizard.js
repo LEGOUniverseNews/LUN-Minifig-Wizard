@@ -1,7 +1,7 @@
 /*
  * LEGO Universe News! Minifig Wizard
  *
- * Created 2013-2014 Triangle717 & rioforce
+ * Created 2013-2015 Triangle717 & rioforce
  * <http://Triangle717.WordPress.com/>
  * <http://rioforce.WordPress.com/>
  *
@@ -10,352 +10,357 @@
  */
 
 
-// Global variables for various stuff
-var bodyPart, imagesList, rowSize,
-    partNumberID, oldPartNumberID, oldPartTypeID,
-    imagesList = [],
-    rowSize = 4;
-
-
-$(function() {
+(function($) {
   "use strict";
-  var $content = $("#content"),
-      $background = $("#background"),
-      $resizeButton = $("#resize-button"),
-      $categoryButtons = $(".category-buttons-th"),
-      $categoryButtonsDiv = $("#category-buttons-div");
+  // Global variables for various stuff
+  // TODO Remove these as much as possible
+  var oldPartNumberId;
 
-  // IE9: Replace the New Window SVG with a PNG version
-  if ($.browser.msie && $.browser.versionNumber === 9) {
-    $("#bigger-picture").attr("src", "img/ui/New-window-button.png");
-  }
-
-  // Apply orange bubble and mark as active the first button ("Head").
-  // This must be done here to stop the orange bubble from sticking
-  // if a (singlular) new category is selected then the table is enlarged.
-  // Selecting multiple categories before enlarging is not bugged.
-  $(".category-buttons-img:first").addClass("active");
-  $(".category-buttons-img:first").addClass("bubble");
-
-  // Find "The Special" who will disarm the Kragle using his interesting abilities
-  $("#emmet").dblclick(function() {
-    var $SpecialImg = $("#the-special");
-    if ($SpecialImg.attr("src") === "img/ui/figure/empty.png") {
-      $SpecialImg.attr("src", "img/special/Special001.png");
-    } else {
-      $SpecialImg.attr("src", "img/ui/figure/empty.png");
-    }
-  });
-
-  // Export global jQuery variables
-  window.$content = $content;
-  window.$background = $background;
-  window.$resizeButton = $resizeButton;
-  window.$categoryButtons = $categoryButtons;
-  window.$categoryButtonsDiv = $categoryButtonsDiv;
-
-  // Run process to display the available minifig heads upon page load
-  changePartImages("Head");
-});
-
-
-function changeCategoryImages(old, current) {
-  "use strict";
-  /* Apply orange "bubble" to category image */
-  $(document).ready(function() {
-    // On hover, if this is not already the active button,
-    // apply the bubble to the images
-    $(".category-buttons-img").on("mouseover", function() {
-      if (!$(this).hasClass("active")) {
-        $(this).addClass("bubble");
-      }
-    });
-
-    // On mouseout, if this is not the active button,
-    // remove the bubble to the images
-    $(".category-buttons-img").on("mouseout", function() {
-      if (!$(this).hasClass("active")) {
-        $(this).removeClass("bubble");
-      }
-    });
-  });
-
-  // A button different from the current one was clicked
-  if (old !== current) {
-    $(".category-buttons-img").click(function() {
-      // Swap the orange bubble
-      $(old).removeClass("bubble");
-      $(current).addClass("bubble");
-
-      // Swap the active label
-      $(old).removeClass("active");
-      $(current).addClass("active");
-    });
-  }
-}
-
-
-function resizeTable() {
-  "use strict";
-  /* Resizes the table between small and large display */
-
-  // We are currently using the small display
-  if (rowSize === 4) {
-    // Change the number of items in a row to 6
-    rowSize = 6;
-
-    /**
-     * Run animations to in/decrease the size/locations of whatever we need
-     * In order in which they run for both enlarge and decrease:
-     *
-     * Resize button (location)
-     * Scrollbar
-     * Background
-     * Category buttons (enlargement)
-     * Category buttons (location)
-     * Container
-     * Left margin
-     * Resize button (swap SVGs)
-     */
-
-    // CSS transitions are not supported, fallback to jQuery animations
-    if (!Modernizr.csstransitions) {
-      $resizeButton.animate({"left": "+=190px"}, 300);
-      $(".my-tables").animate({"width": "+=180px"}, 300);
-      $background.animate({"width": "+=180px"}, 300);
-      $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-      $categoryButtons.animate({"padding-left": "5px"}, 100);
-      $categoryButtons.animate({"padding-right": "5px"}, 100);
-      $content.animate({"width": "+=180px"}, 150);
-
-    } else {
-      // For browsers that do support CSS transitions, trigger them
-      $resizeButton.css("transform", "translate3d(190px, 0, 0)");
-      $(".my-tables").css("width", "+=180px");
-      $background.css("width", "+=180px");
-      $categoryButtonsDiv.css("margin-left", "+=48px");
-      $categoryButtons.css("padding-left", "5px");
-      $categoryButtons.css("padding-right", "5px");
-      $content.css("width", "+=180px");
-    }
-
-    // Increase the margins on left side of the table to make it all even
-    // This runs even if the browser does not support CSS transitions
-    $("#minifig-items").css("margin-left", "20px");
-    $resizeButton.attr("src", "img/ui/Reduce-button.svg");
-
-    // We are currently using the larger size
-  } else {
-    // Set the number of items in a row to 4
-    rowSize = 4;
-
-    // CSS transitions are not supported, fallback to jQuery animations
-    if (!Modernizr.csstransitions) {
-      $resizeButton.animate({"left": "-=190px"}, 300);
-      $(".my-tables").animate({"width": "-=180px"}, 300);
-      $background.animate({"width": "-=180px"}, 300);
-      $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-      $categoryButtons.animate({"padding-left": "0px"}, 100);
-      $categoryButtons.animate({"padding-right": "0px"}, 100);
-      $content.animate({"width": "-=180px"}, 150);
-
-    } else {
-      // For browsers that do support CSS transitions, trigger them
-      $resizeButton.css("transform", "");
-      $(".my-tables").css("width", "");
-      $background.css("width", "");
-      $categoryButtonsDiv.css("margin-left", "");
-      $categoryButtons.css("padding-left", "");
-      $categoryButtons.css("padding-right", "");
-      $content.css("width", "-=180px");
-    }
-    $("#minifig-items").css("margin-left", "5px");
-    $resizeButton.attr("src", "img/ui/Enlarge-button.svg");
-  }
-
-  // Reconstruct the table using the desired size
-  changePartImages(bodyPart);
-
-  // Reapply the orange selection bubble
-  reapplyBubble(partNumberID);
-}
-
-function reapplyBubble(partNumberID) {
-  "use strict";
-  /* Preserve orange box around selected item (if present) between resizes */
-
-  // Only perform the class changes if an item is selected
-  if (partNumberID !== undefined) {
-    // Remove the orange bubble from th selected part
-    $(partNumberID).removeClass("selected");
-
-    // 2 milliseconds (and no sooner!) later, reapply the bubble
-    // The timeout is required for jQuery to have time to remove the class
-    window.setTimeout(function() {
-      $(partNumberID).addClass("selected");
-    }, 2);
-  }
-}
-
-
-function main(partNumber) {
-  "use strict";
-  /* Change the part image to the selected one */
-  var imgID;
-  partNumberID = "#{0}".format(partNumber);
-
-  // Get the proper imgID for each part
-  switch (bodyPart) {
-    case "Torso":
-      imgID = "#torso-img";
-      break;
-    case "Leg":
-      imgID = "#leg-img";
-      break;
-    case "Hat":
-      imgID = "#hat-img";
-      break;
-    case "Shield":
-      imgID = "#shield-img";
-      break;
-    case "Sword":
-      imgID = "#sword-img";
-      break;
-    case "Head":
-      imgID = "#head-img";
-      break;
-  }
-
-  // The user clicked a new part, swap orange background
-  if (oldPartNumberID !== partNumberID) {
-    $(oldPartNumberID).removeClass("selected");
-    $(partNumberID).addClass("selected");
-  }
-
-  // Set the old part number
-  oldPartNumberID = "#{0}".format(partNumber);
-
-  // Change the image to the selected one
-  $(imgID).attr("src", imagesList[partNumber]);
-}
-
-
-function changePartImages(part) {
-  "use strict";
-  /* Parse the XML file for image links.
-   * Update the table with the proper images as
-   * specified by the part parameter.
+  /**
+   * @type {Object}
    */
-
-  // Update global variable with chosen part
-  bodyPart = part;
-
-  // Construct jQuery id attribute selector
-  var partTypeID = "#{0}".format(bodyPart);
-  changeCategoryImages(oldPartTypeID, partTypeID);
-
-  // Keep a copy of the old element ID
-  oldPartTypeID = "#{0}".format(bodyPart);
+  var layoutDetails = {
+    size: 4,
+    curImages: [],
+    curPartID: null,
+    curPartName: ""
+  };
 
 
-  // Fetch the XML for parsing
-  $(function() {
-    $.ajax({
+  // Retrieve a jQuery selector for commonly used elements
+  var $buildArea          = $(document.LUN.getVariable("buildArea")),
+      $background         = $(document.LUN.getVariable("background")),
+      $buttonResize       = $(document.LUN.getVariable("buttonResize")),
+      $minifigItems       = $(document.LUN.getVariable("minifigItems")),
+      $buttonNewWindow    = $(document.LUN.getVariable("buttonNewWindow")),
+      $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts")),
+      $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh")),
+      $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv")),
+      $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
+
+
+  /**
+   * Capitalize the first letter of the given text.
+   * @param {String} text
+   * @returns {String}
+   */
+  function capitalFirst(text) {
+    return text.charAt(0).toUpperCase() + text.substr(1);
+  }
+
+
+  /**
+   * Preserve orange box around selected part (if any) between resizes.
+   * @param {String} partID
+   * @returns {Boolean} Always returns true.
+   */
+  function reapplyBubble(partID) {
+    // Only perform the class changes if an item was selected
+    if (partID) {
+      var $partID = $(partID);
+
+      // Reapply the bubble
+      // TODO This broke in commit 69b9e35c7be66f3725750cded503040d927083f8
+      // when the ID was moved to the global object
+      $partID.addClass("selected");
+    }
+    return true;
+  }
+
+
+  /**
+   * Open a new window with a larger version of the minifig.
+   * @returns {Boolean} Always returns true.
+   */
+  $buttonNewWindow.on("click", function() {
+    var qs = document.LUN.encodeQuery();
+    // We have a usuable query string
+    if (qs) {
+      window.open("window.html" + qs, "LUNMinifigWizard", "width=600, height=600");
+    }
+    return true;
+  });
+
+
+  /**
+   * Update the build area with the selected image.
+   * @returns {Boolean} Always returns true.
+   */
+  $minifigItems.on("click", function(e) {
+    // Respond to user clicks
+    if (e.target.localName.toLowerCase() !== "img") {
+      return false;
+    }
+    var partNumber = $(e.target).parent().attr("id");
+
+    // Get an ID selector
+    layoutDetails.curPartID = "#" + partNumber;
+
+    // Valid image parts
+    var minifigParts = {
+      "hat"   : document.LUN.getVariable("imgHat"),
+      "leg"   : document.LUN.getVariable("imgLeg"),
+      "head"  : document.LUN.getVariable("imgHead"),
+      "torso" : document.LUN.getVariable("imgTorso"),
+      "sword" : document.LUN.getVariable("imgSword"),
+      "shield": document.LUN.getVariable("imgShield"),
+    };
+
+    // Get the ID to the part the user clicked
+    var buildAreaID = minifigParts[layoutDetails.curPartName];
+
+    // For some reason, the minifig part is not valid
+    if (buildAreaID === undefined) {
+      document.LUN.throwError("internal");
+      return false;
+    }
+
+    // The user clicked a new part, swap orange background
+    var $newPart = $(layoutDetails.curPartID);
+    if (!$newPart.hasClass("selected")) {
+      $(oldPartNumberId).removeClass("selected");
+      $newPart.addClass("selected");
+    }
+
+    // Store the old part number and change to the selected image
+    oldPartNumberId = "#" + partNumber;
+    var curImageIndex = parseInt(partNumber.substr(partNumber.indexOf("-") + 1), 10);
+    $(buildAreaID).attr("src", layoutDetails.curImages[curImageIndex]);
+    return true;
+  });
+
+
+  /**
+   * Build the images table.
+   * @param {Object} json The JSON to build the table with.
+   * @param {String} partName The part category to build.
+   */
+  function buildImageTable(json, partName) {
+    // Clear any previous images
+    $minifigItems.empty();
+    if (layoutDetails.curImages.length > 0) {
+      layoutDetails.curImages = [];
+    }
+
+    // Get the total number of images for this part
+    var numOfImages = json[partName].length - 1,
+        tableString = ["<tr><td class='selector' id='", partName, "-0'>"];
+
+    // Run through all the images
+    $.each(json[partName], function(index, image) {
+
+      // Get a part number,
+      // get the thumbnail link,
+      // store the URL to each full size image
+      var partNumber = index + 1,
+          thumbLink  = image.thumbnail;
+      layoutDetails.curImages.push(image.fullsize);
+
+      // Wrap the URL in an image tag, wrap that in a link, add it to the table
+      tableString.push("<img alt='", capitalFirst(partName), " #", index,
+                       "' width='64' height='64' src='", thumbLink, "'>");
+
+      // Check if
+      // a. we have not run through all the images
+      // b. the index is a multiple of the current row size,
+      // c. we are not at the start of the images
+      // If all this is true, then make a new table row.
+
+      // TODO I know this can be MAJORLY fixed
+      if (index !== numOfImages && (partNumber % layoutDetails.size) === 0 && index !== 0) {
+        tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
+
+      } else {
+        // Check if we have not run through all the images.
+        // if it is not, start a new table column
+        if (index !== numOfImages) {
+          tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
+        } else {
+          // Otherwise, close the table column without making a new one
+          tableString.push("</td>");
+        }
+      }
+    });
+
+    // Display the table with the images
+    $minifigItems.html(tableString.join("").replace(/'/g, "\""));
+
+    // Display the scroll bar when needed for both layout sizes
+    if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
+      // Activate scroll bar
+      $buildArea.perfectScrollbar({
+        wheelSpeed: 1,
+        suppressScrollX: true
+      });
+
+      // Update the scrollbar so it does not change sizes on us
+      $buildArea.perfectScrollbar("update");
+
+      // The scroll bar is not needed, destroy it
+    } else {
+      $buildArea.perfectScrollbar("destroy");
+    }
+  }
+
+
+  /**
+   * Get the images JSON.
+   * @returns {Object} jQuery AJAX object.
+   */
+  function getImagesJSON() {
+    return $.ajax({
       type: "GET",
       cache: true,
-      url: "img/images.xml",
-      dataType: "xml",
-      // Now begin using that data on successful download
-      success: function(xml) {
-        var imgLink, fullImgLink, tableString,
-            index = 0,
-            numOfImages = 0,
-            partNumber = 0;
+      url: "img/images.json",
+      dataType: "json"
+    });
+  }
 
-        // Clear the array of full size images if it contains data
-        if (imagesList[0]) {
-          $.each(imagesList, function(value) {
-            imagesList.splice(value, imagesList.length);
-          });
-        }
 
-        // Get the URL's to each full size image, add to imagesList array
-        $(xml).find(bodyPart).each(function() {
-          fullImgLink = $(this).find("image").text();
-          imagesList.push(fullImgLink);
+  /**
+   * Entry function to update the image table.
+   * Also controls JSON storage and retrieval.
+   * @param {String} partName The part category to build.
+   */
+  function changePartImages(partName) {
+    // Update global variable with chosen part
+    layoutDetails.curPartName = partName;
+
+    // The JSON has been previously stored
+    if (window.sessionStorage.hasOwnProperty("images")) {
+      var json = JSON.parse(window.sessionStorage.getItem("images"));
+
+      // We have the same version, reuse the cache
+      if (document.LUN.version === json.version) {
+        buildImageTable(json, layoutDetails.curPartName);
+
+      } else if (document.LUN.version > json.version) {
+        getImagesJSON().success(function(json) {
+          window.sessionStorage.setItem("images", JSON.stringify(json));
+          buildImageTable(json, layoutDetails.curPartName);
         });
+      }
 
-        // Clear the table of any previous images
-        $("#minifig-items").empty();
+      // The JSON has never been stored
+    } else {
+      getImagesJSON().success(function(json) {
+        window.sessionStorage.setItem("images", JSON.stringify(json));
+        buildImageTable(json, layoutDetails.curPartName);
+      });
+    }
+  }
 
-        // Construct the beginning of the table data
-        tableString = '<tr><td class="selector" id="0">';
+  /**
+   * Alias changePartImages function
+   * to remove `onclick` attribute in the HTML,
+   * and apply orange "bubble" to the current category image.
+   * @returns {Boolean} Always returns true.
+   */
+  $categoryButtonsImg.on("click", function() {
+    $categoryButtonsImg.removeClass("bubble active");
+    $(this).addClass("bubble active");
+    changePartImages($(this).attr("id"));
+    return true;
+  });
 
-        // Get the total number of images for this part
-        $(xml).find(bodyPart).each(function() {
-          numOfImages += 1;
-        });
 
-        // Go through all the images, adding them to the table
-        $(xml).find(bodyPart).each(function() {
-          partNumber += 1;
+  /**
+   * Resizes the table between small and large display.
+   */
+  $buttonResize.on("click", function() {
+    // We are currently using the small display
+    if (layoutDetails.size === 4) {
+      // Change the number of items in a row to 6
+      layoutDetails.size = 6;
 
-          // Bring it back down to work with array indexes
-          index = partNumber - 1;
-          imgLink = $(this).find("thumb").text();
+      // Run animations to in/decrease the size/locations of whatever we need
+      // In order in which they run for both enlarge and decrease:
+      // Resize button (location)
+      // Scrollbar
+      // Background
+      // Category buttons (enlargement)
+      // Category buttons (location)
+      // Container
+      // Left margin
+      // Resize button (swap SVGs)
 
-          // Wrap the URL in an img tag, wrap that in a link, add it to the table
-          /* jshint ignore:start */
-          tableString += '<a name="{0}" onclick="main(this.name)"><img alt="{1} #{2}" width="64" height="64" src="{3}" /></a>'.format(
-            index, bodyPart, partNumber, imgLink);
-          /* jshint ignore:end */
+      // CSS transitions are not supported, fall back to jQuery animations
+      if (!Modernizr.csstransitions) {
+        $buttonResize.animate({"left": "+=190px"}, 300);
+        $areaMinifigParts.animate({"width": "+=180px"}, 300);
+        $background.animate({"width": "+=180px"}, 300);
+        $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
+        $categoryButtonsTh.animate({"padding-left": "5px"}, 100);
+        $categoryButtonsTh.animate({"padding-right": "5px"}, 100);
+        $buildArea.animate({"width": "+=180px"}, 150);
 
-          /* Check if
-           * a. we have not run through all the images
-           * b. the index is a multiple of the current row size,
-           * c. we are not at the start of the images
-           * If all this is true, then make a new table row.
-           */
-          //FUTURE FIXME I'm sure this can be MAJORLY cleaned up
-          if (partNumber !== numOfImages && (partNumber % rowSize) === 0 && partNumber !== 0) {
-            tableString += '</td></tr><tr><td class="selector" id="{0}">'.format(partNumber);
-          } else {
+      } else {
+        // For browsers that do support CSS transitions, trigger them
+        $buttonResize.css("transform", "translate3d(190px, 0, 0)");
+        $areaMinifigParts.css("width", "+=180px");
+        $background.css("width", "+=180px");
+        $categoryButtonsDiv.css("margin-left", "+=48px");
+        $categoryButtonsTh.css("padding-left", "5px");
+        $categoryButtonsTh.css("padding-right", "5px");
+        $buildArea.css("width", "+=180px");
+      }
 
-            /* Check if we have not run through all the images.
-             * if it is not, start a new table column
-             */
-            if (partNumber !== numOfImages) {
-              tableString += '</td><td class="selector" id="{0}">'.format(partNumber);
-            } else {
-              // Otherwise, close the table column without making a new one
-              tableString += "</td>";
-            }
-          }
-        });
+      // Increase the margins on left side of the table to make it all even
+      // This runs even if the browser does not support CSS transitions
+      $minifigItems.css("margin-left", "20px");
+      $buttonResize.attr("src", "img/ui/Reduce-button.svg");
 
-        // Finally, display the table with the images
-        $("#minifig-items").html(tableString);
+      // We are currently using the larger size
+    } else {
+      // Set the number of items in a row to 4
+      layoutDetails.size = 4;
 
-        // Display the scroll bar when needed for both layout sizes
-        if ((rowSize === 4 && numOfImages > 16) || (rowSize === 6 && numOfImages > 24)) {
-          $(document).ready(function() {
-            // Activate scroll bar
-            $content.perfectScrollbar({
-              wheelSpeed: 6.5,
-              suppressScrollX: true
-            });
+      // CSS transitions are not supported, fall back to jQuery animations
+      if (!Modernizr.csstransitions) {
+        $buttonResize.animate({"left": "-=190px"}, 300);
+        $areaMinifigParts.animate({"width": "-=180px"}, 300);
+        $background.animate({"width": "-=180px"}, 300);
+        $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
+        $categoryButtonsTh.animate({"padding-left": "0px"}, 100);
+        $categoryButtonsTh.animate({"padding-right": "0px"}, 100);
+        $buildArea.animate({"width": "-=180px"}, 150);
 
-            // Update the scrollbar so it does not change sizes on us
-            $content.perfectScrollbar("update");
-          });
+      } else {
+        // For browsers that do support CSS transitions, trigger them
+        $buttonResize.css("transform", "");
+        $areaMinifigParts.css("width", "");
+        $background.css("width", "");
+        $categoryButtonsDiv.css("margin-left", "");
+        $categoryButtonsTh.css("padding-left", "");
+        $categoryButtonsTh.css("padding-right", "");
+        $buildArea.css("width", "-=180px");
+      }
 
-        // The scroll bar is not needed, destroy it
-        } else {
-          $(document).ready(function() {
-            $content.perfectScrollbar("destroy");
-          });
-        }
+      $minifigItems.css("margin-left", "5px");
+      $buttonResize.attr("src", "img/ui/Enlarge-button.svg");
+    }
+
+    // Reconstruct the table using the desired size
+    changePartImages(layoutDetails.curPartName);
+
+    // Reapply the orange selection bubble
+    reapplyBubble(layoutDetails.curPartID);
+  });
+
+
+  $(function() {
+    // Show/hide jetpack easter egg
+    $("#emmet").on("click", function() {
+      var $specialImg = $(document.LUN.getVariable("imgSpecial"));
+      if ($specialImg.attr("src").indexOf("empty") > -1)  {
+        $specialImg.attr("src", "img/special/Special001.png");
+      } else {
+        $specialImg.attr("src", "img/spark/empty.png");
       }
     });
+
+    // Run process to display the available minifig heads upon page load
+    changePartImages("head");
+    return true;
   });
-}
+})(jQuery);

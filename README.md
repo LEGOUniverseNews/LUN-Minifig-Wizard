@@ -21,11 +21,10 @@ The **_LEGO Universe News!_ Minifig Wizard** was created using these fine progra
 * [jquery.browser](https://github.com/gabceb/jquery-browser-plugin/)
 * [Modernizr](http://modernizr.com/)
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar/)
-* [String::format](https://github.com/davidchambers/string-format/)
 
 ## Reporting an Issue ##
 
-To report and issue with the **_LEGO Universe News!_ Minifig Wizard**, or to request and item to be included in the Wizard, please open and Issue ([here](https://github.com/LEGOUniverseNews/LUN-Minifig-Wizard/issues)), comment on our official blog post ([here](http://legouniversenews.wordpress.com/2014/03/05/lun-minifig-wizard/)), or post on our official forum topic ([here](http://legouniversenews.forummotion.com/t1252p15-lun-minifig-wizard)).
+To report and issue with the **_LEGO Universe News!_ Minifig Wizard**, or to request and item to be included in the Wizard, please open an Issue ([here](https://github.com/LEGOUniverseNews/LUN-Minifig-Wizard/issues)), comment on our official blog post ([here](http://legouniversenews.wordpress.com/2014/03/05/lun-minifig-wizard/)), or post on our official forum topic ([here](http://legouniversenews.forummotion.com/t1252p15-lun-minifig-wizard)).
 
 ## Contributing ##
 

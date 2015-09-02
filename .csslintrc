@@ -5,5 +5,6 @@
   "fallback-colors": false,
   "gradients": false,
   "ids": false,
-  "important": false
+  "important": false,
+  "order-alphabetical": false
 }

@@ -1,52 +1,73 @@
 module.exports = function(grunt) {
   "use strict";
-  // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-    banner: '/* <%= pkg.name %> - v<%= pkg.version %>\n' +
-    '<%= pkg.homepage ? "" + pkg.homepage + "\\n" : "" %>' +
-    'Created 2013-<%= grunt.template.today("yyyy") %> <%= pkg.author %>; ' +
-    'Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n',
+    banner: "/* <%= pkg.name %> - v<%= pkg.version %>\n" +
+    "<%= pkg.homepage ? '' + pkg.homepage + '\\n' : '' %>" +
+    "Created 2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %>; " +
+    "Licensed under the <%= _.pluck(pkg.licenses, 'type').join(', ') %>\n*/\n",
     baseFileName: "LUNWizard",
     jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],
     cssFiles: ["css/*.css", "!css/*.min.css"],
 
-    // Keep the devDependencies up-to-date
     devUpdate: {
       main: {
         options: {
-          // Do not mention already updated dependencies
           reportUpdated: false,
-          // Prompt asking if the dependency should be updated
-          updateType : "prompt"
+          updateType : "prompt",
+          packages: {
+            devDependencies: true,
+            dependencies: true
+          },
         }
       }
     },
 
-    // Copy dependencies to the proper location
-    // TODO Copy and rename perfect-scrollbar
     copy: {
       main: {
-        expand: true,
-        cwd: "node_modules/",
-        src: ["jquery.browser/dist/*.min.js", "string-format/lib/*"],
-        dest: "lib/",
-        flatten: true,
-        filter: "isFile"
-      },
+        files: [
+          {
+            expand: true,
+            cwd: "node_modules/",
+            src: ["jquery.browser/dist/*.min.js"],
+            dest: "lib/",
+            flatten: true,
+            filter: "isFile"
+          },
+          {
+            expand: true,
+            flatten: true,
+            cwd: "node_modules/",
+            src: ["perfect-scrollbar/min/perfect-scrollbar.min.css",
+                  "perfect-scrollbar/min/perfect-scrollbar.min.js"],
+            dest: "lib/",
+          },
+        ]
+      }
     },
 
-    // Lint the HTML using HTMLHint
     htmlhint: {
       html: {
         options: {
+          "attr-lowercase": true,
+          "attr-value-double-quotes": true,
+          "attr-value-not-empty": true,
+          "attr-no-duplication": true,
+          "doctype-first": true,
+          "doctype-html5": true,
+          "tagname-lowercase": true,
           "tag-pair": true,
+          "tag-self-close": false,
+          "spec-char-escape": true,
+          "id-class-value": "dash",
+          "id-unique": true,
+          "src-not-empty": true,
+          "space-tab-mixed-disabled": true
         },
         src: ["index.html"]
       }
     },
 
-    // Lint the CSS using CSS Lint
     csslint: {
       strict: {
         options: {
@@ -57,7 +78,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Minify any CSS using CSSMin
     cssmin: {
       add_banner: {
         options: {
@@ -70,7 +90,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Lint the JavaScript using JSHint
     jshint: {
       src: {
         options: {
@@ -80,44 +99,54 @@ module.exports = function(grunt) {
       },
     },
 
-    // Minify any JavaScript using Uglify
     uglify: {
       options: {
         banner: "<%= banner %>",
-        compress: true,
-        report: "min"
+        compress: {
+          "booleans": true,
+          "unused": true,
+          "dead_code": true,
+          "sequences": true,
+          "warnings": true
+        },
+        report: "min",
+        mangle: true
       },
       my_target: {
         files: {
           "js/<%= baseFileName %>.min.js": ["js/oldbrowser.js", "js/LUNWizard.js"],
-          "js/<%= baseFileName %>.window.min.js": ["js/window.js", "js/settings.js"],
+          "js/<%= baseFileName %>.general.min.js": ["js/variables.js", "js/query.js"],
+          "js/<%= baseFileName %>.settings.min.js": "js/settings.js",
         }
       }
     },
 
-    // Watched files to trigger grunt
+    connect: {
+      server: {
+        options: {
+          port: 3001,
+          base: ".",
+          keepalive: true
+        }
+      }
+    },
+
     watch: {
-      files: ["Gruntfile.js", "<%= cssFiles %>", "<%= jsFiles %>"],
-      tasks: ["all"]
+      files: ["Gruntfile.js", "<%= cssFiles %>", "<%= jsFiles %>", "*.html"],
+      tasks: ["build"]
     }
   });
 
-  // Load all the plugins required to perform our tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
-  grunt.registerTask('default', 'List commands', function () {
+  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+  grunt.registerTask("default", "List of commands", function() {
     grunt.log.writeln("");
-    grunt.log.writeln('Run "grunt lint" to lint the source files');
-    grunt.log.writeln('Run "grunt build" to minify the source files');
-    grunt.log.writeln('Run "grunt devUpdate" to update the devDependencies');
-    grunt.log.writeln('Run "grunt all" to run all tasks except "devUpdate"');
+    grunt.log.writeln("Run 'grunt lint' to lint the source files");
+    grunt.log.writeln("Run 'grunt build' to minify the source files");
+    grunt.log.writeln("Run 'grunt devUpdate' to update the devDependencies");
+    grunt.log.writeln("Run 'grunt all' to run all tasks except 'devUpdate'");
   });
-
-  // Define the tasks
   grunt.registerTask("lint", ["htmlhint", "csslint", "jshint"]);
   grunt.registerTask("build", ["cssmin", "uglify", "copy"]);
   grunt.registerTask("all", ["lint", "build"]);
-
-  // Always use --force to stop csslint from killing the task
   grunt.option("force", true);
 };
