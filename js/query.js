@@ -197,9 +197,10 @@
 
         // Perform initial sanitizing, split into array
         var qs = v.replace(window.location.origin, "");
+
         // If we are not running from the domain root, remove the subpath
         if (window.location.pathname !== "/") {
-          qs = qs.replace(window.location.pathname, "/");
+          qs = qs.replace("/" + window.location.pathname.split("/")[1], "");
         }
         qs = qs.replace(/img\/|full\/|.png/g, "").split("/");
 
