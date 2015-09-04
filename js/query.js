@@ -196,7 +196,8 @@
         }
 
         // Perform initial sanitizing, split into array
-        var qs = v.replace(window.location.origin, "");
+        var url = window.location.origin || window.location.protocol + "//" + window.location.host,
+            qs  = v.replace(url, "");
 
         // If we are not running from the domain root, remove the subpath
         if (window.location.pathname !== "/") {
