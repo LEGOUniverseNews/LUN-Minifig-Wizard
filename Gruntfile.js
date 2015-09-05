@@ -2,12 +2,11 @@ module.exports = function(grunt) {
   "use strict";
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-    banner: "/* <%= pkg.name %> - v<%= pkg.version %>\n" +
-    "<%= pkg.homepage ? '' + pkg.homepage + '\\n' : '' %>" +
-    "Created 2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %>; " +
-    "Licensed under the <%= _.pluck(pkg.licenses, 'type').join(', ') %>\n*/\n",
+    banner: "/*! <%= pkg.name %> v<%= pkg.version %> | " +
+    "2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %> | " +
+    "<%= pkg.license %> */\n",
     baseFileName: "LUNWizard",
-    jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],
+    jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "js/workers/*.js"],
     cssFiles: ["css/*.css", "!css/*.min.css"],
 
     devUpdate: {
@@ -64,7 +63,7 @@ module.exports = function(grunt) {
           "src-not-empty": true,
           "space-tab-mixed-disabled": true
         },
-        src: ["index.html"]
+        src: ["index.html", "window.html"]
       }
     },
 
@@ -117,6 +116,7 @@ module.exports = function(grunt) {
           "js/<%= baseFileName %>.min.js": ["js/oldbrowser.js", "js/LUNWizard.js"],
           "js/<%= baseFileName %>.general.min.js": ["js/variables.js", "js/query.js"],
           "js/<%= baseFileName %>.settings.min.js": "js/settings.js",
+          "js/workers/table-gen.min.js": "js/workers/table-gen.js",
         }
       }
     },
