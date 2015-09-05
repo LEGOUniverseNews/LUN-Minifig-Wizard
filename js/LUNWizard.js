@@ -230,11 +230,18 @@
     if (window.sessionStorage.hasOwnProperty("images")) {
       var json = JSON.parse(window.sessionStorage.getItem("images"));
 
+      // Split apart the version numbers so we can compare
+      // only the major and minor values.
+      // Any image changes will update minor and reset patch
+      // but never only change patch.
+      var jsonVer     = json.version.split("."),
+          internalVer = document.LUN.version.split(".");
+
       // We have the same version, reuse the cache
-      if (document.LUN.version === json.version) {
+      if (internalVer[0] === jsonVer[0] && internalVer[1] === jsonVer[1]) {
         buildImageTable(json, layoutDetails.curPartName);
 
-      } else if (document.LUN.version > json.version) {
+      } else if (internalVer[0] > jsonVer[0] || internalVer[1] > jsonVer[1]) {
         getImagesJSON().success(function(json) {
           window.sessionStorage.setItem("images", JSON.stringify(json));
           buildImageTable(json, layoutDetails.curPartName);
