@@ -8,7 +8,6 @@
   "undef"        : true,
   "unused"       : true,
   "globals": {
-    "format"     : true,
     "document"   : true,
     "window"     : true,
     "Modernizr"  : true,
