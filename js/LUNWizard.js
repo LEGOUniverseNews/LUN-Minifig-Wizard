@@ -12,10 +12,6 @@
 
 (function($) {
   "use strict";
-  // Global variables for various stuff
-  // TODO Remove these as much as possible
-  var oldPartNumberId;
-
   /**
    * @type {Object}
    */
@@ -108,12 +104,11 @@
     // The user clicked a new part, swap orange background
     var $newPart = $(layoutDetails.curPartID);
     if (!$newPart.hasClass("selected")) {
-      $(oldPartNumberId).removeClass("selected");
+      $(".selector").removeClass("selected");
       $newPart.addClass("selected");
     }
 
-    // Store the old part number and change to the selected image
-    oldPartNumberId = "#" + partNumber;
+    // Change to the selected image
     var curImageIndex = parseInt(partNumber.substr(partNumber.indexOf("-") + 1), 10);
     $(buildAreaID).attr("src", layoutDetails.curImages[curImageIndex]);
     return true;
