@@ -127,51 +127,34 @@
       layoutDetails.curImages = [];
     }
 
-    // Get the total number of images for this part
-    var numOfImages = json[partName].length - 1,
-        tableString = ["<tr><td class='selector' id='", partName, "-0'>"];
+    // Gather the information needed for table generation
+    var details = {
+      name: partName,
+      images: json[partName],
+      number: json[partName].length,
+      size: layoutDetails.size
+    };
 
-    // Run through all the images
-    $.each(json[partName], function(index, image) {
-
-      // Get a part number,
-      // get the thumbnail link,
-      // store the URL to each full size image
-      var partNumber = index + 1,
-          thumbLink  = image.thumbnail;
-      layoutDetails.curImages.push(image.fullsize);
-
-      // Wrap the URL in an image tag, wrap that in a link, add it to the table
-      tableString.push("<img alt='", capitalFirst(partName), " #", index,
-                       "' width='64' height='64' src='", thumbLink, "'>");
-
-    // IE 9 pollyfill support
-    if (window.msIsStaticHTML || window.toStaticHTML) {
+    // IE 9 Web Workers pollyfill support
+    if (window.Worker.notNative) {
       window.Worker.iframeURI = "./ie.html";
       window.Worker.baseURI = window.location.pathname;
     }
 
-      // TODO I know this can be MAJORLY fixed
-      if (index !== numOfImages && (partNumber % layoutDetails.size) === 0 && index !== 0) {
-        tableString.push("</td></tr><tr><td class='selector' id='", partName, "-", partNumber, "'>");
+    // Create a web worker to handle the table generation
+    var w = new Worker("js/workers/table-gen.js");
+    w.postMessage(details);
 
-      } else {
-        // Check if we have not run through all the images.
-        // if it is not, start a new table column
-        if (index !== numOfImages) {
-          tableString.push("</td><td class='selector' id='", partName, "-", partNumber, "'>");
-        } else {
-          // Otherwise, close the table column without making a new one
-          tableString.push("</td>");
-        }
-      }
-    });
-
-    // Display the table with the images
-    $minifigItems.html(tableString.join("").replace(/'/g, "\""));
+    // Insert the table into the DOM
+    // and get the fullsize images
+    w.onmessage = function(e) {
+      $minifigItems.html(e.data.table);
+      layoutDetails.curImages = e.data.fullsize;
+      w.terminate();
+    };
 
     // Display the scroll bar when needed for both layout sizes
-    if ((layoutDetails.size === 4 && numOfImages > 16) || (layoutDetails.size === 6 && numOfImages > 24)) {
+    if ((layoutDetails.size === 4 && details.number > 16) || (layoutDetails.size === 6 && details.number > 24)) {
       // Activate scroll bar
       $buildArea.perfectScrollbar({
         wheelSpeed: 1,

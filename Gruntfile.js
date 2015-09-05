@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     "Created 2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %>; " +
     "Licensed under the <%= _.pluck(pkg.licenses, 'type').join(', ') %>\n*/\n",
     baseFileName: "LUNWizard",
-    jsFiles: ["*.js", "js/*.js", "!js/*.min.js"],
+    jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "js/workers/*.js"],
     cssFiles: ["css/*.css", "!css/*.min.css"],
 
     devUpdate: {
