@@ -40,16 +40,6 @@
 
 
   /**
-   * Capitalize the first letter of the given text.
-   * @param {String} text
-   * @returns {String}
-   */
-  function capitalFirst(text) {
-    return text.charAt(0).toUpperCase() + text.substr(1);
-  }
-
-
-  /**
    * Preserve orange box around selected part (if any) between resizes.
    * @param {String} partID
    * @returns {Boolean} Always returns true.
@@ -160,11 +150,11 @@
       tableString.push("<img alt='", capitalFirst(partName), " #", index,
                        "' width='64' height='64' src='", thumbLink, "'>");
 
-      // Check if
-      // a. we have not run through all the images
-      // b. the index is a multiple of the current row size,
-      // c. we are not at the start of the images
-      // If all this is true, then make a new table row.
+    // IE 9 pollyfill support
+    if (window.msIsStaticHTML || window.toStaticHTML) {
+      window.Worker.iframeURI = "./ie.html";
+      window.Worker.baseURI = window.location.pathname;
+    }
 
       // TODO I know this can be MAJORLY fixed
       if (index !== numOfImages && (partNumber % layoutDetails.size) === 0 && index !== 0) {
