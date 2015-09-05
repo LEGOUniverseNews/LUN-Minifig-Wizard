@@ -18,6 +18,11 @@ document.LUN = {
   "version": "1.2.4"
 };
 
+// IE 9 Web Workers pollyfill support
+if (window.Worker.notNative) {
+  window.Worker.iframeURI = "./ie.html";
+  window.Worker.baseURI = window.location.pathname;
+}
 
 /**
  * Provide abstract access to common DOM elements.

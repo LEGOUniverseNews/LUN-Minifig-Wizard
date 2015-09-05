@@ -135,14 +135,8 @@
       size: layoutDetails.size
     };
 
-    // IE 9 Web Workers pollyfill support
-    if (window.Worker.notNative) {
-      window.Worker.iframeURI = "./ie.html";
-      window.Worker.baseURI = window.location.pathname;
-    }
-
     // Create a web worker to handle the table generation
-    var w = new Worker("js/workers/table-gen.js");
+    var w = new Worker("js/workers/table-gen.min.js");
     w.postMessage(details);
 
     // Insert the table into the DOM
@@ -150,7 +144,9 @@
     w.onmessage = function(e) {
       $minifigItems.html(e.data.table);
       layoutDetails.curImages = e.data.fullsize;
-      w.terminate();
+      if (window.Worker.notNative) {
+        w.terminate();
+      }
     };
 
     // Display the scroll bar when needed for both layout sizes
