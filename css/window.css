@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  background-color: #d0d0d0;
+  background-color: #f6dada;
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -125,7 +125,7 @@ table {
 #green-color-box { background-color: #008000; }
 #blue-color-box { background-color: #00f; }
 #yellow-color-box { background-color: #ff0; }
-#gray-color-box { background-color: #d0d0d0; }
+#gray-color-box { background-color: #f6dada; }
 #orange-color-box { background-color: #ffa500; }
 #black-color-box { background-color: #000; }
 #white-color-box { background-color: #fff; }

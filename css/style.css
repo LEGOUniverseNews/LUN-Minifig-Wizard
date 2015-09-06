@@ -16,7 +16,7 @@ html {
   min-width: 320px;
   color: #fff;
   font-family: sans-serif;
-  background-color: #d0d0d0;
+  background-color: #f6dada;
 }
 
 /* LUN Minifig Wizard logo */
@@ -80,6 +80,7 @@ table { border-style: none; }
   /* Older browsers will not render the orange gradient */
   background-color: #ff8409;
   background-image: -webkit-linear-gradient(to right, #ff8409, #d76b00);
+  background-image: -webkit-linear-gradient(left, #ff8409, #d76b00);
   background-image:         linear-gradient(to right, #ff8409, #d76b00);
 }
 
