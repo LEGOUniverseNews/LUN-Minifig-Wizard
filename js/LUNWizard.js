@@ -123,9 +123,7 @@
   function buildImageTable(json, partName) {
     // Clear any previous images
     $minifigItems.empty();
-    if (layoutDetails.curImages.length > 0) {
-      layoutDetails.curImages = [];
-    }
+    layoutDetails.curImages = [];
 
     // Gather the information needed for table generation
     var details = {
@@ -189,10 +187,6 @@
   function changePartImages(partName) {
     // Update global variable with chosen part
     layoutDetails.curPartName = partName;
-
-    // I used the wrong storage type in #18. -_-
-    // TODO Remove this in the near-future
-    window.sessionStorage.clear();
 
     // The JSON has been previously stored
     if (window.localStorage.hasOwnProperty("images")) {
