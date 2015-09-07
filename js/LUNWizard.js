@@ -190,9 +190,13 @@
     // Update global variable with chosen part
     layoutDetails.curPartName = partName;
 
+    // I used the wrong storage type in #18. -_-
+    // TODO Remove this in the near-future
+    window.sessionStorage.clear();
+
     // The JSON has been previously stored
-    if (window.sessionStorage.hasOwnProperty("images")) {
-      var json = JSON.parse(window.sessionStorage.getItem("images"));
+    if (window.localStorage.hasOwnProperty("images")) {
+      var json = JSON.parse(window.localStorage.getItem("images"));
 
       // Split apart the version numbers so we can compare
       // only the major and minor values.
@@ -207,7 +211,7 @@
 
       } else if (internalVer[0] > jsonVer[0] || internalVer[1] > jsonVer[1]) {
         getImagesJSON().success(function(json) {
-          window.sessionStorage.setItem("images", JSON.stringify(json));
+          window.localStorage.setItem("images", JSON.stringify(json));
           buildImageTable(json, layoutDetails.curPartName);
         });
       }
@@ -215,7 +219,7 @@
       // The JSON has never been stored
     } else {
       getImagesJSON().success(function(json) {
-        window.sessionStorage.setItem("images", JSON.stringify(json));
+        window.localStorage.setItem("images", JSON.stringify(json));
         buildImageTable(json, layoutDetails.curPartName);
       });
     }
