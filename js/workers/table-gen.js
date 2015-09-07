@@ -18,18 +18,22 @@ function Item(id, name, url) {
  * @param {String} text
  * @returns {String}
  */
-Item.prototype.capitalFirst = function(text) {
-  return text.charAt(0).toUpperCase() + text.substr(1);
+Item.prototype.capitalize = function() {
+  return this.name.charAt(0).toUpperCase() + this.name.substr(1);
 };
 
 /**
  * Construct a complete table cell.
  * @returns {String}
  */
-Item.prototype.toString = function() {
-  var string = ["<td class='selector' "];
+Item.prototype.toString = function(curPart) {
+  // If a part was previously selected, keep it selected
+  var string   = ["<td class='selector {selected}' "],
+      selected = (curPart && curPart.substr(1) === this.name + "-" + this.id) ? "selected" : "";
+  string[0] = string[0].replace(/{selected}/, selected);
+
   string.push("id='", this.name, "-", this.id, "'>");
-  string.push("<img width='64' height='64' alt='", this.capitalFirst(this.name),
+  string.push("<img width='64' height='64' alt='", this.capitalize(),
               " #", (this.id + 1), "' src='", this.url, "'>");
   string.push("</td>");
   return string.join("").replace(/'/g, "\"");
@@ -56,7 +60,7 @@ onmessage = function(e) {
   // Fill in each image
   for (var j = 2, k = 0, len2 = result.table.length; j < len2; j++) {
     if (result.table[j] === undefined && k < e.data.number) {
-      result.table[j] = new Item(k, e.data.name, e.data.images[k].thumbnail).toString();
+      result.table[j] = new Item(k, e.data.name, e.data.images[k].thumbnail).toString(e.data.curPart);
       result.fullsize.push(e.data.images[k].fullsize);
       k++;
     }

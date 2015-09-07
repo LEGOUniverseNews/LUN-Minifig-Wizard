@@ -36,25 +36,6 @@
 
 
   /**
-   * Preserve orange box around selected part (if any) between resizes.
-   * @param {String} partID
-   * @returns {Boolean} Always returns true.
-   */
-  function reapplyBubble(partID) {
-    // Only perform the class changes if an item was selected
-    if (partID) {
-      var $partID = $(partID);
-
-      // Reapply the bubble
-      // TODO This broke in commit 69b9e35c7be66f3725750cded503040d927083f8
-      // when the ID was moved to the global object
-      $partID.addClass("selected");
-    }
-    return true;
-  }
-
-
-  /**
    * Open a new window with a larger version of the minifig.
    * @returns {Boolean} Always returns true.
    */
@@ -130,7 +111,8 @@
       name: partName,
       images: json[partName],
       number: json[partName].length,
-      size: layoutDetails.size
+      size: layoutDetails.size,
+      curPart: layoutDetails.curPartID
     };
 
     // Create a web worker to handle the table generation
@@ -307,9 +289,6 @@
 
     // Reconstruct the table using the desired size
     changePartImages(layoutDetails.curPartName);
-
-    // Reapply the orange selection bubble
-    reapplyBubble(layoutDetails.curPartID);
   });
 
 
