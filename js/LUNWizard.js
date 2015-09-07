@@ -239,7 +239,6 @@
   $buttonResize.on("click", function() {
     // We are currently using the small display
     if (layoutDetails.size === 4) {
-      // Change the number of items in a row to 6
       layoutDetails.size = 6;
 
       // Run animations to in/decrease the size/locations of whatever we need
@@ -281,10 +280,8 @@
 
       // We are currently using the larger size
     } else {
-      // Set the number of items in a row to 4
       layoutDetails.size = 4;
 
-      // CSS transitions are not supported, fall back to jQuery animations
       if (!Modernizr.csstransitions) {
         $buttonResize.animate({"left": "-=190px"}, 300);
         $areaMinifigParts.animate({"width": "-=180px"}, 300);
@@ -295,7 +292,6 @@
         $buildArea.animate({"width": "-=180px"}, 150);
 
       } else {
-        // For browsers that do support CSS transitions, trigger them
         $buttonResize.css("transform", "");
         $areaMinifigParts.css("width", "");
         $background.css("width", "");
