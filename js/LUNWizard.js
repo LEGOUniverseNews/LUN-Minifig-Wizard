@@ -101,16 +101,16 @@
    * @param {Object} json The JSON to build the table with.
    * @param {String} partName The part category to build.
    */
-  function buildImageTable(json, partName) {
+  function buildImageTable(json) {
     // Clear any previous images
     $minifigItems.empty();
     layoutDetails.curImages = [];
 
     // Gather the information needed for table generation
     var details = {
-      name: partName,
-      images: json[partName],
-      number: json[partName].length,
+      name: layoutDetails.curPartName,
+      images: json[layoutDetails.curPartName],
+      number: json[layoutDetails.curPartName].length,
       size: layoutDetails.size,
       curPart: layoutDetails.curPartID
     };
@@ -183,12 +183,12 @@
 
       // We have the same version, reuse the cache
       if (internalVer[0] === jsonVer[0] && internalVer[1] === jsonVer[1]) {
-        buildImageTable(json, layoutDetails.curPartName);
+        buildImageTable(json);
 
       } else if (internalVer[0] > jsonVer[0] || internalVer[1] > jsonVer[1]) {
         getImagesJSON().success(function(json) {
           window.localStorage.setItem("images", JSON.stringify(json));
-          buildImageTable(json, layoutDetails.curPartName);
+          buildImageTable(json);
         });
       }
 
@@ -196,7 +196,7 @@
     } else {
       getImagesJSON().success(function(json) {
         window.localStorage.setItem("images", JSON.stringify(json));
-        buildImageTable(json, layoutDetails.curPartName);
+        buildImageTable(json);
       });
     }
   }
