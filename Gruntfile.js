@@ -113,7 +113,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          "js/<%= baseFileName %>.min.js": ["js/oldbrowser.js", "js/LUNWizard.js"],
+          "js/<%= baseFileName %>.min.js": ["js/LUNWizard.js"],
           "js/<%= baseFileName %>.general.min.js": ["js/variables.js", "js/query.js"],
           "js/<%= baseFileName %>.settings.min.js": "js/settings.js",
           "js/workers/table-gen.min.js": "js/workers/table-gen.js",
