@@ -16,10 +16,18 @@
    * @type {Object}
    */
   var layoutDetails = {
-    size: 4,
-    curImages: [],
-    curPartID: null,
-    curPartName: ""
+    size        : 4,
+    curImages   : [],
+    curPartID   : null,
+    curPartName : "",
+    minifigParts: {
+      "hat"   : document.LUN.getVariable("imgHat"),
+      "leg"   : document.LUN.getVariable("imgLeg"),
+      "head"  : document.LUN.getVariable("imgHead"),
+      "torso" : document.LUN.getVariable("imgTorso"),
+      "sword" : document.LUN.getVariable("imgSword"),
+      "shield": document.LUN.getVariable("imgShield"),
+    }
   };
 
 
@@ -58,29 +66,12 @@
     if (e.target.localName.toLowerCase() !== "img") {
       return false;
     }
+    // Get the part ID
     var partNumber = $(e.target).parent().attr("id");
-
-    // Get an ID selector
     layoutDetails.curPartID = "#" + partNumber;
 
-    // Valid image parts
-    var minifigParts = {
-      "hat"   : document.LUN.getVariable("imgHat"),
-      "leg"   : document.LUN.getVariable("imgLeg"),
-      "head"  : document.LUN.getVariable("imgHead"),
-      "torso" : document.LUN.getVariable("imgTorso"),
-      "sword" : document.LUN.getVariable("imgSword"),
-      "shield": document.LUN.getVariable("imgShield"),
-    };
-
     // Get the ID to the part the user clicked
-    var buildAreaID = minifigParts[layoutDetails.curPartName];
-
-    // For some reason, the minifig part is not valid
-    if (buildAreaID === undefined) {
-      document.LUN.throwError("internal");
-      return false;
-    }
+    var buildAreaID = layoutDetails.minifigParts[layoutDetails.curPartName];
 
     // The user clicked a new part, swap orange background
     var $newPart = $(layoutDetails.curPartID);
@@ -90,8 +81,8 @@
     }
 
     // Change to the selected image
-    var curImageIndex = parseInt(partNumber.substr(partNumber.indexOf("-") + 1), 10);
-    $(buildAreaID).attr("src", layoutDetails.curImages[curImageIndex]);
+    var curIndex = partNumber.match(/^\w+?-(\d+)$/)[1];
+    $(buildAreaID).attr("src", layoutDetails.curImages[curIndex]);
     return true;
   });
 
