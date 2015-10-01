@@ -15,7 +15,7 @@
  * Minifig Wizard-specific details
  */
 document.LUN = {
-  "version": "1.2.8"
+  "version": "1.2.9"
 };
 
 // IE 9 Web Workers pollyfill support
