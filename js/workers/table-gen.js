@@ -3,6 +3,7 @@
 /**
  * @constructs Item
  * Create part item for the selection table.
+ *
  * @param {Number} id   The part ID.
  * @param {String} name The category name (e.g, head).
  * @param {String} url  The URL to the thumbnail image.
@@ -15,6 +16,7 @@ function Item(id, name, url) {
 
 /**
  * Capitalize the first letter of the given text.
+ *
  * @param {String} text
  * @returns {String}
  */
@@ -39,8 +41,9 @@ Item.prototype.toString = function(curPart) {
   return string.join("").replace(/'/g, "\"");
 };
 
-/**.
+/**
  * Generate the selection table.
+ *
  * @param {Object} e The information needed to generate.
  */
 onmessage = function(e) {

@@ -19,14 +19,14 @@
     size        : 4,
     curImages   : [],
     curPartID   : null,
-    curPartName : "",
+    curPartName : null,
     minifigParts: {
-      "hat"   : document.LUN.getVariable("imgHat"),
-      "leg"   : document.LUN.getVariable("imgLeg"),
-      "head"  : document.LUN.getVariable("imgHead"),
-      "torso" : document.LUN.getVariable("imgTorso"),
-      "sword" : document.LUN.getVariable("imgSword"),
-      "shield": document.LUN.getVariable("imgShield"),
+      hat   : document.LUN.getVariable("imgHat"),
+      leg   : document.LUN.getVariable("imgLeg"),
+      head  : document.LUN.getVariable("imgHead"),
+      torso : document.LUN.getVariable("imgTorso"),
+      sword : document.LUN.getVariable("imgSword"),
+      shield: document.LUN.getVariable("imgShield")
     }
   };
 
@@ -40,11 +40,13 @@
       $areaMinifigParts   = $(document.LUN.getVariable("areaMinifigParts")),
       $categoryButtonsTh  = $(document.LUN.getVariable("categoryButtonsTh")),
       $categoryButtonsDiv = $(document.LUN.getVariable("categoryButtonsDiv")),
-      $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg"));
+      $categoryButtonsImg = $(document.LUN.getVariable("categoryButtonsImg")),
+      w                   = new Worker("js/workers/table-gen.min.js");
 
 
   /**
    * Open a new window with a larger version of the minifig.
+   *
    * @returns {Boolean} Always returns true.
    */
   $buttonNewWindow.on("click", function() {
@@ -59,6 +61,7 @@
 
   /**
    * Update the build area with the selected image.
+   *
    * @returns {Boolean} Always returns true.
    */
   $minifigItems.on("click", function(e) {
@@ -89,6 +92,7 @@
 
   /**
    * Build the images table.
+   *
    * @param {Object} json The JSON to build the table with.
    * @param {String} partName The part category to build.
    */
@@ -107,7 +111,6 @@
     };
 
     // Create a web worker to handle the table generation
-    var w = new Worker("js/workers/table-gen.min.js");
     w.postMessage(details);
 
     // Insert the table into the DOM
@@ -140,6 +143,7 @@
 
   /**
    * Get the images JSON.
+   *
    * @returns {Object} jQuery AJAX object.
    */
   function getImagesJSON() {
@@ -155,6 +159,7 @@
   /**
    * Entry function to update the image table.
    * Also controls JSON storage and retrieval.
+   *
    * @param {String} partName The part category to build.
    */
   function changePartImages(partName) {
@@ -196,6 +201,7 @@
    * Alias changePartImages function
    * to remove `onclick` attribute in the HTML,
    * and apply orange "bubble" to the current category image.
+   *
    * @returns {Boolean} Always returns true.
    */
   $categoryButtonsImg.on("click", function() {
