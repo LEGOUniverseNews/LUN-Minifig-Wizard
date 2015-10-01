@@ -18,8 +18,15 @@
   var layoutDetails = {
     size        : 4,
     curImages   : [],
-    curPartID   : null,
     curPartName : null,
+    curPartIDs  : {
+      hat   : null,
+      leg   : null,
+      head  : null,
+      torso : null,
+      sword : null,
+      shield: null
+    },
     minifigParts: {
       hat   : document.LUN.getVariable("imgHat"),
       leg   : document.LUN.getVariable("imgLeg"),
@@ -70,14 +77,15 @@
       return false;
     }
     // Get the part ID
-    var partNumber = $(e.target).parent().attr("id");
-    layoutDetails.curPartID = "#" + partNumber;
+    var partNumber = $(e.target).parent().attr("id"),
+        curPartID  = "#" + partNumber;
+    layoutDetails.curPartIDs[layoutDetails.curPartName] = curPartID;
 
     // Get the ID to the part the user clicked
     var buildAreaID = layoutDetails.minifigParts[layoutDetails.curPartName];
 
     // The user clicked a new part, swap orange background
-    var $newPart = $(layoutDetails.curPartID);
+    var $newPart = $(curPartID);
     if (!$newPart.hasClass("selected")) {
       $(".selector").removeClass("selected");
       $newPart.addClass("selected");
@@ -103,11 +111,11 @@
 
     // Gather the information needed for table generation
     var details = {
-      name: layoutDetails.curPartName,
-      images: json[layoutDetails.curPartName],
-      number: json[layoutDetails.curPartName].length,
-      size: layoutDetails.size,
-      curPart: layoutDetails.curPartID
+      name   : layoutDetails.curPartName,
+      size   : layoutDetails.size,
+      images : json[layoutDetails.curPartName],
+      number : json[layoutDetails.curPartName].length,
+      curPart: layoutDetails.curPartIDs[layoutDetails.curPartName]
     };
 
     // Create a web worker to handle the table generation
