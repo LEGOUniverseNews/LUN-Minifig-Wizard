@@ -7,7 +7,6 @@ The **_LEGO Universe News!_ Minifig Wizard** (**LUN Minifig Wizard** for short) 
 ## Official Website: [bit.ly/MinifigWizard](http://bit.ly/MinifigWizard) ##
 
 ## Software Used ##
-
 The **_LEGO Universe News!_ Minifig Wizard** was created using these fine programs and dependencies:
 
 ### Software ###
@@ -18,21 +17,17 @@ The **_LEGO Universe News!_ Minifig Wizard** was created using these fine progra
 ### Dependencies ###
 * [Grunt](http://gruntjs.com/)
 * [jQuery](https://jquery.com/)
-* [simworker](https://github.com/timdream/simworker) pollyfill
 * [Modernizr](http://modernizr.com/)
 * [perfect-scrollbar](https://github.com/noraesae/perfect-scrollbar/)
 
 ## Reporting an Issue ##
-
 To report and issue with the **_LEGO Universe News!_ Minifig Wizard**, or to request and item to be included in the Wizard, please open an Issue ([here](https://github.com/LEGOUniverseNews/LUN-Minifig-Wizard/issues)), comment on our official blog post ([here](http://legouniversenews.wordpress.com/2014/03/05/lun-minifig-wizard/)), or post on our official forum topic ([here](http://legouniversenews.forummotion.com/t1252p15-lun-minifig-wizard)).
 
 ## Contributing ##
-
 If you would like to contribute to the development of the **_LEGO Universe News!_ Minifig Wizard**,
 please consult [`CONTRIBUTING.md`](Developer/CONTRIBUTING.md).
 
 ## License ##
-
 [![Creative Commons License](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0)
 
 All images in the **_LEGO Universe News!_ Minifig Wizard** by [rioforce](http://rioforce.WordPress.com/) are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/),

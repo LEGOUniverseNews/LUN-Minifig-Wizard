@@ -126,9 +126,6 @@
     w.onmessage = function(e) {
       $minifigItems.html(e.data.table);
       layoutDetails.curImages = e.data.fullsize;
-      if (window.Worker.notNative) {
-        w.terminate();
-      }
     };
 
     // Display the scroll bar when needed for both layout sizes
