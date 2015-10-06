@@ -104,6 +104,8 @@ table {
   border: 1px solid #000;
   cursor: pointer;
 }
+/* Change the border around the selected box */
+.color-box.white-border { border: 1.5px solid #fff; }
 
 /* Location of image size input box */
 #input-size {
@@ -126,15 +128,12 @@ table {
   right: 30px;
 }
 
-/* Possible background and color box colors */
-#red-color-box { background-color: #f00; }
-#green-color-box { background-color: #008000; }
-#blue-color-box { background-color: #00f; }
-#yellow-color-box { background-color: #ff0; }
-#gray-color-box { background-color: #f6dada; }
-#orange-color-box { background-color: #ffa500; }
-#black-color-box { background-color: #000; }
-#white-color-box { background-color: #fff; }
-
-/* Change the border around the actively selected box */
-.white-border { border: 1.5px solid #fff; }
+/* Possible background and color box selections */
+.color-red { background-color: #f00; }
+.color-blue { background-color: #00f; }
+.color-gray { background-color: #f6dada; }
+.color-green { background-color: #008000; }
+.color-black { background-color: #000; }
+.color-white { background-color: #fff; }
+.color-orange { background-color: #ffa500; }
+.color-yellow { background-color: #ff0; }

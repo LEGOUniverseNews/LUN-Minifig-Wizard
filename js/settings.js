@@ -54,18 +54,27 @@
 
 
     /**
-     * Changing background color.
+     * Change the new window background color.
      */
-    $(".color-box").on("click", function() {
-      // Get the CSS value from the clicked box
-      var $bgColor = $(this).css("background-color");
+    var QcolorBox = document.querySelector("#settings-panel tr"),
+        Qbody = document.querySelector("body");
 
-      // Remove the white border from the old box and apply it to the new one
-      $(".color-box").removeClass("white-border");
-      $(this).addClass("white-border");
+    QcolorBox.addEventListener("click", function(e) {
+      // Activate only on the color boxes
+      if (!e.target.classList.contains("color-box")) {
+        return false;
+      }
 
-      // Change the background color to the selected color
-      $("body").css("background-color", $bgColor);
+      // Remove previous colors
+      if (/color-(?!box)/.test(Qbody.className)) {
+        var oldClass = Qbody.className.match(/color-\w+/);
+        Qbody.classList.remove(oldClass);
+      }
+
+      // Change the background color
+      document.querySelector(".color-box.white-border").classList.remove("white-border");
+      e.target.classList.add("white-border");
+      Qbody.classList.add(e.target.classList[1]);
     });
   });
 })(jQuery);
