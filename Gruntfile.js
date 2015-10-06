@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     "2013-<%= grunt.template.today('yyyy') %> <%= pkg.author %> | " +
     "<%= pkg.license %> */\n",
     baseFileName: "LUNWizard",
-    jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "js/workers/*.js"],
+    jsFiles: ["*.js", "js/*.js", "!js/*.min.js", "js/workers/*.js", "!js/workers/*.min.js"],
     cssFiles: ["css/*.css", "!css/*.min.css"],
 
     devUpdate: {
