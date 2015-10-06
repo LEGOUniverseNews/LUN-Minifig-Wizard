@@ -24,24 +24,10 @@
     /**
      * Settings panel displaying
      */
-    // Current location of settings panel
-    var $gearBtn   = $("#btn-gear"),
-        isVisible  = false,
-        $settPanel = $("#settings-panel");
-
-    $gearBtn.on("click", function() {
-      // The panel is currently hidden
-      if (isVisible) {
-        isVisible = false;
-        $settPanel.css("transform", "");
-
-        // The panel is currently visible
-      } else {
-        isVisible = true;
-        $settPanel.css("transform", "translate3d(0, -2.188em, 0)");
-      }
+    var $settPanel = $("#settings-panel");
+    $("#btn-gear").on("click", function() {
+      $settPanel.toggleClass("visible");
     });
-
 
     /**
      * Image size changing

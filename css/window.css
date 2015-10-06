@@ -91,6 +91,12 @@ table {
           transition-timing-function: ease;
 }
 
+#settings-panel.visible {
+  -webkit-transform: translate3d(0, -2.2rem, 0);
+      -ms-transform: translate3d(0, -2.2rem, 0);
+          transform: translate3d(0, -2.2rem, 0);
+}
+
 /* The boxes used to change the background color */
 .color-box {
   width: 12px;
