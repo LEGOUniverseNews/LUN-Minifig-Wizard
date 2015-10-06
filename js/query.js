@@ -47,7 +47,7 @@
    * @param {String}  err The error type.
    * @returns {Boolean} Always returns false.
    */
-  function _throwError(err) {
+  function throwError(err) {
     var messages = {
       spark: "You need to finish creating your minifigure!",
       notfound: "That Minifigure part was not found!",
@@ -87,7 +87,7 @@
     // or invalid characters were used.
     if (query === undefined || protos.test(query) ||
         (!query.substr(1).split("&").every(_isValid))) {
-      _throwError("internal");
+      throwError("internal");
       return false;
     }
     return true;
@@ -98,12 +98,12 @@
    * Decode query strings.
    * @returns {Array.<String>|Boolean} Fully decoded URLs, otherwise false.
    */
-  function _decodeQuery() {
+  function decodeQuery() {
     var qs = window.location.search;
 
     // Make sure it is valid
     if (!_testQuery(qs)) {
-      _throwError("internal");
+      throwError("internal");
       return false;
     }
 
@@ -118,7 +118,7 @@
 
     // Make sure we have enough items
     if (numKeys === 6 || numKeys === 7) {
-      _throwError("spark");
+      throwError("spark");
       return false;
     }
 
@@ -169,7 +169,7 @@
    * Create a query string.
    * @returns {String|Boolean} Fully encoded URL, otherwise false.
    */
-  function _encodeQuery() {
+  function encodeQuery() {
     // Initialization
     var query  = "",
         number = "",
@@ -191,7 +191,7 @@
 
         // Do not permit an incomplete minifigure
         if (isSpark && !isEmpty) {
-          _throwError("spark");
+          throwError("spark");
           return false;
         }
 
@@ -226,7 +226,7 @@
 
     // Make sure it is valid
     if (!_testQuery(query)) {
-      _throwError("internal");
+      throwError("internal");
       return false;
     }
     return query;
@@ -234,7 +234,7 @@
 
 
   // Public exports
-  document.LUN.throwError  = _throwError;
-  document.LUN.decodeQuery = _decodeQuery;
-  document.LUN.encodeQuery = _encodeQuery;
+  document.LUN.throwError  = throwError;
+  document.LUN.decodeQuery = decodeQuery;
+  document.LUN.encodeQuery = encodeQuery;
 })();
