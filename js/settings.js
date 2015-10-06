@@ -24,9 +24,9 @@
     /**
      * Settings panel displaying
      */
-    var $settPanel = $("#settings-panel");
-    $("#btn-gear").on("click", function() {
-      $settPanel.toggleClass("visible");
+    var QsettingsPanel = document.querySelector("#settings-panel");
+    document.querySelector("#btn-gear").addEventListener("click", function() {
+      QsettingsPanel.classList.toggle("visible");
     });
 
     /**
