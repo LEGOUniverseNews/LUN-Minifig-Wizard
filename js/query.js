@@ -175,12 +175,12 @@
         number = "",
         images = {
           heads  : document.querySelector(document.LUN.getVariable("imgHead")).src,
+          special: document.querySelector(document.LUN.getVariable("imgSpecial")).src,
           hats   : document.querySelector(document.LUN.getVariable("imgHat")).src,
           legs   : document.querySelector(document.LUN.getVariable("imgLeg")).src,
           torso  : document.querySelector(document.LUN.getVariable("imgTorso")).src,
-          sword  : document.querySelector(document.LUN.getVariable("imgSword")).src,
           shield : document.querySelector(document.LUN.getVariable("imgShield")).src,
-          special: document.querySelector(document.LUN.getVariable("imgSpecial")).src
+          sword  : document.querySelector(document.LUN.getVariable("imgSword")).src
         };
 
     for (var value in images) {
