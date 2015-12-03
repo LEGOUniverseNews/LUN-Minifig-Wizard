@@ -126,9 +126,6 @@
     w.onmessage = function(e) {
       $minifigItems.html(e.data.table);
       layoutDetails.curImages = e.data.fullsize;
-      if (window.Worker.notNative) {
-        w.terminate();
-      }
     };
 
     // Display the scroll bar when needed for both layout sizes
@@ -239,26 +236,13 @@
       // Left margin
       // Resize button (swap SVGs)
 
-      // CSS transitions are not supported, fall back to jQuery animations
-      if (!Modernizr.csstransitions) {
-        $buttonResize.animate({"left": "+=190px"}, 300);
-        $areaMinifigParts.animate({"width": "+=180px"}, 300);
-        $background.animate({"width": "+=180px"}, 300);
-        $categoryButtonsDiv.animate({"margin-left": "+=48px"}, 300);
-        $categoryButtonsTh.animate({"padding-left": "5px"}, 100);
-        $categoryButtonsTh.animate({"padding-right": "5px"}, 100);
-        $buildArea.animate({"width": "+=180px"}, 150);
-
-      } else {
-        // For browsers that do support CSS transitions, trigger them
-        $buttonResize.css("transform", "translate3d(190px, 0, 0)");
-        $areaMinifigParts.css("width", "+=180px");
-        $background.css("width", "+=180px");
-        $categoryButtonsDiv.css("margin-left", "+=48px");
-        $categoryButtonsTh.css("padding-left", "5px");
-        $categoryButtonsTh.css("padding-right", "5px");
-        $buildArea.css("width", "+=180px");
-      }
+      $buttonResize.css("transform", "translate3d(190px, 0, 0)");
+      $areaMinifigParts.css("width", "+=180px");
+      $background.css("width", "+=180px");
+      $categoryButtonsDiv.css("margin-left", "+=48px");
+      $categoryButtonsTh.css("padding-left", "5px");
+      $categoryButtonsTh.css("padding-right", "5px");
+      $buildArea.css("width", "+=180px");
 
       // Increase the margins on left side of the table to make it all even
       // This runs even if the browser does not support CSS transitions
@@ -268,26 +252,13 @@
       // We are currently using the larger size
     } else {
       layoutDetails.size = 4;
-
-      if (!Modernizr.csstransitions) {
-        $buttonResize.animate({"left": "-=190px"}, 300);
-        $areaMinifigParts.animate({"width": "-=180px"}, 300);
-        $background.animate({"width": "-=180px"}, 300);
-        $categoryButtonsDiv.animate({"margin-left": "-=48px"}, 300);
-        $categoryButtonsTh.animate({"padding-left": "0px"}, 100);
-        $categoryButtonsTh.animate({"padding-right": "0px"}, 100);
-        $buildArea.animate({"width": "-=180px"}, 150);
-
-      } else {
-        $buttonResize.css("transform", "");
-        $areaMinifigParts.css("width", "");
-        $background.css("width", "");
-        $categoryButtonsDiv.css("margin-left", "");
-        $categoryButtonsTh.css("padding-left", "");
-        $categoryButtonsTh.css("padding-right", "");
-        $buildArea.css("width", "-=180px");
-      }
-
+      $buttonResize.css("transform", "");
+      $areaMinifigParts.css("width", "");
+      $background.css("width", "");
+      $categoryButtonsDiv.css("margin-left", "");
+      $categoryButtonsTh.css("padding-left", "");
+      $categoryButtonsTh.css("padding-right", "");
+      $buildArea.css("width", "-=180px");
       $minifigItems.css("margin-left", "5px");
       $buttonResize.attr("src", "img/ui/Enlarge-button.svg");
     }

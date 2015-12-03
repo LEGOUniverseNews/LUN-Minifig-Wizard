@@ -10,7 +10,6 @@
   "globals": {
     "document"   : true,
     "window"     : true,
-    "Modernizr"  : true,
     "Worker"     : true
   }
 }

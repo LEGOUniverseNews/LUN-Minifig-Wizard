@@ -73,10 +73,6 @@ onmessage = function(e) {
   result.table[0] = "<table>";
   result.table[result.table.length - 1] = "</table>";
 
-  // Use the proper method depending on if native
-  // Web Workers or a pollyfill is in use
-  // and send back the table
-  var send = (typeof workerPostMessage !== "undefined") ? workerPostMessage: postMessage;
   result.table = result.table.join("");
-  send(result);
+  postMessage(result);
 };
