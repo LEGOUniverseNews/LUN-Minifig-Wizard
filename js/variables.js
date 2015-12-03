@@ -15,7 +15,7 @@
  * Minifig Wizard-specific details
  */
 document.LUN = {
-  "version": "1.2.12"
+  "version": "1.3.1"
 };
 
 /**

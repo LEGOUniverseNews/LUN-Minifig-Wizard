@@ -1,6 +1,6 @@
 {
   "name": "LUN-Minifig-Wizard",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Design your own LEGO sigfig!",
   "main": "index.html",
   "scripts": {
