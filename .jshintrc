@@ -1,15 +1,17 @@
 {
-  "indent"       : 2,
-  "maxlen"       : 125,
-  "jquery"       : true,
-  "node"         : true,
-  "quotmark"     : "double",
-  "strict"       : true,
-  "undef"        : true,
-  "unused"       : true,
+  "indent"        : 2,
+  "maxlen"        : 125,
+  "jquery"        : true,
+  "node"          : true,
+  "quotmark"      : "double",
+  "strict"        : true,
+  "undef"         : true,
+  "unused"        : true,
   "globals": {
-    "document"   : true,
-    "window"     : true,
-    "Worker"     : true
+    "document"    : true,
+    "window"      : true,
+    "Worker"      : true,
+    "postMessage" : true,
+    "onmessage"   : true,
   }
 }

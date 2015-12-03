@@ -137,7 +137,15 @@ module.exports = function(grunt) {
     }
   });
 
-  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+  grunt.loadNpmTasks("grunt-contrib-connect");
+  grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-csslint");
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  // grunt.loadNpmTasks("grunt-htmlhint");
+  
   grunt.registerTask("default", "List of commands", function() {
     grunt.log.writeln("");
     grunt.log.writeln("Run 'grunt lint' to lint the source files");
@@ -145,7 +153,7 @@ module.exports = function(grunt) {
     grunt.log.writeln("Run 'grunt devUpdate' to update the devDependencies");
     grunt.log.writeln("Run 'grunt all' to run all tasks except 'devUpdate'");
   });
-  grunt.registerTask("lint", ["htmlhint", "csslint", "jshint"]);
+  grunt.registerTask("lint", [/*"htmlhint",*/ "csslint", "jshint"]);
   grunt.registerTask("build", ["cssmin", "uglify", "copy"]);
   grunt.registerTask("all", ["lint", "build"]);
   grunt.option("force", true);
